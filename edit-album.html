@@ -14,9 +14,9 @@
 
 <h1>Anna Deng Photography</h1>
 
-<h2>Edit Album</h2>
+<div class="editor-topbar">
 
-<a href="editor.html" class="editor-button icon-button">
+<a href="editor.html" class="editor-back">
 
 <img src="icons/back.png">
 
@@ -24,11 +24,10 @@
 
 </a>
 
-<h2 id="title"></h2>
 
-<div class="editor-bar">
+<div class="editor-actions">
 
-<label class="editor-button icon-button">
+<label class="icon-button">
 
 <img src="icons/add-photo.png">
 
@@ -36,16 +35,70 @@
 type="file"
 id="files"
 multiple
-onchange="uploadPhotos()"
 hidden
->
+onchange="uploadPhotos()">
 
 </label>
+
+
+<button
+class="menu-button"
+onclick="toggleAlbumMenu(event)">
+
+&#8942;
+
+</button>
+
+</div>
+
+</div>
+
+
+<h2 id="title"></h2>
+
+
+<div
+id="albumMenu"
+class="popup-menu">
+
+<button
+onclick="startCoverSelection()">
+
+Set Album Cover...
+
+</button>
+
+<button
+onclick="renameAlbum()">
+
+Rename Album
+
+</button>
+
+<button
+onclick="deleteAlbum()">
+
+Delete Album
+
+</button>
+
 </div>
 
 
 <div id="photos" class="albums"></div>
 
+  <div
+id="photoMenu"
+class="popup-menu">
+
+<button
+onclick="addToOtherAlbum()">
+
+Add to Other Album
+
+</button>
+
+</div>
 
 <script>
 const password =
@@ -114,15 +167,11 @@ photo.split("/")
 
 div.innerHTML = `
 
+<div class="photo-wrapper">
+
 <img src="${image}">
 
-<h3>${photo.split("/").pop()}</h3>
-
-<div class="photo-actions">
-
-<button onclick="setCover('${photo}')">
-Use as Cover
-</button>
+<div class="photo-toolbar">
 
 <button
 class="icon-control"
@@ -130,9 +179,21 @@ onclick="deletePhoto('${photo}')">
 
 <img src="icons/trash.png">
 
-</button>`;
+</button>
 
+<button
+class="menu-button photo-menu-button"
+onclick="photoMenu(event,'${photo}')">
 
+&#8942;
+
+</button>
+
+</div>
+
+</div>
+
+`;
 
 container.appendChild(div);
 
@@ -266,6 +327,29 @@ location.reload();
 
 }
 
+function toggleAlbumMenu(e){
+
+}
+
+function startCoverSelection(){
+
+}
+
+function renameAlbum(){
+
+}
+
+function deleteAlbum(){
+
+}
+  function photoMenu(e,key){
+
+}
+
+function addToOtherAlbum(){
+
+}
+  
 loadPhotos();
 
 
