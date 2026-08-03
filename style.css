@@ -244,7 +244,8 @@ cursor:pointer;
 
 .album-link {
 
-position:absolute;
-inset:0;
+display:block;
+text-decoration:none;
+color:inherit;
 
 }
