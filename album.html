@@ -12,11 +12,12 @@
 
 <body>
 
-<a href="index.html">← Back to Albums</a>
 
 <h1 id="album-title">Loading...</h1>
 
 <div class="gallery" id="gallery"></div>
+    <br><br>
+<a href="index.html">← Back to Albums</a>
 
 
 <script>
@@ -48,10 +49,9 @@ async function loadPhotos() {
 
         const img = document.createElement("img");
 
-        img.src =
-        "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/"
-        + encodeURIComponent(photo)
-        .replace(/%2F/g, "/");
+       img.src =
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/"
++ photo.split("/").map(encodeURIComponent).join("/");
 
 
         img.alt = album;
