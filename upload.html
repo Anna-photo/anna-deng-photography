@@ -8,7 +8,10 @@
 
 <body>
 
-<h1>Anna Photography Upload</h1>
+<h1>Anna Deng Photography Upload</h1>
+
+<p>Private upload area</p>
+
 
 <label>
 Password:
@@ -17,28 +20,137 @@ Password:
 
 <br><br>
 
-<button onclick="login()">Login</button>
+
+<label>
+Album name:
+<input type="text" id="album" placeholder="Example: 2027 Kenya">
+</label>
+
+<br><br>
+
+
+<label>
+Choose photos:
+<input type="file" id="files" multiple>
+</label>
+
+
+<br><br>
+
+
+<button onclick="uploadPhotos()">
+Upload
+</button>
+
+
+<p id="status"></p>
+
 
 
 <script>
 
-function login(){
+
+const workerURL =
+"https://anna-photo-gallery.anna-deng.workers.dev";
+
+
+
+async function uploadPhotos(){
+
 
 const password =
 document.getElementById("password").value;
 
 
-localStorage.setItem(
-"uploadPassword",
-password
-);
+const album =
+document.getElementById("album").value;
 
 
-alert("Password saved. Upload page coming next.");
+const files =
+document.getElementById("files").files;
+
+
+const status =
+document.getElementById("status");
+
+
+
+if(!password || !album || files.length === 0){
+
+status.innerHTML =
+"Please fill everything.";
+
+return;
 
 }
 
+
+
+for (const file of files){
+
+
+const form =
+new FormData();
+
+
+form.append(
+"album",
+album
+);
+
+
+form.append(
+"file",
+file
+);
+
+
+
+const response =
+await fetch(
+workerURL + "/upload",
+{
+method:"POST",
+
+headers:{
+"X-Upload-Password":password
+},
+
+body:form
+
+}
+);
+
+
+
+const result =
+await response.json();
+
+
+
+if(result.success){
+
+status.innerHTML +=
+"<br>Uploaded: " + file.name;
+
+}
+
+else {
+
+status.innerHTML +=
+"<br>Error uploading " + file.name;
+
+}
+
+
+}
+
+
+}
+
+
 </script>
+
 
 </body>
 
