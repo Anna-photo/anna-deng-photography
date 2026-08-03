@@ -233,3 +233,18 @@ gap:20px;
     height:auto !important;
     display:block !important;
 }
+
+.album {
+
+position:relative;
+cursor:pointer;
+
+}
+
+
+.album-link {
+
+position:absolute;
+inset:0;
+
+}
