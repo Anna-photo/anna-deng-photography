@@ -19,8 +19,23 @@
 <h3 id="title"></h3>
 
 
-<div id="photos" class="albums"></div>
+<div class="editor-bar">
 
+<input 
+type="file"
+id="files"
+multiple
+>
+
+
+<button class="editor-button" onclick="uploadPhotos()">
+Add Photos
+</button>
+
+</div>
+
+
+<div id="photos" class="albums"></div>
 
 
 <script>
@@ -175,6 +190,64 @@ key:key
 
 
 alert("Cover updated");
+
+
+}
+  async function uploadPhotos(){
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+const files =
+document.getElementById("files").files;
+
+
+for (const file of files){
+
+
+const form =
+new FormData();
+
+
+form.append(
+"album",
+album
+);
+
+
+form.append(
+"file",
+file
+);
+
+
+
+await fetch(
+workerURL + "/upload",
+{
+method:"POST",
+
+headers:{
+"X-Upload-Password":password
+},
+
+body:form
+
+}
+);
+
+
+}
+
+
+alert(
+"Photos uploaded!"
+);
+
+
+location.reload();
 
 
 }
