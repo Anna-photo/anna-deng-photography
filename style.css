@@ -320,3 +320,45 @@ padding:6px 10px;
 border-radius:6px;
 
 }
+
+.photo-actions {
+
+display:flex;
+justify-content:center;
+gap:6px;
+margin-top:8px;
+
+}
+.photo-actions button {
+
+padding:4px 8px !important;
+
+font-size:12px !important;
+
+border-radius:5px;
+
+}
+.icon-control {
+
+padding:4px !important;
+
+width:28px;
+
+height:28px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+.icon-control img {
+
+width:14px !important;
+
+height:14px !important;
+
+display:block;
+
+}
