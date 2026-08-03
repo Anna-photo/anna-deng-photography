@@ -98,7 +98,10 @@ div.innerHTML = `
 <button onclick="deletePhoto('${photo}')">
 Delete
 </button>
-`;
+
+<button onclick="setCover('${photo}')">
+Set Cover
+</button>`;
 
 
 
@@ -143,6 +146,35 @@ key:key
 
 
 location.reload();
+
+
+}
+  async function setCover(key){
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/set-cover",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+key:key
+})
+
+}
+);
+
+
+alert("Cover updated");
 
 
 }
