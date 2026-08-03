@@ -207,5 +207,13 @@ border-radius:10px;
 .editor-photo {
 
 width:300px;
+margin:15px;
+
+}
+#photos {
+
+display:flex;
+flex-wrap:wrap;
+gap:20px;
 
 }
