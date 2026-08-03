@@ -323,18 +323,14 @@ Loading photographs...
 </div>
 <script>
 
-
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev/";
-
 
 const r2URL =
 "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/";
 
-
 const params =
 new URLSearchParams(window.location.search);
-
 
 const album =
 params.get("album");
@@ -352,9 +348,7 @@ let currentPhoto = 0;
 
 async function loadPhotos(){
 
-
     try {
-
 
         const response = await fetch(
             workerURL +
@@ -366,54 +360,44 @@ async function loadPhotos(){
         photos = await response.json();
 
 
-
         const gallery =
         document.getElementById("gallery");
 
 
-
-        document.getElementById("loading").style.display =
-        "none";
-
+        document.getElementById("loading")
+        .style.display = "none";
 
 
         photos.forEach((photo,index)=>{
 
-
-            // Ignore folder entry
 
             if(photo.endsWith("/")){
                 return;
             }
 
 
-
             const img =
             document.createElement("img");
 
 
-
-            img.loading =
-            "lazy";
-
+            img.loading = "lazy";
 
 
             img.src =
-            r2URL +
-            photo
-            .split("/")
-            .map(encodeURIComponent)
-            .join("/");
+            getImageURL(photo);
 
 
+            img.onload = function(){
 
-            img.alt =
-            album;
+                img.classList.add("loaded");
+
+            };
 
 
+            img.alt = album;
 
-            img.onclick =
-            function(){
+
+            img.onclick = function(){
 
                 currentPhoto = index;
 
@@ -422,29 +406,23 @@ async function loadPhotos(){
             };
 
 
-
             gallery.appendChild(img);
 
 
-
         });
-
 
 
     }
 
     catch(error){
 
-
-        document.getElementById("loading").textContent =
+        document.getElementById("loading")
+        .textContent =
         "Unable to load photographs.";
-
 
         console.error(error);
 
-
     }
-
 
 }
 
@@ -452,13 +430,29 @@ async function loadPhotos(){
 
 function getImageURL(photo){
 
-
     return r2URL +
     photo
     .split("/")
     .map(encodeURIComponent)
     .join("/");
 
+}
+
+
+
+function preload(index){
+
+    if(!photos[index]) return;
+
+
+    const img =
+    new Image();
+
+
+    img.src =
+    getImageURL(
+        photos[index]
+    );
 
 }
 
@@ -466,28 +460,48 @@ function getImageURL(photo){
 
 function openLightbox(){
 
-
-    while(
-        photos[currentPhoto] &&
-        photos[currentPhoto].endsWith("/")
-    ){
-
-        currentPhoto++;
-
-    }
+    document.getElementById("lightbox")
+    .style.display = "flex";
 
 
+    showPhoto();
 
-    document.getElementById("largeImage").src =
-    getImageURL(
-        photos[currentPhoto]
-    );
+
+    preload(currentPhoto + 1);
+
+    preload(currentPhoto - 1);
+
+}
 
 
 
-    document.getElementById("lightbox").style.display =
-    "flex";
+function showPhoto(){
 
+
+    const big =
+    document.getElementById("largeImage");
+
+
+    big.style.opacity = 0;
+
+
+    setTimeout(()=>{
+
+
+        big.src =
+        getImageURL(
+            photos[currentPhoto]
+        );
+
+
+        big.onload = ()=>{
+
+            big.style.opacity = 1;
+
+        };
+
+
+    },150);
 
 }
 
@@ -495,10 +509,8 @@ function openLightbox(){
 
 function closeLightbox(){
 
-
-    document.getElementById("lightbox").style.display =
-    "none";
-
+    document.getElementById("lightbox")
+    .style.display = "none";
 
 }
 
@@ -507,7 +519,7 @@ function closeLightbox(){
 function changePhoto(direction){
 
 
-    let newIndex =
+    let next =
     currentPhoto + direction;
 
 
@@ -515,80 +527,62 @@ function changePhoto(direction){
     while(true){
 
 
-        if(newIndex < 0){
+        if(next < 0){
 
-            newIndex =
+            next =
             photos.length - 1;
 
         }
 
 
+        if(next >= photos.length){
 
-        if(newIndex >= photos.length){
-
-            newIndex = 0;
+            next = 0;
 
         }
 
 
-
-        if(!photos[newIndex].endsWith("/")){
+        if(!photos[next].endsWith("/")){
 
             break;
 
         }
 
 
-
-        newIndex += direction;
-
+        next += direction;
 
     }
 
 
 
-    currentPhoto =
-    newIndex;
+    currentPhoto = next;
 
 
+    showPhoto();
 
-    openLightbox();
+
+    preload(currentPhoto + direction);
 
 
 }
 
 
 
-
-
 document.addEventListener(
 "keydown",
-function(event){
+function(e){
 
 
-
-    if(event.key === "Escape"){
-
+    if(e.key === "Escape")
         closeLightbox();
 
-    }
 
-
-
-    if(event.key === "ArrowLeft"){
-
+    if(e.key === "ArrowLeft")
         changePhoto(-1);
 
-    }
 
-
-
-    if(event.key === "ArrowRight"){
-
+    if(e.key === "ArrowRight")
         changePhoto(1);
-
-    }
-
 
 
 });
@@ -597,18 +591,65 @@ function(event){
 
 
 
-// Close when clicking outside image
+// Close clicking outside image
 
 document
 .getElementById("lightbox")
 .addEventListener(
 "click",
-function(event){
+function(e){
 
-
-    if(event.target.id === "lightbox"){
+    if(e.target.id === "lightbox"){
 
         closeLightbox();
+
+    }
+
+});
+
+
+
+
+
+// Touch swipe support
+
+let touchStartX = 0;
+
+
+document
+.getElementById("lightbox")
+.addEventListener(
+"touchstart",
+function(e){
+
+    touchStartX =
+    e.changedTouches[0].screenX;
+
+});
+
+
+
+document
+.getElementById("lightbox")
+.addEventListener(
+"touchend",
+function(e){
+
+
+    let touchEndX =
+    e.changedTouches[0].screenX;
+
+
+    if(touchEndX < touchStartX - 50){
+
+        changePhoto(1);
+
+    }
+
+
+    if(touchEndX > touchStartX + 50){
+
+        changePhoto(-1);
 
     }
 
@@ -620,7 +661,6 @@ function(event){
 
 
 loadPhotos();
-
 
 
 </script>
