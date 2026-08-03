@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Anna Photo Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Anna Photo Manager</h1>
+
+<label>
+Password:
+<input type="password" id="password">
+</label>
+
+<button onclick="loadAlbums()">
+Login
+</button>
+
+<hr>
+
+<div id="albums"></div>
+
+
+<script>
+
+const workerURL =
+"https://anna-photo-gallery.anna-deng.workers.dev";
+
+
+let password = "";
+
+
+async function loadAlbums(){
+
+password =
+document.getElementById("password").value;
+
+
+const response =
+await fetch(
+workerURL + "?albums=true"
+);
+
+
+const albums =
+await response.json();
+
+
+const container =
+document.getElementById("albums");
+
+
+container.innerHTML =
+"";
+
+
+albums.forEach(album => {
+
+
+const div =
+document.createElement("div");
+
+
+div.innerHTML = `
+
+<h2>${album.name}</h2>
+
+<img src="https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/${album.cover}"
+width="200">
+
+<button onclick="manageAlbum('${album.name}')">
+Manage
+</button>
+
+<hr>
+
+`;
+
+
+container.appendChild(div);
+
+
+});
+
+
+}
+
+
+
+function manageAlbum(name){
+
+alert(
+"Next step: manage " + name
+);
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
