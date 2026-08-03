@@ -131,3 +131,66 @@ border-top:1px solid #ddd;
 margin:30px 0;
 
 }
+
+/* EDITOR */
+
+.editor-bar {
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+
+.editor-button {
+
+background:#222;
+color:white;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:15px;
+
+text-decoration:none;
+
+display:inline-block;
+
+}
+
+
+.editor-button:hover {
+
+background:#555;
+
+}
+
+
+.album-controls {
+
+margin-top:15px;
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+
+.photo-card {
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
