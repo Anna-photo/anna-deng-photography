@@ -94,7 +94,7 @@ Open Album
 <br><br>
 
 
-<button>
+<button onclick="editAlbum('${album.name}')">
 Edit
 </button>
 
@@ -124,6 +124,13 @@ window.location.href =
 
 }
 
+  function editAlbum(name){
+
+window.location.href =
+"edit-album.html?album=" +
+encodeURIComponent(name);
+
+}
 
 
 loadAlbums();
