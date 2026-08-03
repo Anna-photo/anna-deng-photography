@@ -2,99 +2,92 @@
 <html>
 
 <head>
-<title>Anna Photo Manager</title>
+
+<title>Anna Editor Login</title>
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-<h1>Anna Photo Manager</h1>
+
+<h1>Anna Deng Photography</h1>
+
+<h2>Editor Login</h2>
+
 
 <label>
 Password:
 <input type="password" id="password">
 </label>
 
-<button onclick="loadAlbums()">
+
+<br><br>
+
+
+<button onclick="login()">
 Login
 </button>
 
-<hr>
 
-<div id="albums"></div>
+<p id="message"></p>
+
 
 
 <script>
+
 
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
 
 
-let password = "";
+
+async function login(){
 
 
-async function loadAlbums(){
-
-password =
+const password =
 document.getElementById("password").value;
+
 
 
 const response =
 await fetch(
-workerURL + "?albums=true"
+workerURL +
+"/login?password=" +
+encodeURIComponent(password)
 );
 
 
-const albums =
+
+const result =
 await response.json();
 
 
-const container =
-document.getElementById("albums");
+
+if(result.success){
 
 
-container.innerHTML =
-"";
+localStorage.setItem(
+"annaEditorPassword",
+password
+);
 
 
-albums.forEach(album => {
 
-
-const div =
-document.createElement("div");
-
-
-div.innerHTML = `
-
-<h2>${album.name}</h2>
-
-<img src="https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/${album.cover}"
-width="200">
-
-<button onclick="manageAlbum('${album.name}')">
-Manage
-</button>
-
-<hr>
-
-`;
-
-
-container.appendChild(div);
-
-
-});
+window.location.href =
+"editor.html";
 
 
 }
 
+else {
 
+document.getElementById("message").innerHTML =
+"Wrong password";
 
-function manageAlbum(name){
+}
 
-alert(
-"Next step: manage " + name
-);
 
 }
 
