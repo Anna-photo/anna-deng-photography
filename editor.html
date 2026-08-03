@@ -28,6 +28,15 @@ Logout
 
 
 <script>
+  const password =
+localStorage.getItem("annaEditorPassword");
+
+if (!password) {
+
+window.location.href =
+"manage.html";
+
+}
 
 
 const workerURL =
