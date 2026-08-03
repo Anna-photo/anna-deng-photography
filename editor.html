@@ -104,18 +104,10 @@ div.innerHTML = `
 <h3>${album.name}</h3>
 
 
-<a href="album.html?album=${encodeURIComponent(album.name)}">
-Open Album
+<a class="album-link"
+href="edit-album.html?album=${encodeURIComponent(album.name)}">
+
 </a>
-
-<br><br>
-
-
-<button onclick="editAlbum('${album.name}')">
-Edit
-</button>
-
-
 `;
 
 
