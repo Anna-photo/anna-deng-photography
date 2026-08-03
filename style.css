@@ -311,3 +311,12 @@ height:20px;
 object-fit:contain;
 
 }
+.photo-actions button {
+
+font-size:14px;
+
+padding:6px 10px;
+
+border-radius:6px;
+
+}
