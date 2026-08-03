@@ -2,21 +2,135 @@
 <html>
 
 <head>
+
 <title>Anna Editor</title>
 <link rel="stylesheet" href="style.css">
+
 </head>
 
+
 <body>
+
 
 <h1>Anna Deng Photography</h1>
 
 <h2>Editor Mode</h2>
 
-<p>Welcome Anna. Editing tools will appear here.</p>
+<button onclick="logout()">
+Logout
+</button>
 
-<a href="index.html">
-Back to public gallery
+
+<div class="albums" id="albums">
+
+</div>
+
+
+
+<script>
+
+
+const workerURL =
+"https://anna-photo-gallery.anna-deng.workers.dev";
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+
+async function loadAlbums(){
+
+
+const response =
+await fetch(workerURL + "?albums=true");
+
+
+const albums =
+await response.json();
+
+
+
+const container =
+document.getElementById("albums");
+
+
+
+albums.forEach(album => {
+
+
+const div =
+document.createElement("div");
+
+
+div.className =
+"album";
+
+
+
+const image =
+album.cover
+?
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
+album.cover.split("/")
+.map(encodeURIComponent)
+.join("/")
+:
+"";
+
+
+
+div.innerHTML = `
+
+<img src="${image}">
+
+<h3>${album.name}</h3>
+
+
+<a href="album.html?album=${encodeURIComponent(album.name)}">
+Open Album
 </a>
+
+<br><br>
+
+
+<button>
+Edit
+</button>
+
+
+`;
+
+
+
+container.appendChild(div);
+
+
+});
+
+
+}
+
+
+
+function logout(){
+
+localStorage.removeItem(
+"annaEditorPassword"
+);
+
+window.location.href =
+"manage.html";
+
+}
+
+
+
+loadAlbums();
+
+
+</script>
+
 
 </body>
 
