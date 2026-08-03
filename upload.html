@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Anna Upload</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Anna Photography Upload</h1>
+
+<label>
+Password:
+<input type="password" id="password">
+</label>
+
+<br><br>
+
+<button onclick="login()">Login</button>
+
+
+<script>
+
+function login(){
+
+const password =
+document.getElementById("password").value;
+
+
+localStorage.setItem(
+"uploadPassword",
+password
+);
+
+
+alert("Password saved. Upload page coming next.");
+
+}
+
+</script>
+
+</body>
+
+</html>
