@@ -24,7 +24,15 @@
 
 
 <script>
+const password =
+localStorage.getItem("annaEditorPassword");
 
+if (!password) {
+
+window.location.href =
+"manage.html";
+
+}
 
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
