@@ -87,9 +87,14 @@ body {
 
 .gallery {
 
-    columns: 3 300px;
+    display: grid;
 
-    column-gap: 20px;
+    grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 20px;
+
+    align-items: start;
 
 }
 
@@ -99,6 +104,8 @@ body {
 
     width: 100%;
 
+    height: auto;
+
     margin-bottom: 20px;
 
     border-radius: 12px;
@@ -106,6 +113,8 @@ body {
     cursor: pointer;
 
     display: block;
+
+    object-fit: contain;
 
     opacity: 0;
 
