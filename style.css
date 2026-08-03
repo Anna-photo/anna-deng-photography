@@ -217,3 +217,19 @@ flex-wrap:wrap;
 gap:20px;
 
 }
+#photos {
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:30px !important;
+}
+
+.editor-photo {
+    width:300px !important;
+    margin:0 !important;
+}
+
+.editor-photo img {
+    width:100% !important;
+    height:auto !important;
+    display:block !important;
+}
