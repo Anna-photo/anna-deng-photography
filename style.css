@@ -249,3 +249,20 @@ text-decoration:none;
 color:inherit;
 
 }
+
+.photo-actions {
+
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:8px;
+
+}
+
+
+.photo-actions button {
+
+font-size:18px;
+padding:8px 12px;
+
+}
