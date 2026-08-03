@@ -16,18 +16,21 @@
 
 <h2>Edit Album</h2>
 
-<a href="editor.html" class="editor-button">
-← Albums
-</a>
+<a href="editor.html" class="editor-button icon-button">
 
+<img src="icons/back.png">
+
+<span>Albums</span>
+
+</a>
 
 <h2 id="title"></h2>
 
 <div class="editor-bar">
 
-<label class="editor-button">
+<label class="editor-button icon-button">
 
-+ Add Photos
+<img src="icons/add-photo.png">
 
 <input
 type="file"
@@ -121,12 +124,13 @@ div.innerHTML = `
 ⭐
 </button>
 
-<button onclick="deletePhoto('${photo}')">
-🗑
-</button>
+<button
+class="icon-control"
+onclick="deletePhoto('${photo}')">
 
-</div>
-`;
+<img src="icons/trash.png">
+
+</button>`;
 
 
 
