@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Edit Album</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Edit Album</h1>
+
+<h2 id="title"></h2>
+
+<p>
+Album editing tools coming next.
+</p>
+
+
+<script>
+
+const params =
+new URLSearchParams(location.search);
+
+
+const album =
+params.get("album");
+
+
+document.getElementById("title").innerHTML =
+album;
+
+
+</script>
+
+
+</body>
+
+</html>
