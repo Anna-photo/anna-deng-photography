@@ -87,6 +87,9 @@ div.innerHTML = `
 
 <h3>${photo.split("/").pop()}</h3>
 
+<button onclick="deletePhoto('${photo}')">
+Delete
+</button>
 `;
 
 
@@ -99,7 +102,42 @@ container.appendChild(div);
 
 }
 
+async function deletePhoto(key){
 
+
+if(!confirm("Delete this photo?")){
+
+return;
+
+}
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/delete",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+key:key
+})
+
+}
+);
+
+
+location.reload();
+
+
+}
 
 loadPhotos();
 
