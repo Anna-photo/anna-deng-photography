@@ -16,22 +16,28 @@
 
 <h2>Edit Album</h2>
 
-<h3 id="title"></h3>
+<a href="editor.html" class="editor-button">
+← Albums
+</a>
 
+
+<h2 id="title"></h2>
 
 <div class="editor-bar">
 
-<input 
+<label class="editor-button">
+
++ Add Photos
+
+<input
 type="file"
 id="files"
 multiple
+onchange="uploadPhotos()"
+hidden
 >
 
-
-<button class="editor-button" onclick="uploadPhotos()">
-Add Photos
-</button>
-
+</label>
 </div>
 
 
@@ -109,13 +115,18 @@ div.innerHTML = `
 
 <h3>${photo.split("/").pop()}</h3>
 
-<button onclick="deletePhoto('${photo}')">
-Delete
-</button>
+<div class="photo-actions">
 
 <button onclick="setCover('${photo}')">
-Set Cover
-</button>`;
+⭐
+</button>
+
+<button onclick="deletePhoto('${photo}')">
+🗑
+</button>
+
+</div>
+`;
 
 
 
