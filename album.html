@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,62 +10,512 @@
 
 <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
 
-<body>
+body {
+    margin: 0;
+    padding: 20px;
+}
 
-
-<h1 id="album-title">Loading...</h1>
-
-<div class="gallery" id="gallery"></div>
-    <br><br>
-<a href="index.html">← Back to Albums</a>
-
-
-<script>
-
-const workerURL = "https://anna-photo-gallery.anna-deng.workers.dev/";
-
-const params = new URLSearchParams(window.location.search);
-const album = params.get("album");
+.album-container {
+    max-width: 1400px;
+    margin: auto;
+}
 
 
-document.getElementById("album-title").textContent = album;
+.album-title {
+    text-align: center;
+    margin: 25px 0 40px;
+    font-size: 2.2rem;
+}
 
 
-async function loadPhotos() {
-
-    const response = await fetch(
-        workerURL + "?album=" + encodeURIComponent(album)
-    );
-
-    const photos = await response.json();
-
-    const gallery = document.getElementById("gallery");
+#loading {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 40px;
+}
 
 
-    photos.forEach(photo => {
+.gallery {
 
-        if (photo.endsWith("/")) return;
+    display: grid;
 
+    grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
 
-        const img = document.createElement("img");
-
-       img.src =
-"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/"
-+ photo.split("/").map(encodeURIComponent).join("/");
-
-
-        img.alt = album;
-
-        gallery.appendChild(img);
-
-    });
+    gap: 20px;
 
 }
 
 
+.gallery img {
+
+    width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: transform .25s ease;
+
+}
+
+
+.gallery img:hover {
+
+    transform: scale(1.03);
+
+}
+
+
+.back-button {
+
+    display: block;
+
+    text-align: center;
+
+    margin: 50px auto 25px;
+
+    font-size: 1.1rem;
+
+}
+
+
+/* Lightbox */
+
+
+.lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.92);
+
+    z-index: 999;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.lightbox img {
+
+    max-width: 90%;
+
+    max-height: 90%;
+
+    object-fit: contain;
+
+}
+
+
+.lightbox button {
+
+    position: absolute;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 50px;
+
+}
+
+
+.close-button {
+
+    top: 20px;
+
+    right: 30px;
+
+}
+
+
+.previous-button {
+
+    left: 25px;
+
+}
+
+
+.next-button {
+
+    right: 25px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="album-container">
+
+
+<h1 class="album-title" id="albumTitle">
+Loading...
+</h1>
+
+
+<div id="loading">
+Loading photographs...
+</div>
+
+
+<div class="gallery" id="gallery">
+
+</div>
+
+
+<a class="back-button" href="index.html">
+← Back to Albums
+</a>
+
+
+</div>
+
+
+<div class="lightbox" id="lightbox">
+
+
+<button class="close-button" onclick="closeLightbox()">
+×
+</button>
+
+
+<button class="previous-button" onclick="changePhoto(-1)">
+‹
+</button>
+
+
+<img id="largeImage">
+
+
+<button class="next-button" onclick="changePhoto(1)">
+›
+</button>
+
+
+</div>
+<script>
+
+
+const workerURL =
+"https://anna-photo-gallery.anna-deng.workers.dev/";
+
+
+const r2URL =
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/";
+
+
+const params =
+new URLSearchParams(window.location.search);
+
+
+const album =
+params.get("album");
+
+
+document.getElementById("albumTitle").textContent =
+album || "Album";
+
+
+let photos = [];
+
+let currentPhoto = 0;
+
+
+
+async function loadPhotos(){
+
+
+    try {
+
+
+        const response = await fetch(
+            workerURL +
+            "?album=" +
+            encodeURIComponent(album)
+        );
+
+
+        photos = await response.json();
+
+
+
+        const gallery =
+        document.getElementById("gallery");
+
+
+
+        document.getElementById("loading").style.display =
+        "none";
+
+
+
+        photos.forEach((photo,index)=>{
+
+
+            // Ignore folder entry
+
+            if(photo.endsWith("/")){
+                return;
+            }
+
+
+
+            const img =
+            document.createElement("img");
+
+
+
+            img.loading =
+            "lazy";
+
+
+
+            img.src =
+            r2URL +
+            photo
+            .split("/")
+            .map(encodeURIComponent)
+            .join("/");
+
+
+
+            img.alt =
+            album;
+
+
+
+            img.onclick =
+            function(){
+
+                currentPhoto = index;
+
+                openLightbox();
+
+            };
+
+
+
+            gallery.appendChild(img);
+
+
+
+        });
+
+
+
+    }
+
+    catch(error){
+
+
+        document.getElementById("loading").textContent =
+        "Unable to load photographs.";
+
+
+        console.error(error);
+
+
+    }
+
+
+}
+
+
+
+function getImageURL(photo){
+
+
+    return r2URL +
+    photo
+    .split("/")
+    .map(encodeURIComponent)
+    .join("/");
+
+
+}
+
+
+
+function openLightbox(){
+
+
+    while(
+        photos[currentPhoto] &&
+        photos[currentPhoto].endsWith("/")
+    ){
+
+        currentPhoto++;
+
+    }
+
+
+
+    document.getElementById("largeImage").src =
+    getImageURL(
+        photos[currentPhoto]
+    );
+
+
+
+    document.getElementById("lightbox").style.display =
+    "flex";
+
+
+}
+
+
+
+function closeLightbox(){
+
+
+    document.getElementById("lightbox").style.display =
+    "none";
+
+
+}
+
+
+
+function changePhoto(direction){
+
+
+    let newIndex =
+    currentPhoto + direction;
+
+
+
+    while(true){
+
+
+        if(newIndex < 0){
+
+            newIndex =
+            photos.length - 1;
+
+        }
+
+
+
+        if(newIndex >= photos.length){
+
+            newIndex = 0;
+
+        }
+
+
+
+        if(!photos[newIndex].endsWith("/")){
+
+            break;
+
+        }
+
+
+
+        newIndex += direction;
+
+
+    }
+
+
+
+    currentPhoto =
+    newIndex;
+
+
+
+    openLightbox();
+
+
+}
+
+
+
+
+
+document.addEventListener(
+"keydown",
+function(event){
+
+
+
+    if(event.key === "Escape"){
+
+        closeLightbox();
+
+    }
+
+
+
+    if(event.key === "ArrowLeft"){
+
+        changePhoto(-1);
+
+    }
+
+
+
+    if(event.key === "ArrowRight"){
+
+        changePhoto(1);
+
+    }
+
+
+
+});
+
+
+
+
+
+// Close when clicking outside image
+
+document
+.getElementById("lightbox")
+.addEventListener(
+"click",
+function(event){
+
+
+    if(event.target.id === "lightbox"){
+
+        closeLightbox();
+
+    }
+
+
+});
+
+
+
+
+
 loadPhotos();
+
+
 
 </script>
 
