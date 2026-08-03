@@ -21,10 +21,23 @@ Logout
 </button>
 
 
-<div class="albums" id="albums">
+<div class="editor-bar">
+
+<input 
+id="newAlbum"
+placeholder="New album name"
+>
+
+<button class="editor-button" onclick="createAlbum()">
+Create Album
+</button>
 
 </div>
 
+
+<div class="albums" id="albums">
+
+</div>
 
 
 <script>
@@ -135,7 +148,68 @@ window.location.href =
 encodeURIComponent(name);
 
 }
+async function createAlbum(){
 
+
+const name =
+document.getElementById("newAlbum").value.trim();
+
+
+if(!name){
+
+alert("Enter album name");
+
+return;
+
+}
+
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+
+const response =
+await fetch(
+workerURL + "/create-album",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+name:name
+})
+
+}
+);
+
+
+
+const result =
+await response.json();
+
+
+
+if(result.success){
+
+alert("Album created");
+
+location.reload();
+
+}
+else{
+
+alert(result.error);
+
+}
+
+
+}
 
 loadAlbums();
 
