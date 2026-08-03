@@ -99,17 +99,16 @@ album.cover.split("/")
 
 div.innerHTML = `
 
+<a class="album-link"
+href="edit-album.html?album=${encodeURIComponent(album.name)}">
+
 <img src="${image}">
 
 <h3>${album.name}</h3>
 
-
-<a class="album-link"
-href="edit-album.html?album=${encodeURIComponent(album.name)}">
-
 </a>
-`;
 
+`;
 
 
 container.appendChild(div);
