@@ -206,7 +206,7 @@ document.getElementById("albums");
 
 
 
-albums.forEach(async album => {
+for (const album of albums) {
   const photoResponse =
 await fetch(
 workerURL +
@@ -280,7 +280,7 @@ saveAlbumOrder();
 
 });
 
-});
+}
 
 
 }
