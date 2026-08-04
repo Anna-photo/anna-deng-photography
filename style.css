@@ -395,19 +395,22 @@ border-radius:10px;
 
 width:auto;
 
-transition:.2s;
+transition:
+transform .15s ease,
+color .15s ease;
 
 }
 
 
 .editor-back:hover{
 
-background:#e9e9e9;
+background:transparent;
 
-color:#9b9b9b;
+color:#b4b4b4;
+
+transform:translateY(-2px);
 
 }
-
 
 .editor-back img{
 
