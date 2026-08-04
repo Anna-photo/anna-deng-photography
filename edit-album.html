@@ -171,6 +171,19 @@ Cancel
 
 </div>
   <div id="snackbar"></div>
+  <div id="uploadStatus" class="upload-status">
+
+<h3 id="uploadTitle">Uploading images</h3>
+
+<p id="uploadProgress">
+0 of 0
+</p>
+
+<button onclick="cancelUpload()">
+Cancel Upload
+</button>
+
+</div>
   <div id="confirmBox" class="confirm-overlay">
 
 <div class="confirm-dialog">
@@ -430,14 +443,61 @@ location.reload();
 
 
 }
+let uploadCancelled = false;
+
+
 async function uploadFiles(files){
+
+
+uploadCancelled = false;
+
+
+const total =
+files.length;
+
+
+const status =
+document.getElementById("uploadStatus");
+
+
+const title =
+document.getElementById("uploadTitle");
+
+
+const progress =
+document.getElementById("uploadProgress");
+
+
+status.style.display="block";
+
+
+title.innerHTML =
+total === 1
+? "Uploading image"
+: "Uploading images";
+
+
+progress.innerHTML =
+"0 of " + total;
+
 
 
 const password =
 localStorage.getItem("annaEditorPassword");
 
 
+let completed = 0;
+
+
 for(const file of files){
+
+
+if(uploadCancelled){
+
+break;
+
+}
+
 
 
 const form =
@@ -456,6 +516,7 @@ file
 );
 
 
+
 await fetch(
 workerURL + "/upload",
 {
@@ -471,19 +532,48 @@ body:form
 );
 
 
+
+completed++;
+
+
+progress.innerHTML =
+completed +
+" of " +
+total;
+
+
 }
 
 
-showSnackbar(
-"Photos uploaded!"
-);
 
+if(uploadCancelled){
+
+showSnackbar("Upload cancelled");
+
+}
+else{
+
+showSnackbar("Upload complete");
+
+setTimeout(()=>{
 
 location.reload();
 
+},800);
 
 }
-function toggleAlbumMenu(e){
+
+
+status.style.display="none";
+
+
+}
+  function cancelUpload(){
+
+uploadCancelled = true;
+
+}
+  function toggleAlbumMenu(e){
 
 }
 
