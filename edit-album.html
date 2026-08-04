@@ -173,6 +173,8 @@ Cancel
 </div>
 
 </div>
+  <div id="snackbar"></div>
+
 
 <script>
 const password =
@@ -520,12 +522,39 @@ picker.style.transform="translateX(-50%)";
 
 
 
-function copyPhotoToAlbum(destination){
+async function copyPhotoToAlbum(destination){
 
 
-alert(
-"Copying to " + destination
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/copy",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+source:currentPhoto,
+
+destination:destination
+
+})
+
+}
 );
+
+
+closeAlbumPicker();
+
+
+alert("Photo added to " + destination);
 
 
 }
