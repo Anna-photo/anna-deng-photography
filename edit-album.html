@@ -263,7 +263,26 @@ await response.json();
 
 const container =
 document.getElementById("photos");
+if(photos.length === 0){
 
+const container =
+document.getElementById("photos");
+
+container.innerHTML = `
+
+<div class="empty-album-message">
+
+<h2>This album is empty.</h2>
+
+<p>Add photos to get started.</p>
+
+</div>
+
+`;
+
+return;
+
+}
 
 photos.forEach(photo => {
 
