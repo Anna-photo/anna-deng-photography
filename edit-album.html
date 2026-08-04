@@ -666,7 +666,13 @@ menu.style.left =
 
 }
 
+function gallerySetCover(){
 
+setCover(currentPhoto);
+
+document.getElementById("galleryPhotoMenu").style.display="none";
+
+}
 async function addToOtherAlbum(){
 
 
@@ -967,25 +973,38 @@ closeLightbox();
 
 
 }
-  document.addEventListener(
+document.addEventListener(
 "click",
 function(e){
 
-const menu =
+const photoMenu =
 document.getElementById("photoMenu");
+
+const galleryMenu =
+document.getElementById("galleryPhotoMenu");
 
 
 if(
-!menu.contains(e.target)
+photoMenu &&
+!photoMenu.contains(e.target)
 ){
 
-menu.style.display="none";
+photoMenu.style.display="none";
 
 }
 
+
+if(
+galleryMenu &&
+!galleryMenu.contains(e.target)
+){
+
+galleryMenu.style.display="none";
+
 }
-);
-const dropOverlay =
+
+});
+  const dropOverlay =
 document.getElementById("dropOverlay");
 
 
