@@ -1512,3 +1512,25 @@ margin-top:10px;
 color:#555;
 
 }
+
+.editor-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+
+.editor-sidebar {
+    flex: 0 0 250px;
+    width: 250px;
+    min-height: calc(100vh - 150px);
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+}
+
+
+.editor-layout > .albums {
+    flex: 1;
+}
