@@ -307,18 +307,6 @@ container.appendChild(div);
 }
 
 async function performDeletePhoto(key){
-showConfirm(
-"Delete this photo?",
-function(){
-
-performDeletePhoto(key);
-
-}
-);
-
-return;
-
-}
 
 const password =
 localStorage.getItem("annaEditorPassword");
@@ -342,8 +330,14 @@ key:key
 );
 
 
+showSnackbar("Photo deleted");
+
+
+setTimeout(()=>{
+
 location.reload();
 
+},800);
 
 }
   async function setCover(key){
