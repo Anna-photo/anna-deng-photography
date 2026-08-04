@@ -1659,3 +1659,16 @@ color:#b4b4b4;
 text-align:center;
 
 }
+#lightbox .icon-control {
+
+background:transparent !important;
+
+box-shadow:none !important;
+
+}
+
+#lightbox .icon-control img {
+
+background:transparent !important;
+
+}
