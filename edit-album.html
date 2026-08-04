@@ -27,6 +27,8 @@
 
 <div class="editor-actions">
 
+<div id="uploadDropZone" class="upload-drop-zone">
+
 <label class="icon-button">
 
 <img src="icons/add-photo.png">
@@ -40,7 +42,9 @@ onchange="uploadPhotos()">
 
 </label>
 
+<p>Drag photos here or click the icon</p>
 
+</div>
 <button
 class="menu-button"
 onclick="toggleAlbumMenu(event)">
@@ -404,7 +408,59 @@ location.reload();
 
 
 }
+async function uploadFiles(files){
 
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+for(const file of files){
+
+
+const form =
+new FormData();
+
+
+form.append(
+"album",
+album
+);
+
+
+form.append(
+"file",
+file
+);
+
+
+await fetch(
+workerURL + "/upload",
+{
+method:"POST",
+
+headers:{
+"X-Upload-Password":password
+},
+
+body:form
+
+}
+);
+
+
+}
+
+
+showSnackbar(
+"Photos uploaded!"
+);
+
+
+location.reload();
+
+
+}
 function toggleAlbumMenu(e){
 
 }
@@ -711,7 +767,50 @@ menu.style.display="none";
 
 }
 );
-  
+  const dropZone =
+document.getElementById("uploadDropZone");
+
+
+dropZone.addEventListener(
+"dragover",
+function(e){
+
+e.preventDefault();
+
+dropZone.classList.add("dragover");
+
+}
+);
+
+
+dropZone.addEventListener(
+"dragleave",
+function(){
+
+dropZone.classList.remove("dragover");
+
+}
+);
+
+
+dropZone.addEventListener(
+"drop",
+function(e){
+
+e.preventDefault();
+
+dropZone.classList.remove("dragover");
+
+
+const files =
+e.dataTransfer.files;
+
+
+uploadFiles(files);
+
+
+}
+);
 loadPhotos();
 
 
