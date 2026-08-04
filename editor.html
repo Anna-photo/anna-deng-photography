@@ -317,6 +317,10 @@ performDeleteAlbum(name);
 
 }
 
+
+async function performDeleteAlbum(name){
+
+
 const password =
 localStorage.getItem("annaEditorPassword");
 
@@ -366,7 +370,8 @@ showSnackbar(result.error);
 
 }
 
-}  function albumMenu(e, name){
+}
+  function albumMenu(e, name){
 
 e.preventDefault();
 e.stopPropagation();
