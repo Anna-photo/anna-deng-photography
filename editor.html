@@ -814,6 +814,42 @@ order:albums
 
 
 }
+  async function togglePublic(albumName, value){
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/set-public",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+album:albumName,
+
+public:value
+
+})
+
+}
+);
+
+
+showSnackbar(
+value
+? "Album is now public"
+: "Album is now private"
+);
+
+
+}
 loadAlbums();
 loadStorage();
 getExistingAlbums();
