@@ -294,8 +294,7 @@ onclick="openLightbox('${photo}')">
 
 <button
 class="icon-control"
-onclick="deletePhoto('${photo}')">
-
+onclick="performDeletePhoto('${photo}')"
 <img src="icons/trash.png">
 
 </button>
@@ -747,6 +746,50 @@ setTimeout(function(){
 bar.classList.remove("show");
 
 },3000);
+
+}
+  let confirmAction = null;
+
+
+function showConfirm(message, action){
+
+document.getElementById("confirmText").innerHTML =
+message;
+
+confirmAction = action;
+
+document.getElementById("confirmBox").style.display =
+"flex";
+
+}
+
+
+function confirmYes(){
+
+document.getElementById("confirmBox").style.display =
+"none";
+
+
+if(confirmAction){
+
+confirmAction();
+
+}
+
+
+confirmAction = null;
+
+}
+
+
+
+function confirmNo(){
+
+document.getElementById("confirmBox").style.display =
+"none";
+
+
+confirmAction = null;
 
 }
   let currentPhoto = null;
