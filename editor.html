@@ -110,16 +110,16 @@ album.cover.split("/")
 
 div.innerHTML = `
 
-<div class="album-card">
-
 <a class="album-link"
 href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
 <img src="${image}">
 
-<h3>${album.name}</h3>
-
 </a>
+
+<div class="album-title-row">
+
+<h3>${album.name}</h3>
 
 <button 
 class="menu-button album-menu-button"
