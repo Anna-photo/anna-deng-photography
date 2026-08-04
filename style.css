@@ -1391,3 +1391,13 @@ cursor:pointer;
 transform:translateY(-2px);
 
 }
+.confirm-buttons button:first-child {
+    background: #d32f2f;
+    color: white;
+    border: none;
+}
+
+.confirm-buttons button:first-child:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+}
