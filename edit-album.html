@@ -401,14 +401,37 @@ function renameAlbum(){
 function deleteAlbum(){
 
 }
-  function photoMenu(e,key){
+function photoMenu(e,key){
+
+e.stopPropagation();
+
+
+currentPhoto = key;
+
+
+const menu =
+document.getElementById("photoMenu");
+
+
+menu.style.display="block";
+
+
+menu.style.top =
+(e.clientY + 10) + "px";
+
+
+menu.style.left =
+(e.clientX - 200) + "px";
+
 
 }
-
 function addToOtherAlbum(){
 
-}
-  let currentPhoto = null;
+alert(
+"Choose album screen coming next"
+);
+
+}  let currentPhoto = null;
   let lightboxPhotos = [];
 
 let currentIndex = 0;
@@ -503,6 +526,14 @@ closeLightbox();
 
 
 }
+  document.addEventListener(
+"click",
+function(){
+
+document.getElementById("photoMenu").style.display="none";
+
+}
+);
   
 loadPhotos();
 
