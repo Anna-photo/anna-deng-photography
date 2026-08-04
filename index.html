@@ -40,11 +40,11 @@ async function loadAlbums(){
     document.getElementById("albums");
 
 
-  albums.forEach(async album => {
+for (const album of albums) {
 
 
     if(!album.cover){
-        return;
+        continue;
     }
 
 
@@ -71,31 +71,33 @@ async function loadAlbums(){
     const photoCount =
     photos.filter(photo => !photo.endsWith("/")).length;
 
-     const image =
-album.cover
-? "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
-album.cover.split("/")
-.map(encodeURIComponent)
-.join("/")
-: "images/default-cover.jpg";
 
-     div.innerHTML = `
+    const image =
+    "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
+    album.cover.split("/")
+    .map(encodeURIComponent)
+    .join("/");
+
+
+    div.innerHTML = `
 
 <a href="album.html?album=${encodeURIComponent(album.name)}">
 
     <img src="${image}">
 
 <h3>${album.name}</h3>
-<p class="album-count">${photoCount} photos</p></a>
+
+<p class="album-count">${photoCount} photos</p>
+
+</a>
 
 `;
 
-        container.appendChild(div);
+
+    container.appendChild(div);
 
 
-    });
-
-
+}
 }
 
 
