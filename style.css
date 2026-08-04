@@ -1036,26 +1036,32 @@ font-size:14px;
 
 }
 
-.album-card{
+.album-title-row{
 
-position:relative;
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-top:8px;
+
+}
+
+
+.album-title-row h3{
+
+margin:0;
 
 }
 
 
 .album-menu-button{
 
-position:absolute;
+width:32px;
 
-top:10px;
+height:32px;
 
-right:10px;
-
-}
-
-
-.album-card .album-link{
-
-display:block;
+font-size:20px;
 
 }
