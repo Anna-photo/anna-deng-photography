@@ -1241,3 +1241,7 @@ color:white !important;
 background:#b3261e !important;
 
 }
+
+body.dragging {
+    opacity:0.8;
+}
