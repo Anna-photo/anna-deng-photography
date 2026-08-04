@@ -38,7 +38,7 @@ Create Album
 <div class="albums" id="albums">
 
 </div>
-
+<div id="snackbar"></div>
 
 <script>
   const password =
@@ -148,8 +148,7 @@ document.getElementById("newAlbum").value.trim();
 
 if(!name){
 
-alert("Enter album name");
-
+showSnackbar("Enter album name");
 return;
 
 }
@@ -188,20 +187,40 @@ await response.json();
 
 if(result.success){
 
-alert("Album created");
+alert("AlshowSnackbar("Album created");
+
+setTimeout(function(){
+
+location.reload();
+
+},700);bum created");
 
 location.reload();
 
 }
 else{
 
-alert(result.error);
-
+showSnackbar(result.error);
 }
 
 
 }
+function showSnackbar(message){
 
+const bar =
+document.getElementById("snackbar");
+
+bar.innerHTML = message;
+
+bar.classList.add("show");
+
+setTimeout(function(){
+
+bar.classList.remove("show");
+
+},3000);
+
+}
 loadAlbums();
 
 
