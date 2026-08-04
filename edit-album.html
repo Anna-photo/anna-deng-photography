@@ -94,8 +94,26 @@ onclick="closeLightbox()">
 
 ×
 
+
 </button>
 
+
+<button
+class="lightbox-prev"
+onclick="previousPhoto()">
+
+‹
+
+</button>
+
+
+<button
+class="lightbox-next"
+onclick="nextPhoto()">
+
+›
+
+</button>
 
 <img
 id="lightbox-image">
@@ -180,6 +198,7 @@ encodeURIComponent(album)
 
 const photos =
 await response.json();
+  lightboxPhotos = photos;
 
 
 const container =
@@ -390,9 +409,37 @@ function addToOtherAlbum(){
 
 }
   let currentPhoto = null;
+  let lightboxPhotos = [];
+
+let currentIndex = 0;
 
 
 function openLightbox(photo){
+
+
+currentPhoto = photo;
+
+
+currentIndex =
+lightboxPhotos.indexOf(photo);
+
+
+showLightboxPhoto();
+
+
+document.getElementById("lightbox").style.display =
+"flex";
+
+
+}
+
+
+
+function showLightboxPhoto(){
+
+
+const photo =
+lightboxPhotos[currentIndex];
 
 
 currentPhoto = photo;
@@ -409,17 +456,37 @@ document.getElementById("lightbox-image").src =
 image;
 
 
-document.getElementById("lightbox").style.display =
-"flex";
+}
 
+
+
+function nextPhoto(){
+
+
+if(currentIndex < lightboxPhotos.length - 1){
+
+currentIndex++;
+
+showLightboxPhoto();
+
+}
 
 }
 
 
 
-function closeLightbox(){
+function previousPhoto(){
 
 
+if(currentIndex > 0){
+
+currentIndex--;
+
+showLightboxPhoto();
+
+}
+
+}
 document.getElementById("lightbox").style.display =
 "none";
 
