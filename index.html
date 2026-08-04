@@ -41,7 +41,9 @@ async function loadAlbums(){
 
 
     albums.forEach(album => {
-
+if(!album.cover){
+    return;
+}
 
         const div =
         document.createElement("div");
