@@ -17,11 +17,16 @@
 <h2>Editor Mode</h2>
 
 <button onclick="logout()">
+<div class="editor-layout">
+
+<div class="editor-sidebar">
+
+<button class="logout-button" onclick="logout()">
 Logout
 </button>
 
 
-<div class="editor-bar">
+<div class="create-section">
 
 <input 
 id="newAlbum"
@@ -35,10 +40,41 @@ Create Album
 </div>
 
 
+<div class="storage-card">
+
+<div class="storage-title">
+
+<img src="icons/cloud.png">
+
+<span>Storage</span>
+
+</div>
+
+
+<div class="storage-bar">
+
+<div id="storageUsed"></div>
+
+</div>
+
+
+<p id="storageText">
+0 GB of 10 GB used
+</p>
+
+
+</div>
+
+
+</div>
+
+
 <div class="albums" id="albums">
 
 </div>
-<div id="snackbar"></div>
+
+</div>
+  <div id="snackbar"></div>
   <div id="confirmBox" class="confirm-overlay">
 
 <div class="confirm-dialog">
@@ -75,6 +111,33 @@ window.location.href =
 
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
+  async function loadStorage(){
+
+const response =
+await fetch(workerURL + "?storage=true");
+
+
+const data =
+await response.json();
+
+
+const usedGB =
+data.used / (1024*1024*1024);
+
+
+const percent =
+(usedGB / 10) * 100;
+
+
+document.getElementById("storageUsed").style.width =
+percent + "%";
+
+
+document.getElementById("storageText").innerHTML =
+usedGB.toFixed(2) +
+" GB of 10 GB used";
+
+}
 
 
 async function loadAlbums(){
@@ -418,7 +481,7 @@ menu.style.display="none";
 }
 );
 loadAlbums();
-
+loadStorage();
 
 </script>
 
