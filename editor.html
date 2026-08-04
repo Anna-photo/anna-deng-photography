@@ -398,6 +398,25 @@ menu.style.left =
 (e.clientX - 180) + "px";
 
 }
+  document.addEventListener(
+"click",
+function(e){
+
+const menu =
+document.getElementById("albumMenu");
+
+
+if(
+menu.style.display === "block" &&
+!menu.contains(e.target)
+){
+
+menu.style.display="none";
+
+}
+
+}
+);
 loadAlbums();
 
 
