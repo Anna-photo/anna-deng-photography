@@ -836,12 +836,13 @@ right:25px;
 #lightbox .icon-control,
 #lightbox .menu-button {
 
-background:white;
+background:transparent;
 
-color:#222;
+color:white;
 
-}
-/* Photo menu above lightbox */
+box-shadow:none;
+
+}/* Photo menu above lightbox */
 
 #photoMenu {
 
