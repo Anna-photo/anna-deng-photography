@@ -203,6 +203,29 @@ Cancel
 </div>
 
 </div>
+  <div id="renameBox" class="confirm-overlay">
+
+<div class="confirm-dialog">
+
+<h3>Rename Album</h3>
+
+<input id="renameInput" type="text">
+
+<div class="confirm-buttons">
+
+<button onclick="confirmRename()">
+Rename
+</button>
+
+<button onclick="cancelRename()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</div>
 <div id="dropOverlay">
 
 <div class="drop-message">
@@ -607,8 +630,20 @@ document.body.classList.add("cover-mode");
 
 function renameAlbum(){
 
+document.getElementById("albumMenu").style.display="none";
+
+document.getElementById("renameInput").value = album;
+
+document.getElementById("renameBox").style.display="flex";
+
+}
+
+
+function confirmRename(){
+
 const newName =
-prompt("Enter new album name:", album);
+document.getElementById("renameInput").value.trim();
+
 
 if(!newName || newName === album){
 
@@ -643,6 +678,8 @@ newName:newName
 )
 .then(()=>{
 
+document.getElementById("renameBox").style.display="none";
+
 showSnackbar("Album renamed");
 
 setTimeout(()=>{
@@ -659,8 +696,12 @@ encodeURIComponent(newName);
 }
 
 
+function cancelRename(){
 
-function deleteAlbum(){
+document.getElementById("renameBox").style.display="none";
+
+}
+  function deleteAlbum(){
 
 showConfirm(
 "Delete this album and all photos?",
