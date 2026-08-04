@@ -996,3 +996,42 @@ opacity:0;
 }
 
 }
+.upload-drop-zone {
+
+border:2px dashed #555;
+
+border-radius:16px;
+
+padding:20px;
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+color:#aaa;
+
+transition:.2s;
+
+}
+
+
+.upload-drop-zone.dragover {
+
+background:#222;
+
+border-color:white;
+
+color:white;
+
+}
+
+
+.upload-drop-zone p {
+
+margin:0;
+
+font-size:14px;
+
+}
