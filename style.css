@@ -1229,3 +1229,15 @@ padding:10px 20px;
 border-radius:8px;
 
 }
+.danger-button {
+
+background:#d93025 !important;
+color:white !important;
+
+}
+
+.danger-button:hover {
+
+background:#b3261e !important;
+
+}
