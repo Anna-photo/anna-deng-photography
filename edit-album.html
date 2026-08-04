@@ -847,18 +847,22 @@ currentPhoto = null;
 
 function deleteLightboxPhoto(){
 
-
 if(currentPhoto){
 
-deletePhoto(currentPhoto);
+showConfirm(
+"Delete this photo?",
+function(){
+
+performDeletePhoto(currentPhoto);
 
 closeLightbox();
 
 }
-
+);
 
 }
- document.addEventListener(
+
+} document.addEventListener(
 "click",
 function(e){
 
