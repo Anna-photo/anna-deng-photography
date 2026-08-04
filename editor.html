@@ -250,6 +250,46 @@ bar.classList.remove("show");
 },3000);
 
 }
+  let confirmAction = null;
+
+
+function showConfirm(message, action){
+
+document.getElementById("confirmText").innerHTML =
+message;
+
+confirmAction = action;
+
+document.getElementById("confirmBox").style.display =
+"flex";
+
+}
+
+
+function confirmYes(){
+
+document.getElementById("confirmBox").style.display =
+"none";
+
+if(confirmAction){
+
+confirmAction();
+
+}
+
+confirmAction = null;
+
+}
+
+
+function confirmNo(){
+
+document.getElementById("confirmBox").style.display =
+"none";
+
+confirmAction = null;
+
+}
   let currentAlbum = null;
 
 
@@ -264,15 +304,18 @@ showSnackbar(
 
 
 
-async function deleteAlbum(name){
+function deleteAlbum(name){
 
+showConfirm(
+"Delete album " + name + "?",
+function(){
 
-if(!confirm("Delete album " + name + "? This cannot be undone.")){
-
-return;
+performDeleteAlbum(name);
 
 }
+);
 
+}
 
 const password =
 localStorage.getItem("annaEditorPassword");
