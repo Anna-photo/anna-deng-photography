@@ -1101,3 +1101,68 @@ align-items:center;
 justify-content:center;
 
 }
+/* Remove white backgrounds from all three-dot buttons */
+
+.menu-button,
+.album-menu-button,
+.photo-menu-button {
+
+    background: transparent !important;
+    color: white;
+
+    box-shadow: none !important;
+
+    border: none;
+
+}
+
+
+/* Keep the three dots clean and visible */
+
+.menu-button,
+.album-menu-button,
+.photo-menu-button {
+
+    font-size: 28px;
+
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+}
+
+
+/* Album cover dots */
+
+.album-menu-button {
+
+    color:white;
+
+}
+
+
+/* Lightbox three dots */
+
+.lightbox-actions .menu-button {
+
+    background:transparent !important;
+
+    color:white;
+
+}
+
+
+/* Photo thumbnail dots */
+
+.photo-menu-button {
+
+    background:transparent !important;
+
+    color:white;
+
+}
