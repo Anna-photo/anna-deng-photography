@@ -262,20 +262,6 @@ href="edit-album.html?album=${encodeURIComponent(album.name)}">
 </a>
 
 
-<label class="public-toggle">
-
-<input 
-type="checkbox"
-onchange="togglePublic('${album.name}', this.checked)"
-${album.public ? "checked" : ""}>
-
-<span class="checkmark"></span>
-
-<span class="public-text">
-Make this album public
-</span>
-
-</label>
 
 
 <button 
