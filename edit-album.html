@@ -306,15 +306,19 @@ container.appendChild(div);
 
 }
 
-async function deletePhoto(key){
+async function performDeletePhoto(key){
+showConfirm(
+"Delete this photo?",
+function(){
 
+performDeletePhoto(key);
 
-if(!confirm("Delete this photo?")){
+}
+);
 
 return;
 
 }
-
 
 const password =
 localStorage.getItem("annaEditorPassword");
