@@ -620,22 +620,19 @@ showSnackbar(
 document.getElementById("albumPicker").style.display="none";
 
 }
-  function showSnackbar(message){
+ function showSnackbar(message){
 
 const bar =
 document.getElementById("snackbar");
 
-
 bar.innerHTML =
 message;
 
+bar.classList.add("show");
 
-bar.className="show";
+setTimeout(function(){
 
-
-setTimeout(()=>{
-
-bar.className="";
+bar.classList.remove("show");
 
 },3000);
 
