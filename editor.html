@@ -39,18 +39,7 @@ Create Album
 
 </div>
 <div id="snackbar"></div>
-  <div id="albumMenu" class="popup-menu">
-
-<button onclick="renameAlbum()">
-Rename Album
-</button>
-
-<button onclick="deleteAlbum()">
-Delete Album
-</button>
-
-</div>
-
+<div id="albumMenu" class="popup-menu"></div>
 <script>
   const password =
 localStorage.getItem("annaEditorPassword");
@@ -243,31 +232,6 @@ bar.classList.remove("show");
   let currentAlbum = null;
 
 
-function albumMenu(e,name){
-
-e.preventDefault();
-e.stopPropagation();
-
-
-currentAlbum = name;
-
-
-const menu =
-document.getElementById("albumMenu");
-
-
-menu.style.display="block";
-menu.style.position="fixed";
-
-menu.style.top =
-(e.clientY + 10) + "px";
-
-menu.style.left =
-(e.clientX - 200) + "px";
-
-}
-
-
 
 function renameAlbum(){
 
@@ -338,14 +302,7 @@ showSnackbar(result.error);
 
 }
 
-
-}
-showSnackbar(
-"Delete album coming next"
-);
-
-}
-  function albumMenu(e, name){
+}  function albumMenu(e, name){
 
 e.preventDefault();
 e.stopPropagation();
