@@ -192,7 +192,17 @@ Cancel
 </div>
 
 </div>
+<div id="dropOverlay">
 
+<div class="drop-message">
+
+<div class="arrow">↑</div>
+
+<p>Drop photo anywhere to upload.</p>
+
+</div>
+
+</div>
 
 <script>
 const password =
@@ -776,6 +786,22 @@ menu.style.display="none";
 
 }
 );
+const dropOverlay =
+document.getElementById("dropOverlay");
+
+
+document.addEventListener(
+"dragenter",
+function(e){
+
+e.preventDefault();
+
+dropOverlay.style.display="flex";
+
+}
+);
+
+
 document.addEventListener(
 "dragover",
 function(e){
@@ -787,10 +813,27 @@ e.preventDefault();
 
 
 document.addEventListener(
+"dragleave",
+function(e){
+
+if(e.clientX === 0 && e.clientY === 0){
+
+dropOverlay.style.display="none";
+
+}
+
+}
+);
+
+
+document.addEventListener(
 "drop",
 function(e){
 
 e.preventDefault();
+
+
+dropOverlay.style.display="none";
 
 
 const files =
@@ -804,8 +847,7 @@ uploadFiles(files);
 }
 
 }
-);
-  loadPhotos();
+);  loadPhotos();
 
 
 </script>
