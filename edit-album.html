@@ -346,8 +346,9 @@ key:key
 );
 
 
-alert("Cover updated");
-
+showSnackbar(
+"Cover updated"
+);
 
 }
   async function uploadPhotos(){
@@ -399,10 +400,9 @@ body:form
 }
 
 
-alert(
+showSnackbar(
 "Photos uploaded!"
 );
-
 
 location.reload();
 
