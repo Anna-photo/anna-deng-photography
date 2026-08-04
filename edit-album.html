@@ -158,13 +158,19 @@ Add to Other Album
 </div>
 
 
-<div
-id="albumPicker"
-class="popup-menu">
+<div id="albumPicker" class="album-picker-overlay">
 
-<h3>Add to album</h3>
+<div class="album-picker-box">
+
+<h2>Add to Other Album</h2>
 
 <div id="albumList"></div>
+
+<button onclick="closeAlbumPicker()">
+Cancel
+</button>
+
+</div>
 
 </div>
 
@@ -500,8 +506,7 @@ const picker =
 document.getElementById("albumPicker");
 
 
-picker.style.display="block";
-
+picker.style.display="flex";
 picker.style.position="fixed";
 
 picker.style.top="100px";
@@ -522,6 +527,11 @@ alert(
 "Copying to " + destination
 );
 
+
+}
+  function closeAlbumPicker(){
+
+document.getElementById("albumPicker").style.display="none";
 
 }
   let currentPhoto = null;
