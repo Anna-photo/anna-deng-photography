@@ -1636,3 +1636,14 @@ display:block;
 margin:5px auto;
 
 }
+.empty-message {
+
+text-align:center;
+
+font-size:24px;
+
+color:#b4b4b4;
+
+margin-top:80px;
+
+}
