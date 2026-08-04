@@ -1401,3 +1401,114 @@ transform:translateY(-2px);
     background: #b71c1c;
     transform: translateY(-2px);
 }
+
+.editor-layout {
+
+display:flex;
+align-items:flex-start;
+gap:30px;
+
+}
+
+
+.editor-sidebar {
+
+width:250px;
+
+padding:20px;
+
+border-right:1px solid #ddd;
+
+min-height:80vh;
+
+}
+
+
+.logout-button {
+
+width:100%;
+
+margin-bottom:20px;
+
+}
+
+
+.create-section {
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+.storage-card {
+
+margin-top:40px;
+
+}
+
+
+.storage-title {
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:18px;
+
+font-weight:600;
+
+margin-bottom:15px;
+
+}
+
+
+.storage-title img {
+
+width:28px;
+
+height:28px;
+
+}
+
+
+.storage-bar {
+
+height:12px;
+
+background:#e5e5e5;
+
+border-radius:10px;
+
+overflow:hidden;
+
+}
+
+
+#storageUsed {
+
+height:100%;
+
+width:0%;
+
+background:#66a9d9;
+
+border-radius:10px;
+
+}
+
+
+.storage-card p {
+
+font-size:14px;
+
+margin-top:10px;
+
+color:#555;
+
+}
