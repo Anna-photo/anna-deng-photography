@@ -325,13 +325,6 @@ onclick="openLightbox('${photo}')">
 <div class="photo-toolbar">
 
 <button
-class="icon-control"
-onclick="performDeletePhoto('${photo}')"
-<img src="icons/trash.png">
-
-</button>
-
-<button
 class="menu-button photo-menu-button"
 onclick="galleryMenu(event,'${photo}')">
 
@@ -340,7 +333,6 @@ onclick="galleryMenu(event,'${photo}')">
 </button>
 
 </div>
-
 </div>
 
 `;
@@ -604,10 +596,24 @@ status.style.display="none";
 uploadCancelled = true;
 
 }
-  function toggleAlbumMenu(e){
+function toggleAlbumMenu(e){
+
+e.stopPropagation();
+
+const menu =
+document.getElementById("albumMenu");
+
+menu.style.display="block";
+
+menu.style.position="fixed";
+
+menu.style.top =
+(e.clientY + 10) + "px";
+
+menu.style.left =
+(e.clientX - 200) + "px";
 
 }
-
 function startCoverSelection(){
 
 }
