@@ -225,10 +225,10 @@ photos.filter(photo => !photo.endsWith("/")).length;
 const div =
 document.createElement("div");
 
-
 div.className =
 "album";
 
+div.draggable = true;
 
 
 const image =
@@ -267,7 +267,18 @@ onclick="albumMenu(event, '${album.name}')">
 </div>
 
 `;  container.appendChild(div);
+div.addEventListener("dragstart",()=>{
+div.classList.add("dragging");
+});
 
+
+div.addEventListener("dragend",()=>{
+
+div.classList.remove("dragging");
+
+saveAlbumOrder();
+
+});
 
 });
 
@@ -649,6 +660,35 @@ menu.style.display="none";
 
 }
 );
+  function saveAlbumOrder(){
+
+const albums =
+[...document.querySelectorAll(".album")]
+.map(x =>
+x.querySelector("h3").innerText
+);
+
+
+fetch(
+workerURL + "?albumOrder=true",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":
+localStorage.getItem("annaEditorPassword")
+},
+
+body:JSON.stringify({
+order:albums
+})
+
+});
+
+
+}
 loadAlbums();
 loadStorage();
 
