@@ -1585,3 +1585,36 @@ height:28px;
 transform:translateY(-3px);
 
 }
+.empty-album-message {
+
+grid-column:1/-1;
+
+text-align:center;
+
+padding:80px 20px;
+
+color:#b4b4b4;
+
+}
+
+
+.empty-album-message h2 {
+
+font-size:28px;
+
+font-weight:500;
+
+margin-bottom:10px;
+
+color:#d0d0d0;
+
+}
+
+
+.empty-album-message p {
+
+font-size:18px;
+
+color:#999;
+
+}
