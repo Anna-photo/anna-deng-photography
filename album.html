@@ -295,13 +295,21 @@ Loading photographs...
 </div>
 
 
+<div id="emptyMessage" class="empty-message" style="display:none;">
+This album is empty. Add photos to get started.
+</div>
+
+
 <div class="gallery" id="gallery">
 
 </div>
 
+<a class="editor-back" href="index.html">
 
-<a class="back-button" href="index.html">
-← Back to Albums
+<img src="icons/back.png">
+
+<span>Albums</span>
+
 </a>
 
 
@@ -371,6 +379,15 @@ async function loadPhotos(){
 
         const gallery =
         document.getElementById("gallery");
+        if(photos.length === 0){
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("emptyMessage").style.display="block";
+
+return;
+
+}
 
 
         document.getElementById("loading")
