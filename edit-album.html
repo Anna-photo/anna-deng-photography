@@ -306,8 +306,7 @@ div.innerHTML = `
 
 <img
 src="${image}"
-onclick="openLightbox('${photo}')">
-</div>
+onclick="photoClicked('${photo}')">
 
 `;
 
@@ -590,16 +589,117 @@ menu.style.left =
 }
 function startCoverSelection(){
 
+document.getElementById("albumMenu").style.display="none";
+
+showSnackbar("Click a photo to set it as the album cover");
+
+selectingCover = true;
+
 }
+
+
+let selectingCover = false;
+
 
 function renameAlbum(){
 
+const newName =
+prompt("Enter new album name:", album);
+
+if(!newName || newName === album){
+
+return;
+
 }
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+fetch(
+workerURL + "/rename-album",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+oldName:album,
+
+newName:newName
+
+})
+
+}
+)
+.then(()=>{
+
+showSnackbar("Album renamed");
+
+setTimeout(()=>{
+
+location.href =
+"edit-album.html?album=" +
+encodeURIComponent(newName);
+
+},1000);
+
+});
+
+
+}
+
+
 
 function deleteAlbum(){
 
+showConfirm(
+"Delete this album and all photos?",
+async function(){
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/delete-album",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+album:album
+
+})
+
 }
-function photoMenu(e,key){
+);
+
+
+showSnackbar("Album deleted");
+
+
+setTimeout(()=>{
+
+location.href="editor.html";
+
+},1000);
+
+
+});
+
+}
+  function photoMenu(e,key){
 
 e.stopPropagation();
 
@@ -805,7 +905,24 @@ confirmAction = null;
   let lightboxPhotos = [];
 
 let currentIndex = 0;
+function photoClicked(photo){
 
+if(selectingCover){
+
+setCover(photo);
+
+selectingCover=false;
+
+showSnackbar("Album cover changed");
+
+return;
+
+}
+
+
+openLightbox(photo);
+
+}
 
 function openLightbox(photo){
 
