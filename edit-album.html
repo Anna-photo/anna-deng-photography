@@ -847,7 +847,18 @@ currentPhoto = null;
 
 function deleteLightboxPhoto(){
 
-if(currentPhoto){
+console.log("Delete clicked");
+console.log("Current photo:", currentPhoto);
+
+
+if(!currentPhoto){
+
+showSnackbar("No photo selected");
+
+return;
+
+}
+
 
 showConfirm(
 "Delete this photo?",
@@ -860,9 +871,9 @@ closeLightbox();
 }
 );
 
-}
 
-} document.addEventListener(
+}
+  document.addEventListener(
 "click",
 function(e){
 
