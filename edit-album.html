@@ -437,6 +437,9 @@ menu.style.top =
 menu.style.left =
 (e.clientX - 200) + "px";
 
+}
+
+
 
 async function addToOtherAlbum(){
 
@@ -499,7 +502,6 @@ document.getElementById("albumPicker");
 
 picker.style.display="block";
 
-
 picker.style.position="fixed";
 
 picker.style.top="100px";
@@ -510,7 +512,10 @@ picker.style.transform="translateX(-50%)";
 
 
 }
-  function copyPhotoToAlbum(destination){
+
+
+
+function copyPhotoToAlbum(destination){
 
 
 alert(
@@ -519,8 +524,7 @@ alert(
 
 
 }
-
-}  let currentPhoto = null;
+  let currentPhoto = null;
   let lightboxPhotos = [];
 
 let currentIndex = 0;
