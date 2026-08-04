@@ -153,7 +153,21 @@ Add to Other Album
 
 </div>
 
+<div id="galleryPhotoMenu" class="popup-menu">
 
+<button onclick="gallerySetCover()">
+Set Album Cover
+</button>
+
+<button onclick="renameAlbum()">
+Rename Album
+</button>
+
+<button onclick="deleteAlbum()">
+Delete Album
+</button>
+
+</div>
 <div id="albumPicker" class="album-picker-overlay">
 
 <div class="album-picker-box">
@@ -319,7 +333,7 @@ onclick="performDeletePhoto('${photo}')"
 
 <button
 class="menu-button photo-menu-button"
-onclick="photoMenu(event,'${photo}')">
+onclick="galleryMenu(event,'${photo}')">
 
 &#8942;
 
@@ -631,7 +645,26 @@ menu.style.left =
 (e.clientX - 200) + "px";
 
 }
+function galleryMenu(e,key){
 
+e.stopPropagation();
+
+currentPhoto = key;
+
+const menu =
+document.getElementById("galleryPhotoMenu");
+
+menu.style.display="block";
+
+menu.style.position="fixed";
+
+menu.style.top =
+(e.clientY + 10) + "px";
+
+menu.style.left =
+(e.clientX - 200) + "px";
+
+}
 
 
 async function addToOtherAlbum(){
