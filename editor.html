@@ -401,11 +401,78 @@ confirmAction = null;
 
 
 
-function renameAlbum(){
+function renameAlbum(name){
 
-showSnackbar(
-"Rename album coming next"
+const newName =
+prompt("Enter new album name:", name);
+
+
+if(!newName || newName.trim() === name){
+return;
+}
+
+
+renameAlbumRequest(
+name,
+newName.trim()
 );
+
+}
+
+
+async function renameAlbumRequest(oldName,newName){
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+const response =
+await fetch(
+workerURL + "/rename-album",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+oldName:oldName,
+
+newName:newName
+
+})
+
+}
+);
+
+
+const result =
+await response.json();
+
+
+if(result.success){
+
+showSnackbar("Album renamed");
+
+
+setTimeout(()=>{
+
+location.reload();
+
+},800);
+
+
+}
+else{
+
+showSnackbar(result.error);
+
+}
+
 
 }
 
