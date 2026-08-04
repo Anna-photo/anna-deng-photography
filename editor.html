@@ -279,8 +279,67 @@ showSnackbar(
 
 
 
-function deleteAlbum(){
+async function deleteAlbum(name){
 
+
+if(!confirm("Delete album " + name + "? This cannot be undone.")){
+
+return;
+
+}
+
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+const response =
+await fetch(
+workerURL + "/delete-album",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+album:name
+
+})
+
+}
+);
+
+
+const result =
+await response.json();
+
+
+if(result.success){
+
+showSnackbar("Album deleted");
+
+
+setTimeout(()=>{
+
+location.reload();
+
+},1000);
+
+
+}
+
+else{
+
+showSnackbar(result.error);
+
+}
+
+
+}
 showSnackbar(
 "Delete album coming next"
 );
