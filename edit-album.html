@@ -140,9 +140,16 @@ onclick="photoMenu(event, currentPhoto)">
 
 </div>
 
- <div
+<div
 id="photoMenu"
 class="popup-menu">
+
+<button
+onclick="setLightboxAsCover()">
+
+Set this image as album cover
+
+</button>
 
 <button
 onclick="addToOtherAlbum()">
@@ -152,7 +159,6 @@ Add to Other Album
 </button>
 
 </div>
-
 <div id="albumPicker" class="album-picker-overlay">
 
 <div class="album-picker-box">
@@ -407,6 +413,26 @@ key:key
 showSnackbar(
 "Cover updated"
 );
+
+}
+  function setLightboxAsCover(){
+
+if(!currentPhoto){
+
+showSnackbar("No photo selected");
+
+return;
+
+}
+
+
+setCover(currentPhoto);
+
+
+document.getElementById("photoMenu").style.display="none";
+
+
+showSnackbar("Album cover changed");
 
 }
   async function uploadPhotos(){
