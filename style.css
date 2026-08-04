@@ -1723,12 +1723,13 @@ margin-bottom:20px;
 
 }
 .success-button {
-    background:#2e9d46;
-    color:white;
+    background: #2e9d46 !important;
+    color: white !important;
+    border: none;
 }
 
 .success-button:hover {
-    background:#247c38;
+    background: #247c38 !important;
 }
 
 
