@@ -646,10 +646,9 @@ object-fit:cover !important;
 }
 .photo-toolbar {
 
-display:none;
+display:flex;
 
 }
-
 /* Editor natural photo thumbnails */
 
 #photos.albums {
