@@ -1322,3 +1322,66 @@ transform 0.15s ease;
 transform:translateY(-3px);
 
 }
+
+.upload-status {
+
+position:fixed;
+
+bottom:20px;
+left:20px;
+
+background:white;
+
+padding:15px 18px;
+
+border-radius:12px;
+
+box-shadow:0 4px 20px rgba(0,0,0,0.18);
+
+display:none;
+
+z-index:10000;
+
+width:240px;
+
+}
+
+
+.upload-status h3 {
+
+margin:0 0 8px 0;
+
+font-size:18px;
+
+}
+
+
+.upload-status p {
+
+margin:5px 0 12px;
+
+}
+
+
+.upload-status button {
+
+background:#333;
+
+color:white;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+
+.upload-status button:hover {
+
+transform:translateY(-2px);
+
+}
