@@ -86,6 +86,45 @@ Delete Album
 
 
 <div id="photos" class="albums"></div>
+  <div id="lightbox" class="lightbox">
+
+<button
+class="lightbox-close"
+onclick="closeLightbox()">
+
+×
+
+</button>
+
+
+<img
+id="lightbox-image">
+
+
+<div class="lightbox-actions">
+
+
+<button
+class="icon-control"
+onclick="deleteLightboxPhoto()">
+
+<img src="icons/trash.png">
+
+</button>
+
+
+<button
+class="menu-button"
+onclick="photoMenu(event, currentPhoto)">
+
+&#8942;
+
+</button>
+
+
+</div>
+
+</div>
 
   <div
 id="photoMenu"
@@ -169,8 +208,9 @@ div.innerHTML = `
 
 <div class="photo-wrapper">
 
-<img src="${image}">
-
+<img
+src="${image}"
+onclick="openLightbox('${photo}')">
 <div class="photo-toolbar">
 
 <button
@@ -347,6 +387,61 @@ function deleteAlbum(){
 }
 
 function addToOtherAlbum(){
+
+}
+  let currentPhoto = null;
+
+
+function openLightbox(photo){
+
+
+currentPhoto = photo;
+
+
+const image =
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
+photo.split("/")
+.map(encodeURIComponent)
+.join("/");
+
+
+document.getElementById("lightbox-image").src =
+image;
+
+
+document.getElementById("lightbox").style.display =
+"flex";
+
+
+}
+
+
+
+function closeLightbox(){
+
+
+document.getElementById("lightbox").style.display =
+"none";
+
+
+currentPhoto = null;
+
+
+}
+
+
+
+function deleteLightboxPhoto(){
+
+
+if(currentPhoto){
+
+deletePhoto(currentPhoto);
+
+closeLightbox();
+
+}
+
 
 }
   
