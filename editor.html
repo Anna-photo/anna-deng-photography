@@ -27,13 +27,12 @@ Logout
 
 <div class="create-section">
 
-<input 
-id="newAlbum"
-placeholder="New album name"
->
+<button class="create-album-button" onclick="openCreateAlbum()">
 
-<button class="editor-button" onclick="createAlbum()">
-Create Album
+<img src="icons/create-album.png">
+
+<span>Create Album</span>
+
 </button>
 
 </div>
@@ -74,6 +73,32 @@ Create Album
 
 </div>
   <div id="snackbar"></div>
+  <div id="createAlbumOverlay" class="confirm-overlay">
+
+<div class="confirm-dialog">
+
+<h3>Create New Album</h3>
+
+<input 
+id="newAlbumName"
+placeholder="Album name"
+>
+
+<div class="confirm-buttons">
+
+<button onclick="createAlbum()">
+Create
+</button>
+
+<button onclick="closeCreateAlbum()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</div>
   <div id="confirmBox" class="confirm-overlay">
 
 <div class="confirm-dialog">
@@ -231,11 +256,23 @@ window.location.href =
 encodeURIComponent(name);
 
 }
+  function openCreateAlbum(){
+
+document.getElementById("createAlbumOverlay").style.display="flex";
+
+}
+
+
+function closeCreateAlbum(){
+
+document.getElementById("createAlbumOverlay").style.display="none";
+
+}
 async function createAlbum(){
 
 
 const name =
-document.getElementById("newAlbum").value.trim();
+document.getElementById("newAlbumName").value.trim();
 
 
 if(!name){
@@ -279,13 +316,9 @@ await response.json();
 
 if(result.success){
 
-showSnackbar("Album created");
-
-setTimeout(function(){
-
-location.reload();
-
-},700);
+window.location.href =
+"edit-album.html?album=" +
+encodeURIComponent(name);
 
 }
 else{
