@@ -1678,3 +1678,9 @@ background:transparent !important;
 opacity:.5;
 
 }
+.viewer-back {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+}
