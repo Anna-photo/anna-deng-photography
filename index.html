@@ -40,18 +40,36 @@ async function loadAlbums(){
     document.getElementById("albums");
 
 
-    albums.forEach(album => {
-if(!album.cover){
-    return;
-}
-
-        const div =
-        document.createElement("div");
+  albums.forEach(async album => {
 
 
-        div.className =
-        "album";
+    if(!album.cover){
+        return;
+    }
 
+
+    const div =
+    document.createElement("div");
+
+
+    div.className =
+    "album";
+
+
+    const photoResponse =
+    await fetch(
+        workerURL +
+        "?album=" +
+        encodeURIComponent(album.name)
+    );
+
+
+    const photos =
+    await photoResponse.json();
+
+
+    const photoCount =
+    photos.filter(photo => !photo.endsWith("/")).length;
 
      const image =
 album.cover
@@ -67,9 +85,8 @@ album.cover.split("/")
 
     <img src="${image}">
 
-    <h3>${album.name}</h3>
-
-</a>
+<h3>${album.name}</h3>
+<p class="album-count">${photoCount} photos</p></a>
 
 `;
 
