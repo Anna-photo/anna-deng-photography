@@ -47,7 +47,7 @@ Create Album
 
 <div class="confirm-buttons">
 
-<button onclick="confirmYes()">
+<button class="danger-button" onclick="confirmYes()">
 Delete
 </button>
 
@@ -307,7 +307,7 @@ showSnackbar(
 function deleteAlbum(name){
 
 showConfirm(
-"Delete album " + name + "?",
+"Are you sure you want to delete " + name + "?<br><br>This cannot be undone.",
 function(){
 
 performDeleteAlbum(name);
@@ -316,8 +316,6 @@ performDeleteAlbum(name);
 );
 
 }
-
-
 async function performDeleteAlbum(name){
 
 
