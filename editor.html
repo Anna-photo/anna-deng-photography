@@ -423,26 +423,58 @@ confirmAction = null;
   let currentAlbum = null;
 
 
+let renameOldName = "";
+
 
 function renameAlbum(name){
 
-const newName =
-prompt("Enter new album name:", name);
+renameOldName = name;
 
+document.getElementById("renameAlbumName").value = name;
 
-if(!newName || newName.trim() === name){
-return;
+document.getElementById("renameBox").style.display = "flex";
+
 }
+
+
+function closeRename(){
+
+document.getElementById("renameBox").style.display = "none";
+
+}
+
+
+function confirmRename(){
+
+const newName =
+document.getElementById("renameAlbumName").value.trim();
+
+
+if(!newName){
+
+showSnackbar("Enter new album name");
+return;
+
+}
+
+
+if(newName === renameOldName){
+
+closeRename();
+return;
+
+}
+
+
+closeRename();
 
 
 renameAlbumRequest(
-name,
-newName.trim()
+renameOldName,
+newName
 );
 
 }
-
-
 async function renameAlbumRequest(oldName,newName){
 
 
