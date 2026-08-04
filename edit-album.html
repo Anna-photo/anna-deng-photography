@@ -27,8 +27,6 @@
 
 <div class="editor-actions">
 
-<div id="uploadDropZone" class="upload-drop-zone">
-
 <label class="icon-button">
 
 <img src="icons/add-photo.png">
@@ -40,12 +38,7 @@ multiple
 hidden
 onchange="uploadPhotos()">
 
-</label>
-
-<p>Drag photos here or click the icon</p>
-
-</div>
-<button
+</label><button
 class="menu-button"
 onclick="toggleAlbumMenu(event)">
 
@@ -783,51 +776,36 @@ menu.style.display="none";
 
 }
 );
-  const dropZone =
-document.getElementById("uploadDropZone");
-
-
-dropZone.addEventListener(
+document.addEventListener(
 "dragover",
 function(e){
 
 e.preventDefault();
 
-dropZone.classList.add("dragover");
-
 }
 );
 
 
-dropZone.addEventListener(
-"dragleave",
-function(){
-
-dropZone.classList.remove("dragover");
-
-}
-);
-
-
-dropZone.addEventListener(
+document.addEventListener(
 "drop",
 function(e){
 
 e.preventDefault();
-
-dropZone.classList.remove("dragover");
 
 
 const files =
 e.dataTransfer.files;
 
 
+if(files.length){
+
 uploadFiles(files);
 
+}
 
 }
 );
-loadPhotos();
+  loadPhotos();
 
 
 </script>
