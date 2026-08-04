@@ -1722,3 +1722,19 @@ color:#fff;
 margin-bottom:20px;
 
 }
+.success-button {
+    background:#2e9d46;
+    color:white;
+}
+
+.success-button:hover {
+    background:#247c38;
+}
+
+
+.name-error {
+    color:red;
+    font-size:14px;
+    margin:8px 0 0;
+    min-height:18px;
+}
