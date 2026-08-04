@@ -1672,3 +1672,9 @@ box-shadow:none !important;
 background:transparent !important;
 
 }
+
+.album.dragging{
+
+opacity:.5;
+
+}
