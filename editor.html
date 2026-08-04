@@ -187,18 +187,21 @@ await response.json();
 
 if(result.success){
 
-alert("AlshowSnackbar("Album created");
+showSnackbar("Album created");
 
 setTimeout(function(){
 
 location.reload();
 
-},700);bum created");
-
-location.reload();
+},700);
 
 }
 else{
+
+showSnackbar(result.error);
+
+}
+  else{
 
 showSnackbar(result.error);
 }
