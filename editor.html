@@ -39,6 +39,17 @@ Create Album
 
 </div>
 <div id="snackbar"></div>
+  <div id="albumMenu" class="popup-menu">
+
+<button onclick="renameAlbum()">
+Rename Album
+</button>
+
+<button onclick="deleteAlbum()">
+Delete Album
+</button>
+
+</div>
 
 <script>
   const password =
@@ -99,6 +110,8 @@ album.cover.split("/")
 
 div.innerHTML = `
 
+<div class="album-card">
+
 <a class="album-link"
 href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
@@ -108,10 +121,18 @@ href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
 </a>
 
+<button 
+class="menu-button album-menu-button"
+onclick="albumMenu(event,'${album.name}')">
+
+&#8942;
+
+</button>
+
+</div>
+
 `;
-
-
-container.appendChild(div);
+  container.appendChild(div);
 
 
 });
@@ -218,6 +239,52 @@ setTimeout(function(){
 bar.classList.remove("show");
 
 },3000);
+
+}
+  let currentAlbum = null;
+
+
+function albumMenu(e,name){
+
+e.preventDefault();
+e.stopPropagation();
+
+
+currentAlbum = name;
+
+
+const menu =
+document.getElementById("albumMenu");
+
+
+menu.style.display="block";
+menu.style.position="fixed";
+
+menu.style.top =
+(e.clientY + 10) + "px";
+
+menu.style.left =
+(e.clientX - 200) + "px";
+
+}
+
+
+
+function renameAlbum(){
+
+showSnackbar(
+"Rename album coming next"
+);
+
+}
+
+
+
+function deleteAlbum(){
+
+showSnackbar(
+"Delete album coming next"
+);
 
 }
 loadAlbums();
