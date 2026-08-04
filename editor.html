@@ -110,20 +110,20 @@ album.cover.split("/")
 
 div.innerHTML = `
 
+<div class="album-card">
+
 <a class="album-link"
 href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
 <img src="${image}">
 
-</a>
-
-<div class="album-title-row">
-
 <h3>${album.name}</h3>
 
+</a>
+
 <button 
-class="menu-button album-menu-button"
-onclick="albumMenu(event,'${album.name}')">
+class="album-menu-button"
+onclick="albumMenu(event, '${album.name}')">
 
 &#8942;
 
@@ -131,8 +131,7 @@ onclick="albumMenu(event,'${album.name}')">
 
 </div>
 
-`;
-  container.appendChild(div);
+`;  container.appendChild(div);
 
 
 });
@@ -285,6 +284,35 @@ function deleteAlbum(){
 showSnackbar(
 "Delete album coming next"
 );
+
+}
+  function albumMenu(e, name){
+
+e.preventDefault();
+e.stopPropagation();
+
+const menu =
+document.getElementById("albumMenu");
+
+menu.innerHTML = `
+
+<button onclick="deleteAlbum('${name}')">
+Delete Album
+</button>
+
+<button onclick="renameAlbum('${name}')">
+Rename Album
+</button>
+
+`;
+
+menu.style.display="block";
+menu.style.position="fixed";
+menu.style.top =
+(e.clientY + 10) + "px";
+
+menu.style.left =
+(e.clientX - 180) + "px";
 
 }
 loadAlbums();
