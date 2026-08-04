@@ -81,16 +81,16 @@ Logout
 <input 
 id="newAlbumName"
 placeholder="Album name"
-  autocomplete="off"
-
+autocomplete="off"
+oninput="checkCreateName()"
 >
 
+<p id="createNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
-<button onclick="createAlbum()">
+<button class="success-button" onclick="createAlbum()">
 Create
 </button>
-
 <button onclick="closeCreateAlbum()">
 Cancel
 </button>
@@ -106,15 +106,19 @@ Cancel
 
 <h3>Rename Album</h3>
 
-<input id="renameAlbumName" placeholder="New album name"autocomplete="off"
+<input 
+id="renameAlbumName" 
+placeholder="New album name"
+autocomplete="off"
+oninput="checkRenameName()"
 >
 
+<p id="renameNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
-<button onclick="confirmRename()">
+<button class="success-button" onclick="confirmRename()">
 Rename
 </button>
-
 <button onclick="closeRename()">
 Cancel
 </button>
@@ -331,7 +335,18 @@ return;
 
 }
 
+if(
+existingAlbums.some(
+album => album.name.toLowerCase() === name.toLowerCase()
+)
+){
 
+document.getElementById("createNameError").innerHTML =
+"This album name already exists.";
+
+return;
+
+}
 
 const password =
 localStorage.getItem("annaEditorPassword");
@@ -438,7 +453,87 @@ confirmAction = null;
 
 
 let renameOldName = "";
+let existingAlbums = [];
 
+
+async function getExistingAlbums(){
+
+const response =
+await fetch(workerURL + "?albums=true");
+
+existingAlbums =
+await response.json();
+
+}
+
+
+function checkCreateName(){
+
+const input =
+document.getElementById("newAlbumName");
+
+const error =
+document.getElementById("createNameError");
+
+
+const name =
+input.value.trim();
+
+
+if(
+existingAlbums.some(
+album => album.name.toLowerCase() === name.toLowerCase()
+)
+){
+
+error.innerHTML =
+"This album name already exists.";
+
+}
+else{
+
+error.innerHTML =
+"";
+
+}
+
+}
+
+
+
+function checkRenameName(){
+
+const input =
+document.getElementById("renameAlbumName");
+
+const error =
+document.getElementById("renameNameError");
+
+
+const name =
+input.value.trim();
+
+
+if(
+existingAlbums.some(
+album =>
+album.name.toLowerCase() === name.toLowerCase()
+&& album.name !== renameOldName
+)
+){
+
+error.innerHTML =
+"This album name already exists.";
+
+}
+else{
+
+error.innerHTML =
+"";
+
+}
+
+}
 
 function renameAlbum(name){
 
@@ -462,7 +557,20 @@ function confirmRename(){
 
 const newName =
 document.getElementById("renameAlbumName").value.trim();
+if(
+existingAlbums.some(
+album =>
+album.name.toLowerCase() === newName.toLowerCase()
+&& album.name !== renameOldName
+)
+){
 
+document.getElementById("renameNameError").innerHTML =
+"This album name already exists.";
+
+return;
+
+}
 
 if(!newName){
 
@@ -691,7 +799,7 @@ order:albums
 }
 loadAlbums();
 loadStorage();
-
+getExistingAlbums();
 </script>
 
 
