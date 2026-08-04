@@ -554,13 +554,34 @@ destination:destination
 closeAlbumPicker();
 
 
-alert("Photo added to " + destination);
-
+showSnackbar(
+"Photo added to " + destination
+);
 
 }
   function closeAlbumPicker(){
 
 document.getElementById("albumPicker").style.display="none";
+
+}
+  function showSnackbar(message){
+
+const bar =
+document.getElementById("snackbar");
+
+
+bar.innerHTML =
+message;
+
+
+bar.className="show";
+
+
+setTimeout(()=>{
+
+bar.className="";
+
+},3000);
 
 }
   let currentPhoto = null;
