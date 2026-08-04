@@ -144,7 +144,7 @@ onclick="photoMenu(event, currentPhoto)">
 
 </div>
 
-  <div
+ <div
 id="photoMenu"
 class="popup-menu">
 
@@ -154,6 +154,17 @@ onclick="addToOtherAlbum()">
 Add to Other Album
 
 </button>
+
+</div>
+
+
+<div
+id="albumPicker"
+class="popup-menu">
+
+<h3>Add to album</h3>
+
+<div id="albumList"></div>
 
 </div>
 
@@ -427,11 +438,87 @@ menu.style.left =
 (e.clientX - 200) + "px";
 
 
-}function addToOtherAlbum(){
+async function addToOtherAlbum(){
+
+
+document.getElementById("photoMenu").style.display =
+"none";
+
+
+const response =
+await fetch(
+workerURL + "?albums=true"
+);
+
+
+const albums =
+await response.json();
+
+
+const list =
+document.getElementById("albumList");
+
+
+list.innerHTML = "";
+
+
+albums.forEach(item => {
+
+
+if(item.name === album){
+
+return;
+
+}
+
+
+const button =
+document.createElement("button");
+
+
+button.innerHTML =
+item.name;
+
+
+button.onclick = function(){
+
+copyPhotoToAlbum(item.name);
+
+};
+
+
+list.appendChild(button);
+
+
+});
+
+
+const picker =
+document.getElementById("albumPicker");
+
+
+picker.style.display="block";
+
+
+picker.style.position="fixed";
+
+picker.style.top="100px";
+
+picker.style.left="50%";
+
+picker.style.transform="translateX(-50%)";
+
+
+}
+  function copyPhotoToAlbum(destination){
+
 
 alert(
-"Choose album screen coming next"
+"Copying to " + destination
 );
+
+
+}
 
 }  let currentPhoto = null;
   let lightboxPhotos = [];
