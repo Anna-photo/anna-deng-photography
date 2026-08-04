@@ -846,3 +846,84 @@ color:#222;
 z-index:3000 !important;
 
 }
+.album-picker-overlay {
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.85);
+
+z-index:4000;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+.album-picker-box {
+
+background:#222;
+
+color:white;
+
+width:90%;
+
+max-width:800px;
+
+max-height:80vh;
+
+overflow:auto;
+
+border-radius:18px;
+
+padding:25px;
+
+}
+
+
+.album-picker-box h2 {
+
+margin-top:0;
+
+}
+
+
+#albumList {
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(180px,1fr));
+
+gap:20px;
+
+}
+
+
+#albumList button {
+
+background:#333;
+
+color:white;
+
+border-radius:12px;
+
+padding:15px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+#albumList button:hover {
+
+background:#555;
+
+}
