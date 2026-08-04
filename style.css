@@ -742,3 +742,100 @@ gap:10px;
 background:white;
 
 }
+
+/* Match viewer lightbox style */
+
+#lightbox .lightbox-close {
+
+position:absolute;
+
+top:20px;
+
+left:25px;
+
+right:auto;
+
+font-size:35px;
+
+color:white;
+
+background:none;
+
+border:none;
+
+padding:0;
+
+cursor:pointer;
+
+z-index:2100;
+
+}
+
+
+#lightbox .lightbox-actions {
+
+position:absolute;
+
+top:20px;
+
+right:25px;
+
+left:auto;
+
+display:flex;
+
+gap:10px;
+
+z-index:2100;
+
+}
+
+
+#lightbox .lightbox-prev,
+#lightbox .lightbox-next {
+
+position:absolute;
+
+top:50%;
+
+transform:translateY(-50%);
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:60px;
+
+padding:10px;
+
+cursor:pointer;
+
+z-index:2100;
+
+}
+
+
+#lightbox .lightbox-prev {
+
+left:25px;
+
+}
+
+
+#lightbox .lightbox-next {
+
+right:25px;
+
+}
+
+
+#lightbox .icon-control,
+#lightbox .menu-button {
+
+background:white;
+
+color:#222;
+
+}
