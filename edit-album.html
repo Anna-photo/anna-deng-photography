@@ -37,7 +37,19 @@ multiple
 hidden
 onchange="uploadPhotos()">
 
-</label><button
+</label>
+
+
+<button
+class="icon-button public-button"
+onclick="publicAlbumMenu(event)">
+
+<img src="icons/share.png">
+
+</button>
+
+
+<button
 class="menu-button"
 onclick="toggleAlbumMenu(event)">
 
@@ -45,8 +57,8 @@ onclick="toggleAlbumMenu(event)">
 
 </button>
 
-</div>
 
+</div>
 </div>
 
 
@@ -190,8 +202,56 @@ Cancel Upload
 </div>
   <div id="confirmBox" class="confirm-overlay">
 
+    <div id="publicBox" class="confirm-overlay">
+
 <div class="confirm-dialog">
 
+<div id="confirmBox" class="confirm-overlay">
+
+<div class="confirm-dialog">
+
+<h3 id="confirmText"></h3>
+
+<div class="confirm-buttons">
+
+<button onclick="confirmYes()">
+Delete
+</button>
+
+<button onclick="confirmNo()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="publicBox" class="confirm-overlay">
+
+<div class="confirm-dialog">
+
+<h3 id="publicText"></h3>
+
+<div class="confirm-buttons">
+
+<button 
+class="public-yes"
+onclick="confirmPublicYes()">
+Yes
+</button>
+
+<button onclick="closePublicBox()">
+No
+</button>
+
+</div>
+
+</div>
+
+</div>
 <h3 id="confirmText"></h3>
 
 <div class="confirm-buttons">
@@ -273,9 +333,29 @@ album;
  let currentPhoto = null;
 let lightboxPhotos = [];
 let selectingCover = false;
-
+let albumIsPublic = false;
 let currentIndex = 0;
+async function loadAlbumInfo(){
 
+const response =
+await fetch(workerURL + "?albums=true");
+
+
+const albums =
+await response.json();
+
+
+const current =
+albums.find(item => item.name === album);
+
+
+if(current){
+
+albumIsPublic = current.public;
+
+}
+
+}
 async function loadPhotos(){
 
 
@@ -1201,8 +1281,89 @@ uploadFiles(files);
 }
 
 }
-);  loadPhotos();
+);  loadAlbumInfo();
+loadPhotos();
+function publicAlbumMenu(e){
 
+e.preventDefault();
+e.stopPropagation();
+
+
+document.getElementById("publicText").innerHTML =
+albumIsPublic
+?
+"This album is public"
+:
+"Do you want to set this album as public?";
+
+
+document.querySelector(".public-yes").innerHTML =
+albumIsPublic
+?
+"Set as private"
+:
+"Yes";
+
+
+document.getElementById("publicBox").style.display="flex";
+
+}
+
+
+
+async function confirmPublicYes(){
+
+await togglePublic(!albumIsPublic);
+
+closePublicBox();
+
+
+setTimeout(()=>{
+
+location.reload();
+
+},500);
+
+}
+
+
+
+function closePublicBox(){
+
+document.getElementById("publicBox").style.display="none";
+
+}
+
+
+
+async function togglePublic(value){
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/set-public",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+album:album,
+
+public:value
+
+})
+
+}
+);
+
+}
 
 </script>
 
