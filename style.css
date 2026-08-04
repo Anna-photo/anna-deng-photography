@@ -136,14 +136,9 @@ margin:30px 0;
 
 .editor-bar {
 
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-margin-bottom:30px;
+display:block;
 
 }
-
 
 .editor-button {
 
