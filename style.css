@@ -647,3 +647,27 @@ object-fit:cover !important;
 display:none;
 
 }
+
+/* Editor natural photo thumbnails */
+
+#photos.albums {
+
+grid-template-columns:
+repeat(auto-fill, minmax(220px, 1fr)) !important;
+
+gap:18px !important;
+
+}
+
+
+#photos .photo-wrapper img {
+
+width:100% !important;
+
+height:auto !important;
+
+object-fit:contain !important;
+
+display:block !important;
+
+}
