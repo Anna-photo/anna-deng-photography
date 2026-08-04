@@ -258,7 +258,25 @@ href="edit-album.html?album=${encodeURIComponent(album.name)}">
 <h3>${album.name}</h3>
 
 <p class="album-count">${photoCount} photos</p>
+
 </a>
+
+
+<label class="public-toggle">
+
+<input 
+type="checkbox"
+onchange="togglePublic('${album.name}', this.checked)"
+${album.public ? "checked" : ""}>
+
+<span class="checkmark"></span>
+
+<span class="public-text">
+Make this album public
+</span>
+
+</label>
+
 
 <button 
 class="album-menu-button"
@@ -269,7 +287,6 @@ onclick="albumMenu(event, '${album.name}')">
 </button>
 
 </div>
-
 `;  container.appendChild(div);
 div.addEventListener("dragstart",()=>{
 div.classList.add("dragging");
