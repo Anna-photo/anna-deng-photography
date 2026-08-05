@@ -2188,3 +2188,104 @@ position: relative;
     margin-top:4px !important;
 
 }
+/* Caption editor layout fix */
+
+.lightbox-content {
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    max-width:90vw;
+
+    max-height:95vh;
+
+}
+
+
+#lightbox-image {
+
+    max-width:90vw !important;
+
+    max-height:75vh !important;
+
+    object-fit:contain;
+
+}
+
+
+#captionEditor {
+
+    position:static !important;
+
+    transform:none !important;
+
+    width:90vw !important;
+
+    max-width:900px !important;
+
+    margin-top:15px !important;
+
+    padding:0 !important;
+
+    background:none !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.caption-row {
+
+    display:flex !important;
+
+    width:100% !important;
+
+    gap:10px !important;
+
+}
+
+
+.caption-row textarea {
+
+    height:42px !important;
+
+    min-height:42px !important;
+
+    max-height:42px !important;
+
+    resize:none !important;
+
+    flex:1 !important;
+
+}
+
+
+.caption-row button {
+
+    width:70px !important;
+
+    min-width:70px !important;
+
+    height:42px !important;
+
+    padding:0 !important;
+
+}
+
+
+.caption-counts {
+
+    display:flex !important;
+
+    justify-content:space-between !important;
+
+    width:calc(100% - 80px);
+
+    margin-top:4px;
+
+}
