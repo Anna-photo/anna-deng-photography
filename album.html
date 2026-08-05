@@ -270,14 +270,12 @@ body {
 <body>
 
 
-<div class="album-container">
 <a class="editor-back viewer-back" href="index.html">
 <img src="icons/back.png">
 
-<span>Albums</span>
+<span id="backText">Albums</span>
 
 </a>
-
 <h1 class="album-title" id="albumTitle">
 </h1>
 
@@ -331,21 +329,25 @@ new URLSearchParams(window.location.search);
 
 const album =
 params.get("album");
-const lang =
-params.get("lang") || "en";
-    document.getElementById("albumTitle").textContent =
-lang === "zh"
-? "加载中..."
+const language =
+localStorage.getItem("annaLanguage") || "en";    document.getElementById("albumTitle").textContent =
+language === "zh"
+    ? "加载中..."
 : "Loading...";
-    document.getElementById("loading").textContent =
-lang === "zh"
+document.getElementById("loading").textContent =
+language === "zh"
 ? "正在加载照片..."
 : "Loading photographs...";
+    function applyViewerLanguage(){
 
+    document.getElementById("backText").textContent =
+    language === "zh"
+    ? "相册"
+    : "Albums";
+
+}
 async function loadAlbumTitle(){
 
-    const language =
-    lang;
 
     const response =
     await fetch(workerURL + "?albums=true");
@@ -367,11 +369,10 @@ async function loadAlbumTitle(){
 }
 
 
+applyViewerLanguage();
 loadAlbumTitle();
 
-let photos = [];
-
-let currentPhoto = 0;
+let photos = [];let currentPhoto = 0;
 
 
 
@@ -456,7 +457,7 @@ return;
 
       document.getElementById("loading")
 .textContent =
-lang === "zh"
+language === "zh"
 ? "无法加载照片。"
 : "Unable to load photographs.";
         console.error(error);
