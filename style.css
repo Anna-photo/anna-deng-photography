@@ -2643,3 +2643,36 @@ html, body {
     text-align:center !important;
     align-self:center !important;
 }
+/* FINAL viewer lightbox caption */
+
+#lightboxCaption {
+
+    position: static !important;
+
+    display: block !important;
+
+    width: fit-content !important;
+
+    max-width: 90vw !important;
+
+    margin: 12px auto 0 auto !important;
+
+    padding: 8px 18px !important;
+
+    text-align: center !important;
+
+    color: white !important;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    background: rgba(0,0,0,.45);
+
+    border-radius: 10px;
+
+    text-shadow: 0 2px 8px black;
+
+    align-self: center !important;
+
+}
