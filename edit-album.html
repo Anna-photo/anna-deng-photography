@@ -553,64 +553,19 @@ document.getElementById("photoMenu").style.display="none";
 showSnackbar("Album cover changed");
 
 }
-  async function uploadPhotos(){
+async function uploadPhotos(){
 
+    const files =
+    document.getElementById("files").files;
 
-const password =
-localStorage.getItem("annaEditorPassword");
+    if(!files.length){
+        return;
+    }
 
-
-const files =
-document.getElementById("files").files;
-
-
-for (const file of files){
-
-
-const form =
-new FormData();
-
-
-form.append(
-"album",
-album
-);
-
-
-form.append(
-"file",
-file
-);
-
-
-
-await fetch(
-workerURL + "/upload",
-{
-method:"POST",
-
-headers:{
-"X-Upload-Password":password
-},
-
-body:form
+    uploadFiles(files);
 
 }
-);
-
-
-}
-
-
-showSnackbar(
-"Photos uploaded!"
-);
-
-location.reload();
-
-
-}
-let uploadCancelled = false;
+  let uploadCancelled = false;
 
 
 async function uploadFiles(files){
