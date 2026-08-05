@@ -1774,3 +1774,10 @@ margin-bottom:20px;
 .album {
     text-align:left;
 }
+.album-count,
+.album-info {
+    font-size: 13px !important;
+    color: #b4b4b4 !important;
+    text-align: left !important;
+    margin-top: 4px !important;
+}
