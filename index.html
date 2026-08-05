@@ -27,13 +27,14 @@
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev/";
 
-let language = "en";
-
+let language = localStorage.getItem("language") || "en";
 
 function toggleLanguage(){
 
     language =
     language === "en" ? "zh" : "en";
+
+    localStorage.setItem("language", language);
 
 
     document.getElementById("languageButton").innerHTML =
@@ -44,11 +45,11 @@ function toggleLanguage(){
     language === "en" ? "Albums" : "相册";
 
 
+    document.getElementById("albums").innerHTML = "";
+
     loadAlbums();
 
 }
-
-
 async function loadAlbums(){
 
     const response =
@@ -67,7 +68,9 @@ const publicAlbums = albums.filter(album => album.public);
 
 
 for (const album of publicAlbums) {
-
+    if(language === "zh" && !album.chinese){
+        continue;
+    }
     if(!album.cover){
         continue;
     }
@@ -111,7 +114,7 @@ for (const album of publicAlbums) {
     <img src="${image}">
 
 <h3>
-${language === "zh" && album.chinese ? album.chinese : album.name}
+${language === "zh" ? album.chinese : album.name}
 </h3>
 <p class="album-count">${photoCount} photos</p>
 
