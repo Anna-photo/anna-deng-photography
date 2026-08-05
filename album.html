@@ -1223,6 +1223,7 @@ document.getElementById("commentText")
 if(!name || !comment){
 
 alert("Please enter your name and comment");
+
 return;
 
 }
@@ -1274,20 +1275,8 @@ alert("Comment failed: " + JSON.stringify(result));
 
 }
 
-
 }
-
-document.getElementById("commentText")
-.value="";
-
-
-loadComments();
-
-}
-
-
-
-async function loadComments(){
+    async function loadComments(){
 
 
 const response =
