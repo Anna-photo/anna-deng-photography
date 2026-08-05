@@ -36,7 +36,13 @@ Logout
 </button>
 
 </div>
+<button class="notifications-button" onclick="openNotifications()">
 
+<img src="icons/notifications.png">
+
+<span>Notifications</span>
+
+</button>
 
 <div class="storage-card">
 
@@ -160,6 +166,31 @@ Cancel
 
 </div>
 <div id="albumMenu" class="popup-menu"></div>
+  <div id="notificationOverlay" class="confirm-overlay">
+
+<div class="confirm-dialog notification-dialog">
+
+<h3>Notifications</h3>
+
+<div id="notificationList">
+
+Loading...
+
+</div>
+
+
+<div class="confirm-buttons">
+
+<button onclick="closeNotifications()">
+Close
+</button>
+
+</div>
+
+
+</div>
+
+</div>
 <script>
   const password =
 localStorage.getItem("annaEditorPassword");
@@ -174,6 +205,8 @@ window.location.href =
 
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
+  const r2URL =
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/";
   async function loadStorage(){
 
 const response =
@@ -879,6 +912,236 @@ value
 ? "Album is now public"
 : "Album is now private"
 );
+
+
+}
+  async function openNotifications(){
+
+document.getElementById(
+"notificationOverlay"
+).style.display="flex";
+
+
+loadNotifications();
+
+}
+
+
+
+function closeNotifications(){
+
+document.getElementById(
+"notificationOverlay"
+).style.display="none";
+
+}
+
+
+
+async function loadNotifications(){
+
+
+const box =
+document.getElementById(
+"notificationList"
+);
+
+
+const response =
+await fetch(
+workerURL +
+"/get-notifications"
+);
+
+
+const notifications =
+await response.json();
+
+
+
+if(notifications.length===0){
+
+box.innerHTML =
+"No notifications.";
+
+return;
+
+}
+
+
+box.innerHTML="";
+
+
+
+notifications.forEach(n=>{
+
+const div =
+document.createElement("div");
+
+
+div.className =
+n.seen
+?
+"notification seen"
+:
+"notification new";
+
+
+
+if(n.type==="like"){
+
+
+div.innerHTML = `
+
+<p>
+❤️ New like
+</p>
+
+<img class="notification-thumb"
+src="${getNotificationImage(n.photo)}">
+
+
+<p>
+Album: ${n.album}
+</p>
+
+
+<p>
+${new Date(n.time).toLocaleString()}
+</p>
+
+`;
+
+}
+
+
+
+if(n.type==="comment"){
+
+
+div.innerHTML = `
+
+
+<p>
+💬 New comment
+</p>
+
+
+<p>
+<b>${n.name}</b>
+</p>
+
+
+<p>
+${n.comment}
+</p>
+
+
+<p>
+Album: ${n.album}
+</p>
+
+
+<p>
+${new Date(n.time).toLocaleString()}
+</p>
+
+
+<button onclick="deleteNotificationComment('${n.id}')">
+
+<img src="icons/trash.png">
+
+</button>
+
+
+`;
+
+}
+
+
+
+box.appendChild(div);
+
+
+if(!n.seen){
+
+markNotification(n.id);
+
+}
+
+
+});
+
+
+}
+
+
+
+
+function getNotificationImage(photo){
+
+return r2URL +
+photo
+.split("/")
+.map(encodeURIComponent)
+.join("/");
+
+}
+
+
+
+
+async function markNotification(id){
+
+
+await fetch(
+workerURL+
+"/mark-notification",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":
+localStorage.getItem("annaEditorPassword")
+},
+
+body:JSON.stringify({
+id:id
+})
+
+});
+
+
+}
+
+
+
+async function deleteNotificationComment(id){
+
+
+await fetch(
+workerURL+
+"/delete-comment",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":
+localStorage.getItem("annaEditorPassword")
+},
+
+body:JSON.stringify({
+id:id
+})
+
+});
+
+
+loadNotifications();
 
 
 }
