@@ -1798,3 +1798,40 @@ margin-bottom:20px;
     border-radius:10px;
     break-inside:avoid;
 }
+#languageButton {
+
+position: absolute;
+
+top: 20px;
+
+right: 25px;
+
+background: white;
+
+border: 1px solid #ddd;
+
+padding: 8px 18px;
+
+border-radius: 20px;
+
+font-size: 15px;
+
+cursor: pointer;
+
+transition: 
+transform 0.2s ease,
+box-shadow 0.2s ease;
+
+}
+
+
+#languageButton:hover {
+
+transform: translateY(-3px);
+
+box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+
+}
+body {
+position: relative;
+}
