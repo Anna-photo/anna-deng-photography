@@ -1747,3 +1747,17 @@ margin-bottom:20px;
 .public-button:hover{
     transform:translateY(-3px);
 }
+.public-button {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0;
+}
+
+.public-button:hover {
+    background: transparent !important;
+}
+
+.public-button img {
+    display: block;
+}
