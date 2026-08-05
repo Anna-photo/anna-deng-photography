@@ -38,12 +38,11 @@ Logout
 </div>
 <button class="notifications-button" onclick="openNotifications()">
 
-<img src="icons/notifications.png">
+<img id="notificationIcon" src="icons/notification.png">
 
 <span>Notifications</span>
 
 </button>
-
 <div class="storage-card">
 
 <div class="storage-title">
@@ -915,6 +914,45 @@ value
 
 
 }
+  async function updateNotificationIcon(){
+
+const response =
+await fetch(
+workerURL + "/get-notifications"
+);
+
+
+const notifications =
+await response.json();
+
+
+const icon =
+document.getElementById("notificationIcon");
+
+
+if(!icon) return;
+
+
+const hasNew =
+notifications.some(
+n => !n.seen
+);
+
+
+if(hasNew){
+
+icon.src =
+"icons/new-notification.png";
+
+}
+else{
+
+icon.src =
+"icons/notification.png";
+
+}
+
+}
   async function openNotifications(){
 
 document.getElementById(
@@ -923,6 +961,7 @@ document.getElementById(
 
 
 loadNotifications();
+    updateNotificationIcon();
 
 }
 
@@ -1148,6 +1187,7 @@ loadNotifications();
 loadAlbums();
 loadStorage();
 getExistingAlbums();
+  updateNotificationIcon();
 </script>
 
 
