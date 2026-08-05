@@ -3299,3 +3299,8 @@ right:25px;
     z-index: 25000 !important;
 
 }
+/* Make delete confirmation appear above notification overlay */
+
+#confirmBox {
+    z-index:30000 !important;
+}
