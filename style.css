@@ -2787,3 +2787,6 @@ text-align:left;
 .notifications-button {
     margin-left: -5px;
 }
+.storage-title span {
+    color: #b4b4b4;
+}
