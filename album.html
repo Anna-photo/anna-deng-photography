@@ -268,7 +268,89 @@ body {
     align-items: center !important;
     justify-content: center !important;
 }
+/* Comments */
 
+#commentsSection{
+
+max-width:900px;
+margin:60px auto;
+color:white;
+
+}
+
+
+#commentsSection h2{
+
+text-align:center;
+
+}
+
+
+.comment-card{
+
+background:#222;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+
+}
+
+
+.comment-name{
+
+font-weight:bold;
+font-size:18px;
+
+}
+
+
+.comment-time{
+
+font-size:13px;
+color:#aaa;
+margin-top:8px;
+
+}
+
+
+.comment-box{
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+}
+
+
+.comment-box input,
+.comment-box textarea{
+
+font-family:Arial,sans-serif;
+font-size:16px;
+
+padding:12px;
+
+border-radius:10px;
+
+border:none;
+
+}
+
+
+.comment-box textarea{
+
+height:100px;
+resize:none;
+
+}
+
+
+.comment-box button{
+
+width:150px;
+align-self:center;
+
+}
 </style>
 </head>
 
@@ -296,7 +378,26 @@ This album is empty. Add photos to get started.
 <div class="gallery" id="gallery">
 
 </div>
+<div id="commentsSection">
 
+<h2>Comments</h2>
+
+<div id="commentList"></div>
+
+
+<div class="comment-box">
+
+<input id="commentName" placeholder="Your name">
+
+<textarea id="commentText" placeholder="Write a comment"></textarea>
+
+<button onclick="submitComment()">
+Post Comment
+</button>
+
+</div>
+
+</div>
 
 
 </div>
@@ -846,8 +947,126 @@ function(e){
     }
 
 });
+async function submitComment(){
 
+const name =
+document.getElementById("commentName")
+.value
+.trim();
+
+
+const comment =
+document.getElementById("commentText")
+.value
+.trim();
+
+
+
+if(!name || !comment){
+
+alert("Please enter your name and comment");
+
+return;
+
+}
+
+
+
+await fetch(
+workerURL + "/add-comment",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+album:album,
+
+name:name,
+
+comment:comment
+
+})
+
+});
+
+
+document.getElementById("commentText")
+.value="";
+
+
+loadComments();
+
+}
+
+
+
+async function loadComments(){
+
+
+const response =
+await fetch(
+workerURL +
+"/get-comments?album=" +
+encodeURIComponent(album)
+);
+
+
+
+const comments =
+await response.json();
+
+
+
+const box =
+document.getElementById("commentList");
+
+
+
+box.innerHTML="";
+
+
+
+comments.forEach(c=>{
+
+
+const div =
+document.createElement("div");
+
+
+div.className="comment-card";
+
+
+div.innerHTML=`
+
+<div class="comment-name">
+${c.name}
+</div>
+
+<div>
+${c.comment}
+</div>
+
+<div class="comment-time">
+${new Date(c.time).toLocaleString()}
+</div>
+
+`;
+
+
+box.appendChild(div);
+
+
+});
+
+
+}
 loadPhotos();
+loadComments();
 
 
 </script>
