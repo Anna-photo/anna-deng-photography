@@ -883,8 +883,12 @@ loadPhotos();
 
 </script>
 <footer class="site-footer">
-    © 2026 Anna Deng Photography
+    © <span id="year"></span> Anna Deng Photography
 </footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
