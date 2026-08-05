@@ -707,13 +707,13 @@ justify-content:center;
 }
 
 
-.lightbox img{
+.lightbox img {
 
-max-width:90vw;
+    max-width: 92%;
 
-max-height:90vh;
+    max-height: 80vh;
 
-object-fit:contain;
+    object-fit: contain;
 
 }
 
@@ -1841,23 +1841,33 @@ position: relative;
 
     position: absolute;
 
-    bottom: 25px;
+    top: calc(50% + 42vh);
 
     left: 50%;
 
     transform: translateX(-50%);
 
+    width: 80%;
+
+    max-width: 900px;
+
     color: white;
-
-    font-size: 1.1rem;
-
-    max-width: 80%;
 
     text-align: center;
 
+    font-size: 18px;
+
     line-height: 1.5;
 
-    display: none;
+    padding: 8px 15px;
+
+    background: rgba(0,0,0,.45);
+
+    border-radius: 10px;
+
+    text-shadow: 0 2px 8px black;
+
+    z-index: 1000;
 
 }
 #captionEditor {
