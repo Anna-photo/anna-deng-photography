@@ -291,6 +291,35 @@ background:#222;
 padding:15px;
 border-radius:12px;
 margin-bottom:15px;
+border:1px solid #444;
+
+}
+
+
+.comment-header{
+
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+
+}
+
+
+.comment-profile{
+
+width:42px;
+height:42px;
+border-radius:50%;
+object-fit:cover;
+
+}
+
+
+.comment-user{
+
+display:flex;
+flex-direction:column;
 
 }
 
@@ -298,19 +327,28 @@ margin-bottom:15px;
 .comment-name{
 
 font-weight:bold;
-font-size:18px;
+font-size:17px;
+color:white;
 
 }
 
 
 .comment-time{
 
-font-size:13px;
+font-size:12px;
 color:#aaa;
-margin-top:8px;
 
 }
 
+
+.comment-text{
+
+margin-top:10px;
+font-size:16px;
+line-height:1.5;
+color:white;
+
+}
 
 .comment-box{
 
@@ -1313,21 +1351,34 @@ div.className="comment-card";
 
 div.innerHTML=`
 
+<div class="comment-header">
+
+<img 
+class="comment-profile"
+src="icons/profile.png"
+>
+
+
+<div class="comment-user">
+
 <div class="comment-name">
 ${c.name}
-</div>
-
-<div>
-${c.comment}
 </div>
 
 <div class="comment-time">
 ${new Date(c.time).toLocaleString()}
 </div>
 
+</div>
+
+</div>
+
+
+<div class="comment-text">
+${c.comment}
+</div>
+
 `;
-
-
 box.appendChild(div);
 
 
