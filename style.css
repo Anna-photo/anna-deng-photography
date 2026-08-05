@@ -1806,21 +1806,21 @@ top: 20px;
 
 right: 25px;
 
-background: white;
+background: transparent;
 
-border: 1px solid #ddd;
+border: none;
 
-padding: 8px 18px;
+color: white;
 
-border-radius: 20px;
+padding: 8px 12px;
 
 font-size: 15px;
 
 cursor: pointer;
 
-transition: 
+transition:
 transform 0.2s ease,
-box-shadow 0.2s ease;
+opacity 0.2s ease;
 
 }
 
@@ -1829,9 +1829,11 @@ box-shadow 0.2s ease;
 
 transform: translateY(-3px);
 
-box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+opacity: 0.75;
 
 }
+
+
 body {
 position: relative;
 }
