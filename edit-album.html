@@ -128,35 +128,36 @@ id="lightbox-image">
 
 <div id="captionEditor">
 
+<div class="caption-row">
+
 <textarea
 id="captionEnglish"
 maxlength="200"
-placeholder="Write English caption..."
-></textarea>
-
-<p id="englishCount">
-0 / 200
-</p>
+placeholder="English caption">
+</textarea>
 
 
 <textarea
 id="captionChinese"
 maxlength="100"
-placeholder="输入中文说明..."
-></textarea>
-
-<p id="chineseCount">
-0 / 100
-</p>
+placeholder="中文说明">
+</textarea>
 
 
-<button 
-class="caption-save-button"
-onclick="saveCaption()">
-
-Save Caption
-
+<button onclick="saveCaption()">
+Save
 </button>
+
+</div>
+
+
+<div class="caption-counts">
+
+<span id="englishCount">0 / 200</span>
+
+<span id="chineseCount">0 / 100</span>
+
+</div>
 
 </div>
 <div class="lightbox-actions">
