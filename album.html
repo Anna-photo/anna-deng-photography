@@ -262,6 +262,17 @@ body {
     }
 
 }
+    /* Prevent easy image saving */
+.gallery img,
+.lightbox img {
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    -webkit-touch-callout: none;
+
+}
 
 </style>
 </head>
@@ -307,8 +318,7 @@ This album is empty. Add photos to get started.
 </button>
 
 
-<img id="largeImage">
-
+<img id="largeImage" draggable="false">
 <div id="lightboxCaption"></div>
 
 
@@ -435,7 +445,7 @@ return;
 
 
             img.alt = album;
-
+img.draggable = false;
 
             img.onclick = function(){
 
@@ -770,7 +780,50 @@ async function loadCaption(photo){
 
 }
 
+// Disable right click on images
+document.addEventListener(
+"contextmenu",
+function(e){
 
+    if(e.target.tagName === "IMG"){
+
+        e.preventDefault();
+
+    }
+
+});
+
+
+// Disable dragging images
+document.addEventListener(
+"dragstart",
+function(e){
+
+    if(e.target.tagName === "IMG"){
+
+        e.preventDefault();
+
+    }
+
+});
+
+
+// Disable common copy shortcuts on photos
+document.addEventListener(
+"keydown",
+function(e){
+
+    if(
+        (e.ctrlKey || e.metaKey)
+        &&
+        ["s","c","u"].includes(e.key.toLowerCase())
+    ){
+
+        e.preventDefault();
+
+    }
+
+});
 
 loadPhotos();
 
