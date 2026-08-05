@@ -283,10 +283,7 @@ Loading...
 </h1>
 
 
-<div id="loading">
-Loading photographs...
-</div>
-
+<div id="loading"></div>
 
 <div id="emptyMessage" class="empty-message" style="display:none;">
 This album is empty. Add photos to get started.
@@ -337,6 +334,10 @@ const album =
 params.get("album");
 const lang =
 params.get("lang") || "en";
+    document.getElementById("loading").textContent =
+lang === "zh"
+? "正在加载照片..."
+: "Loading photographs...";
 
 async function loadAlbumTitle(){
 
@@ -450,10 +451,11 @@ return;
 
     catch(error){
 
-        document.getElementById("loading")
-        .textContent =
-        "Unable to load photographs.";
-
+      document.getElementById("loading")
+.textContent =
+lang === "zh"
+? "无法加载照片。"
+: "Unable to load photographs.";
         console.error(error);
 
     }
