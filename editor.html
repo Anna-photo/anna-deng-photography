@@ -809,16 +809,15 @@ document.getElementById("albumMenu");
 
 menu.innerHTML = `
 
-<button onclick="deleteAlbum('${name}')">
+<button onclick="closeAlbumMenu(); deleteAlbum('${name}')">
 Delete Album
 </button>
 
-<button onclick="renameAlbum('${name}')">
+<button onclick="closeAlbumMenu(); renameAlbum('${name}')">
 Rename Album
 </button>
 
 `;
-
 menu.style.display="block";
 menu.style.position="fixed";
 menu.style.top =
@@ -826,6 +825,14 @@ menu.style.top =
 
 menu.style.left =
 (e.clientX - 180) + "px";
+
+}
+    function closeAlbumMenu(){
+
+const menu =
+document.getElementById("albumMenu");
+
+menu.style.display="none";
 
 }
   document.addEventListener(
