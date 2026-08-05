@@ -3239,41 +3239,59 @@ right:25px;
     transition: transform 0.15s ease;
 
 }
-/* Notification overlay close button */
+/* Notification window */
+
+.notification-dialog {
+
+    position: relative;
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
+}
+
+
+/* X button fixed to top-right of notification box */
 
 .notification-close-x {
 
-    position: fixed;
+    position: sticky;
 
-    top: 25px;
-    right: 30px;
+    float: right;
 
-    z-index: 30000;
+    top: 0;
+
+    right: 0;
+
+    z-index: 100;
 
     background: transparent !important;
 
-    border: none;
+    border: none !important;
+
+    box-shadow: none !important;
 
     color: white;
 
-    font-size: 38px;
+    font-size: 32px;
 
     line-height: 1;
 
     padding: 0;
 
-    cursor: pointer;
+    margin: -10px -10px 0 0;
 
-    box-shadow: none !important;
+    cursor: pointer;
 
 }
 
 
 .notification-close-x:hover {
 
-    transform: translateY(-2px);
-
     background: transparent !important;
+
+    transform: translateY(-2px);
 
 }
 #notificationOverlay {
