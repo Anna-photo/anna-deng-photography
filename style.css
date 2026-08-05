@@ -2688,3 +2688,10 @@ html, body {
     height: 24px !important;
     object-fit: contain;
 }
+.notifications-button img {
+
+width: 32px;
+height: 32px;
+object-fit: contain;
+
+}
