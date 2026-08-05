@@ -80,11 +80,16 @@ Logout
 
 <input 
 id="newAlbumName"
-placeholder="Album name"
+placeholder="English album name"
 autocomplete="off"
 oninput="checkCreateName()"
 >
 
+<input 
+id="newAlbumChinese"
+placeholder="中文名称（可选）"
+autocomplete="off"
+>
 <p id="createNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
@@ -108,11 +113,16 @@ Cancel
 
 <input 
 id="renameAlbumName" 
-placeholder="New album name"
+placeholder="English album name"
 autocomplete="off"
 oninput="checkRenameName()"
 >
 
+<input 
+id="renameAlbumChinese"
+placeholder="中文名称（可选）"
+autocomplete="off"
+>
 <p id="renameNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
@@ -329,6 +339,8 @@ async function createAlbum(){
 
 const name =
 document.getElementById("newAlbumName").value.trim();
+  const chinese =
+document.getElementById("newAlbumChinese").value.trim();
 
 
 if(!name){
@@ -368,9 +380,9 @@ headers:{
 },
 
 body:JSON.stringify({
-name:name
+name:name,
+chinese:chinese
 })
-
 }
 );
 
@@ -543,6 +555,7 @@ function renameAlbum(name){
 renameOldName = name;
 
 document.getElementById("renameAlbumName").value = name;
+  document.getElementById("renameAlbumChinese").value = "";
 
 document.getElementById("renameBox").style.display = "flex";
 
@@ -560,6 +573,8 @@ function confirmRename(){
 
 const newName =
 document.getElementById("renameAlbumName").value.trim();
+  const chinese =
+document.getElementById("renameAlbumChinese").value.trim();
 if(
 existingAlbums.some(
 album =>
@@ -596,12 +611,11 @@ closeRename();
 
 renameAlbumRequest(
 renameOldName,
-newName
+newName,
+chinese
 );
-
 }
-async function renameAlbumRequest(oldName,newName){
-
+async function renameAlbumRequest(oldName,newName,chinese){
 
 const password =
 localStorage.getItem("annaEditorPassword");
@@ -622,7 +636,9 @@ body:JSON.stringify({
 
 oldName:oldName,
 
-newName:newName
+newName:newName,
+
+chinese:chinese
 
 })
 
