@@ -35,13 +35,12 @@ async function loadAlbums(){
     const albums =
     await response.json();
 
-
+const publicAlbums = albums.filter(album => album.public);
     const container =
     document.getElementById("albums");
 
 
-for (const album of albums) {
-
+for (const album of publicAlbums) {
 
     if(!album.cover){
         continue;
