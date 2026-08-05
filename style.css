@@ -3087,7 +3087,7 @@ right:25px;
 .upload-status,
 .notification-dialog {
 
-    z-index:20000 !important;
+    z-index:30000 !important;
 
 }
 /* FINAL FIX: move viewer caption lower */
