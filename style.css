@@ -2719,3 +2719,68 @@ object-fit: contain;
     overflow-y: auto;
 
 }
+/* Editor sidebar layout */
+
+.editor-sidebar {
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+
+/* Notifications - no surrounding box */
+
+.notifications-button {
+
+background:none;
+border:none;
+box-shadow:none;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+padding:10px;
+
+cursor:pointer;
+
+}
+
+
+.notifications-button span {
+
+color:#b4b4b4;
+
+}
+
+
+
+/* Logout - no surrounding box */
+
+.logout-button {
+
+background:none;
+border:none;
+box-shadow:none;
+
+padding:10px;
+
+color:#b4b4b4;
+
+cursor:pointer;
+
+font-size:16px;
+
+text-align:left;
+
+}
+
+
+.notifications-button:hover,
+.logout-button:hover {
+
+opacity:.7;
+
+}
