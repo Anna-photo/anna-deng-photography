@@ -453,9 +453,8 @@ Post Comment
 <img id="largeImage" draggable="false">
 
 <button id="likeButton" onclick="likeCurrentPhoto()">
-<img id="likeIcon" src="icons/like-white.png">
+<img id="likeIcon" src="icons/white-heart.png">
 </button>
-
 <div id="likeCount"></div>
 
 <div id="lightboxCaption"></div>
@@ -944,7 +943,7 @@ async function loadCaption(photo){
 
 
 }
-    async function loadLikes(photo){
+async function loadLikes(photo){
 
 const response =
 await fetch(
@@ -952,6 +951,7 @@ workerURL +
 "/get-likes?key=" +
 encodeURIComponent(photo)
 );
+
 
 const data =
 await response.json();
@@ -962,18 +962,13 @@ document.getElementById("likeCount")
 data.count || 0;
 
 
-if(data.liked){
-
 document.getElementById("likeIcon").src =
-"icons/like-red.png";
+data.liked
+?
+"icons/red-heart.png"
+:
+"icons/white-heart.png";
 
-}
-else{
-
-document.getElementById("likeIcon").src =
-"icons/like-white.png";
-
-}
 
 }
 
@@ -1004,7 +999,7 @@ key:photo
 
 }
 
-);
+});
 
 
 const data =
@@ -1017,12 +1012,15 @@ data.count;
 
 
 document.getElementById("likeIcon").src =
-"icons/like-red.png";
+data.liked
+?
+"icons/red-heart.png"
+:
+"icons/white-heart.png";
 
 
 }
-
-// Disable right click on images
+    // Disable right click on images
 document.addEventListener(
 "contextmenu",
 function(e){
