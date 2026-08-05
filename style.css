@@ -3220,3 +3220,22 @@ right:25px;
     height: 20px;
     object-fit: contain;
 }
+/* Match Create Album hover style */
+
+.notifications-button:hover,
+.logout-button:hover {
+
+    background: transparent !important;
+    transform: translateY(-3px) !important;
+
+}
+
+
+/* Keep text/icon colors unchanged */
+
+.notifications-button,
+.logout-button {
+
+    transition: transform 0.15s ease;
+
+}
