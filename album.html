@@ -335,13 +335,13 @@ new URLSearchParams(window.location.search);
 
 const album =
 params.get("album");
-
+const lang =
+params.get("lang") || "en";
 
 async function loadAlbumTitle(){
 
     const language =
-    localStorage.getItem("annaLanguage") || "en";
-
+    lang;
 
     const response =
     await fetch(workerURL + "?albums=true");
