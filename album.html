@@ -309,11 +309,12 @@ This album is empty. Add photos to get started.
 
 <img id="largeImage">
 
+<div id="lightboxCaption"></div>
+
 
 <button class="next-button" onclick="changePhoto(1)">
-›
+‹
 </button>
-
 
 </div>
 <script>
@@ -515,7 +516,7 @@ function openLightbox(){
 
 
 
-function showPhoto(){
+async function showPhoto(){
 
 
     const big =
@@ -525,7 +526,7 @@ function showPhoto(){
     big.style.opacity = 0;
 
 
-    setTimeout(()=>{
+    setTimeout(async ()=>{
 
 
         big.src =
@@ -541,13 +542,15 @@ function showPhoto(){
         };
 
 
+        loadCaption(
+            photos[currentPhoto]
+        );
+
+
     },150);
 
 }
-
-
-
-function closeLightbox(){
+    function closeLightbox(){
 
     document.getElementById("lightbox")
     .style.display = "none";
@@ -696,7 +699,76 @@ function(e){
 
 });
 
+async function loadCaption(photo){
 
+
+    const captionBox =
+    document.getElementById("lightboxCaption");
+
+
+    try {
+
+
+        const response =
+        await fetch(
+            workerURL +
+            "/get-caption?key=" +
+            encodeURIComponent(photo)
+        );
+
+
+        const data =
+        await response.json();
+
+
+
+        let text = "";
+
+
+        if(language === "zh"){
+
+            text =
+            data.chinese || "";
+
+        }
+        else{
+
+            text =
+            data.english || "";
+
+        }
+
+
+
+        if(text){
+
+            captionBox.textContent = text;
+
+            captionBox.style.display =
+            "block";
+
+        }
+        else{
+
+            captionBox.textContent = "";
+
+            captionBox.style.display =
+            "none";
+
+        }
+
+
+    }
+
+    catch(e){
+
+        captionBox.style.display =
+        "none";
+
+    }
+
+
+}
 
 
 
