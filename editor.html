@@ -1096,16 +1096,15 @@ src="icons/comment.png">
 
 
 <span class="notification-text">
-New comment in ${n.album}
+<b>${n.name}</b> left a comment in ${n.album}
 </span>
-
-
-<img class="notification-thumb"
-src="${getNotificationImage(n.photo)}">
 
 
 </div>
 
+
+<img class="notification-thumb notification-album-cover"
+src="${getNotificationImage(n.photo)}">
 
 
 <div class="notification-date">
@@ -1115,10 +1114,9 @@ ${formatNotificationDate(n.time)}
 </div>
 
 
-
 <div class="notification-comment">
 
-${n.comment}
+<b>Comment:</b> ${n.comment}
 
 </div>
 
@@ -1133,7 +1131,6 @@ ${n.comment}
 `;
 
 }
-
 
 box.appendChild(div);
 
