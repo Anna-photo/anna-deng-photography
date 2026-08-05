@@ -711,7 +711,7 @@ justify-content:center;
 
     max-width: 92%;
 
-    max-height: 80vh;
+    max-height: 72vh;
 
     object-fit: contain;
 
@@ -1841,7 +1841,7 @@ position: relative;
 
     position: absolute;
 
-    top: calc(50% + 42vh);
+    top: calc(50% + 45vh);
 
     left: 50%;
 
