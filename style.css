@@ -3073,3 +3073,10 @@ right:25px;
     margin-top: 70px !important;
 
 }
+/* Album picker above lightbox */
+
+.album-picker-overlay {
+
+    z-index:20000 !important;
+
+}
