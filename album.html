@@ -509,6 +509,19 @@ const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
 const r2URL =
 "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/";
+    let viewerID = localStorage.getItem("viewerID");
+
+if(!viewerID){
+
+viewerID =
+crypto.randomUUID();
+
+localStorage.setItem(
+"viewerID",
+viewerID
+);
+
+}
 
 const params =
 new URLSearchParams(window.location.search);
@@ -988,7 +1001,9 @@ const response =
 await fetch(
 workerURL +
 "/get-likes?key=" +
-encodeURIComponent(photo)
+encodeURIComponent(photo) +
+"&viewer=" +
+encodeURIComponent(viewerID)
 );
 
 
@@ -1010,9 +1025,6 @@ data.liked
 
 
 }
-
-
-
 async function likeCurrentPhoto(){
 
 const photo =
@@ -1032,12 +1044,18 @@ headers:{
 
 body:JSON.stringify({
 
-key:photo
+key:photo,
+
+viewer:viewerID
 
 })
 
-});
-    const data =
+}
+
+);
+
+
+const data =
 await response.json();
 
 
