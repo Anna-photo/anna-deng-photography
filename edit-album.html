@@ -170,8 +170,15 @@ Add to Other Album
 
 </button>
 
+<button
+onclick="downloadPhoto()">
+
+Download Photo
+
+</button>
+
 </div>
-<div id="albumPicker" class="album-picker-overlay">
+  <div id="albumPicker" class="album-picker-overlay">
 
 <div class="album-picker-box">
 
@@ -1339,6 +1346,43 @@ public:value
 
 }
 );
+
+}
+  function downloadPhoto(){
+
+if(!currentPhoto){
+
+showSnackbar("No photo selected");
+
+return;
+
+}
+
+
+const url =
+"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
+currentPhoto.split("/")
+.map(encodeURIComponent)
+.join("/");
+
+
+const link =
+document.createElement("a");
+
+link.href = url;
+
+link.download =
+currentPhoto.split("/").pop();
+
+
+document.body.appendChild(link);
+
+link.click();
+
+document.body.removeChild(link);
+
+
+showSnackbar("Downloading photo");
 
 }
 
