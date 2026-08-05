@@ -3161,3 +3161,8 @@ right:25px;
     background: #111;
     color: white;
 }
+.notification-date {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 4px;
+}
