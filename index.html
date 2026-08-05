@@ -54,8 +54,11 @@ async function loadAlbums(){
     await fetch(workerURL + "?albums=true");
 
 
-    const albums =
-    await response.json();
+    const text =
+await response.text();
+
+const albums =
+JSON.parse(text);
 
 const publicAlbums = albums.filter(album => album.public);
     const container =
