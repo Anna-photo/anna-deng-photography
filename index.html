@@ -109,8 +109,7 @@ for (const album of publicAlbums) {
 
     div.innerHTML = `
 
-<a href="album.html?album=${encodeURIComponent(album.name)}">
-
+<a href="album.html?album=${encodeURIComponent(album.name)}&lang=${language}">
     <img src="${image}">
 
 <h3>
