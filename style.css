@@ -2597,3 +2597,25 @@ line-height:1.3 !important;
     flex-direction: column !important;
 
 }
+/* Center lightbox caption */
+
+#lightboxCaption {
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+
+    margin-right: auto !important;
+
+}
+#lightbox {
+
+    align-items: center !important;
+
+}
+
+#lightboxCaption {
+
+    align-self: center !important;
+
+}
