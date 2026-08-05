@@ -124,9 +124,17 @@ oninput="checkRenameName()"
 id="renameAlbumChinese"
 placeholder="TEST CHINESE BOX"
 autocomplete="off"
-style="display:block !important; width:100% !important; height:40px !important;"
->
-  <p id="renameNameError" class="name-error"></p>
+style="
+display:block !important;
+visibility:visible !important;
+opacity:1 !important;
+width:100% !important;
+height:40px !important;
+background:red !important;
+color:black !important;
+margin-top:20px !important;
+"
+>  <p id="renameNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
 <button class="success-button" onclick="confirmRename()">
