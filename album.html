@@ -309,7 +309,11 @@ body {
 
 
 <body>
+<img class="anna-logo viewer-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
 
+<button id="languageButton" onclick="toggleLanguage()">
+中文 / English
+</button>
 
 <a class="editor-back viewer-back" href="index.html">
 <img src="icons/back.png">
@@ -370,7 +374,20 @@ new URLSearchParams(window.location.search);
 const album =
 params.get("album");
 const language =
-localStorage.getItem("language") || "en";    document.getElementById("albumTitle").textContent =
+localStorage.getItem("language") || "en";    function toggleLanguage(){
+
+    const current =
+    localStorage.getItem("language") || "en";
+
+    localStorage.setItem(
+        "language",
+        current === "en" ? "zh" : "en"
+    );
+
+    location.reload();
+
+}
+    document.getElementById("albumTitle").textContent =
 language === "zh"
     ? "加载中..."
 : "Loading...";
