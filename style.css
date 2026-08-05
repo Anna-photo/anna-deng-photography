@@ -2289,3 +2289,58 @@ position: relative;
     margin-top:4px;
 
 }
+/* Smaller editor caption area */
+
+#captionEditor {
+
+    width: 85vw !important;
+    max-width: 750px !important;
+
+    margin-top: 8px !important;
+
+}
+
+
+.caption-row textarea {
+
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+
+    padding: 6px 10px !important;
+
+    font-size: 14px !important;
+
+}
+
+
+.caption-row button {
+
+    height: 34px !important;
+
+    width: 60px !important;
+    min-width: 60px !important;
+
+    padding: 0 !important;
+
+    font-size: 13px !important;
+
+}
+
+
+.caption-counts {
+
+    font-size: 11px !important;
+
+    margin-top: 2px !important;
+
+}
+
+
+/* Give the photo more room */
+
+#lightbox-image {
+
+    max-height: 82vh !important;
+
+}
