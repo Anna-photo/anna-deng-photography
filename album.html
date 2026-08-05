@@ -279,7 +279,6 @@ body {
 </a>
 
 <h1 class="album-title" id="albumTitle">
-Loading...
 </h1>
 
 
@@ -334,6 +333,10 @@ const album =
 params.get("album");
 const lang =
 params.get("lang") || "en";
+    document.getElementById("albumTitle").textContent =
+lang === "zh"
+? "加载中..."
+: "Loading...";
     document.getElementById("loading").textContent =
 lang === "zh"
 ? "正在加载照片..."
