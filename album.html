@@ -351,41 +351,72 @@ width:150px;
 align-self:center;
 
 }
-    #likeButton {
+   .photo-wrapper {
 
-position:absolute;
+position:relative;
 
-bottom:80px;
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-end;
+
+}
+
+
+#largeImage {
+
+max-width:90%;
+
+max-height:65vh !important;
+
+object-fit:contain;
+
+}
+
+
+.like-area {
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-top:8px;
+
+}
+
+
+#likeButton {
 
 background:none;
 
 border:none;
 
+padding:0;
+
 cursor:pointer;
 
 }
 
+
 #likeButton img {
 
-width:45px;
+width:38px;
 
-height:45px;
+height:38px;
 
 }
 
 
 #likeCount {
 
-position:absolute;
-
-bottom:35px;
-
 color:white;
 
 font-size:18px;
 
-}
-</style>
+}</style>
 </head>
 
 
@@ -450,15 +481,23 @@ Post Comment
 </button>
 
 
+<div class="photo-wrapper">
+
 <img id="largeImage" draggable="false">
+
+<div class="like-area">
 
 <button id="likeButton" onclick="likeCurrentPhoto()">
 <img id="likeIcon" src="icons/white-heart.png">
 </button>
-<div id="likeCount"></div>
+
+<span id="likeCount">0</span>
+
+</div>
 
 <div id="lightboxCaption"></div>
 
+</div>
 <button class="next-button" onclick="changePhoto(1)">
 ›
 </button>
