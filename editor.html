@@ -1109,12 +1109,11 @@ ${formatNotificationDate(n.time)}
 </div>
 
 <button class="notification-delete"
-onclick="deleteNotificationCommentOnly('${n.id}')">
+onclick="confirmDeleteNotificationComment('${n.id}')">
 
 <img src="icons/trash.png">
 
 </button>
-
 `;
 
 }
@@ -1173,7 +1172,18 @@ id:id
 
 
 }
+function confirmDeleteNotificationComment(id){
 
+showConfirm(
+"Are you sure you want to delete this comment?<br><br>This cannot be undone.",
+function(){
+
+deleteNotificationCommentOnly(id);
+
+}
+);
+
+}
 
 
 async function deleteNotificationCommentOnly(id){
@@ -1199,11 +1209,14 @@ id:id
 });
 
 
+showSnackbar("Comment deleted");
+
+
+/* refresh notification panel immediately */
 loadNotifications();
 
 
-}
-  loadAlbums();
+}  loadAlbums();
 loadStorage();
 getExistingAlbums();
   updateNotificationIcon();
