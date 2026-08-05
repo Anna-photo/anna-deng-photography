@@ -3037,3 +3037,30 @@ right:25px;
     line-height:1 !important;
 
 }
+/* ============================
+   LIGHTBOX POPUPS ABOVE LIGHTBOX
+============================ */
+
+
+/* Delete confirmation above lightbox */
+.confirm-overlay {
+
+    z-index:20000 !important;
+
+}
+
+
+/* Photo three-dot menu above lightbox */
+#photoMenu {
+
+    z-index:20000 !important;
+
+}
+
+
+/* Any album/photo popup menus */
+.popup-menu {
+
+    z-index:20000 !important;
+
+}
