@@ -312,9 +312,7 @@ body {
 <img class="anna-logo viewer-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
 
 <button id="languageButton" onclick="toggleLanguage()">
-中文 / English
 </button>
-
 <a class="editor-back viewer-back" href="index.html">
 <img src="icons/back.png">
 
@@ -403,6 +401,20 @@ language === "zh"
     : "Albums";
 
 }
+    function applyLanguageButton(){
+
+    const button =
+    document.getElementById("languageButton");
+
+    if(!button) return;
+
+
+    button.textContent =
+    language === "en"
+    ? "中文"
+    : "English";
+
+}
 async function loadAlbumTitle(){
 
 
@@ -428,7 +440,7 @@ async function loadAlbumTitle(){
 
 applyViewerLanguage();
 loadAlbumTitle();
-
+applyLanguageButton();
 let photos = [];let currentPhoto = 0;
 
 
