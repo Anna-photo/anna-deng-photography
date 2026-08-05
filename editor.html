@@ -557,19 +557,36 @@ error.innerHTML =
 
 }
 
-function renameAlbum(name){
+async function renameAlbum(name){
 
 renameOldName = name;
 
 document.getElementById("renameAlbumName").value = name;
-  document.getElementById("renameAlbumChinese").value = "";
+
+
+// get current album info
+const response =
+await fetch(
+workerURL + "?albums=true"
+);
+
+const albums =
+await response.json();
+
+
+const album =
+albums.find(a => a.name === name);
+
+
+document.getElementById("renameAlbumChinese").value =
+album && album.chinese
+? album.chinese
+: "";
+
 
 document.getElementById("renameBox").style.display = "flex";
 
-}
-
-
-function closeRename(){
+}function closeRename(){
 
 document.getElementById("renameBox").style.display = "none";
 
@@ -604,6 +621,7 @@ showSnackbar("Enter new album name");
 return;
 
 }
+  
 if(!chinese){
 
 showSnackbar("Enter Chinese album name");
