@@ -1739,3 +1739,11 @@ margin-bottom:20px;
     margin:8px 0 0;
     min-height:18px;
 }
+.public-button img{
+    width:32px;
+    height:32px;
+}
+
+.public-button:hover{
+    transform:translateY(-3px);
+}
