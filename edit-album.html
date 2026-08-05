@@ -1392,7 +1392,7 @@ public:value
 );
 
 }
-  function downloadPhoto(){
+async function downloadPhoto(){
 
 if(!currentPhoto){
 
@@ -1410,10 +1410,23 @@ currentPhoto.split("/")
 .join("/");
 
 
+try {
+
+const response = await fetch(url);
+
+const blob = await response.blob();
+
+
+const blobURL =
+URL.createObjectURL(blob);
+
+
 const link =
 document.createElement("a");
 
-link.href = url;
+
+link.href = blobURL;
+
 
 link.download =
 currentPhoto.split("/").pop();
@@ -1421,15 +1434,30 @@ currentPhoto.split("/").pop();
 
 document.body.appendChild(link);
 
+
 link.click();
+
 
 document.body.removeChild(link);
 
 
+URL.revokeObjectURL(blobURL);
+
+
 showSnackbar("Downloading photo");
+
 
 }
 
+catch(error){
+
+console.error(error);
+
+showSnackbar("Download failed");
+
+}
+
+}
 </script>
 
 
