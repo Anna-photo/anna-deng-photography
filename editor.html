@@ -350,6 +350,12 @@ showSnackbar("Enter album name");
 return;
 
 }
+  if(!chinese){
+
+showSnackbar("Enter Chinese album name");
+return;
+
+}
 
 if(
 existingAlbums.some(
@@ -576,6 +582,7 @@ const newName =
 document.getElementById("renameAlbumName").value.trim();
   const chinese =
 document.getElementById("renameAlbumChinese").value.trim();
+  
 if(
 existingAlbums.some(
 album =>
@@ -597,7 +604,12 @@ showSnackbar("Enter new album name");
 return;
 
 }
+if(!chinese){
 
+showSnackbar("Enter Chinese album name");
+return;
+
+}
 
 if(newName === renameOldName){
 
