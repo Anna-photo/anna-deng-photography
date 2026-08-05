@@ -3189,3 +3189,23 @@ right:25px;
 .notification-delete:hover img {
     opacity: 1;
 }
+.notification-delete {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+}
+
+.notification-delete img {
+    width: 10px !important;
+    height: 10px !important;
+    max-width: 10px !important;
+    max-height: 10px !important;
+    object-fit: contain;
+    opacity: 0.7;
+}
