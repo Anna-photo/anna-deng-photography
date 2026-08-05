@@ -2000,85 +2000,23 @@ position: relative;
     transform:translateY(-2px);
 
 }
-#captionEditor {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(90%, 500px);
-    background: rgba(255,255,255,0.95);
-    padding: 15px;
-    border-radius: 16px;
-    box-shadow: 0 5px 25px rgba(0,0,0,.25);
-    z-index: 20;
-}
+/* Caption editor under photo */
 
-
-#captionEditor textarea {
-
-    width: 100%;
-    min-height: 55px;
-    max-height: 120px;
-
-    resize: none;   /* removes manual dragging */
-
-    border-radius: 12px;
-
-    border: 1px solid #ccc;
-
-    padding: 12px;
-
-    font-size: 16px;
-
-    font-family: inherit;
-
-    box-sizing: border-box;
-
-    display:block;
-
-    margin-bottom:5px;
-
-}
-
-
-#captionEditor button {
-
-    width:100%;
-
-    padding:10px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#333;
-
-    color:white;
-
-    font-size:16px;
-
-}
-
-
-#englishCount,
-#chineseCount {
-
-    text-align:right;
-
-    font-size:13px;
-
-    opacity:.6;
-
-    margin:0 0 10px;
-
-}
 #captionEditor {
 
-    width: 100%;
+    position: relative;
 
-    margin-top: 15px;
+    width: 90%;
 
-    padding: 10px 0;
+    max-width: 900px;
+
+    margin: 12px auto 0;
+
+    padding:0;
+
+    background:transparent;
+
+    box-shadow:none;
 
 }
 
@@ -2089,7 +2027,9 @@ position: relative;
 
     align-items:center;
 
-    gap:12px;
+    justify-content:center;
+
+    gap:10px;
 
 }
 
@@ -2098,21 +2038,23 @@ position: relative;
 
     flex:1;
 
-    height:45px;
+    height:34px;
+
+    min-height:34px;
+
+    max-height:34px;
 
     resize:none;
 
-    padding:10px 14px;
+    padding:7px 12px;
 
-    border-radius:12px;
+    border-radius:8px;
 
-    border:1px solid #ccc;
+    border:1px solid #bbb;
 
-    font-size:15px;
+    font-size:14px;
 
-    font-family:inherit;
-
-    background:white;
+    font-family:Arial,sans-serif;
 
     box-sizing:border-box;
 
@@ -2123,35 +2065,28 @@ position: relative;
 
     outline:none;
 
-    border-color:#888;
+    border-color:#777;
 
 }
 
 
 .caption-row button {
 
-    height:45px;
+    flex:none;
 
-    padding:0 20px;
+    height:34px;
 
-    border:none;
+    width:70px;
 
-    border-radius:12px;
+    padding:0;
 
-    background:#222;
+    border-radius:8px;
+
+    background:#333;
 
     color:white;
 
-    font-size:15px;
-
-    cursor:pointer;
-
-}
-
-
-.caption-row button:hover {
-
-    background:#444;
+    font-size:13px;
 
 }
 
@@ -2162,10 +2097,18 @@ position: relative;
 
     justify-content:space-between;
 
-    padding:4px 120px 0 0;
+    padding:3px 90px 0 0;
 
-    font-size:12px;
+    font-size:11px;
 
-    color:#888;
+    color:#aaa;
+
+}
+
+
+#englishCount,
+#chineseCount {
+
+    margin:0;
 
 }
