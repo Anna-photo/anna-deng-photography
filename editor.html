@@ -111,7 +111,6 @@ Cancel
 <div class="confirm-dialog">
 
 <h3>Rename Album</h3>
-  <p style="color:red;">TEST RENAME</p>
 
 <input 
 id="renameAlbumName" 
@@ -122,19 +121,9 @@ oninput="checkRenameName()"
 
 <input 
 id="renameAlbumChinese"
-placeholder="TEST CHINESE BOX"
+placeholder="中文名称"
 autocomplete="off"
-style="
-display:block !important;
-visibility:visible !important;
-opacity:1 !important;
-width:100% !important;
-height:40px !important;
-background:red !important;
-color:black !important;
-margin-top:20px !important;
-"
->  <p id="renameNameError" class="name-error"></p>
+> <p id="renameNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
 <button class="success-button" onclick="confirmRename()">
