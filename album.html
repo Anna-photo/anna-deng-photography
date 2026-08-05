@@ -337,9 +337,33 @@ const album =
 params.get("album");
 
 
-document.getElementById("albumTitle").textContent =
-album || "Album";
+async function loadAlbumTitle(){
 
+    const language =
+    localStorage.getItem("annaLanguage") || "en";
+
+
+    const response =
+    await fetch(workerURL + "?albums=true");
+
+
+    const albums =
+    await response.json();
+
+
+    const current =
+    albums.find(item => item.name === album);
+
+
+    document.getElementById("albumTitle").textContent =
+    language === "zh" && current && current.chinese
+    ? current.chinese
+    : album || "Album";
+
+}
+
+
+loadAlbumTitle();
 
 let photos = [];
 
