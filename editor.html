@@ -255,10 +255,11 @@ href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
 <img src="${image}">
 
-<h3>${album.name}</h3>
+<h3 class="album-title">${album.name}</h3>
 
-<p class="album-count">${photoCount} photos</p>
-
+<p class="album-info">
+    ${photoCount} photos • ${album.public ? "Public" : "Private"}
+</p>
 </a>
 
 
