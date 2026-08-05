@@ -129,10 +129,23 @@ ${photoCount} ${language === "zh" ? "张照片" : "photos"}
 }
 }
 
+function applyLanguage(){
+
+    document.getElementById("languageButton").innerHTML =
+    language === "en"
+    ? "中文"
+    : "English";
 
 
+    document.getElementById("pageTitle").innerHTML =
+    language === "en"
+    ? "Albums"
+    : "相册";
+
+}
+
+applyLanguage();
 loadAlbums();
-
 
 </script>
 
