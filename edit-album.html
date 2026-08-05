@@ -259,10 +259,21 @@ No
 
 <h3>Rename Album</h3>
 
-<input id="renameInput" type="text">
+<input 
+id="renameInput" 
+type="text"
+placeholder="English album name"
+>
+
+
+<input 
+id="renameChineseInput"
+type="text"
+placeholder="中文名称"
+>
+
 
 <div class="confirm-buttons">
-
 <button onclick="confirmRename()">
 Rename
 </button>
@@ -718,25 +729,55 @@ document.body.classList.add("cover-mode");
 
 
 
-function renameAlbum(){
+async function renameAlbum(){
 
 document.getElementById("albumMenu").style.display="none";
 
 document.getElementById("renameInput").value = album;
 
+
+const response =
+await fetch(workerURL + "?albums=true");
+
+
+const albums =
+await response.json();
+
+
+const current =
+albums.find(a => a.name === album);
+
+
+document.getElementById("renameChineseInput").value =
+current && current.chinese
+? current.chinese
+: "";
+
+
 document.getElementById("renameBox").style.display="flex";
 
 }
-
 
 function confirmRename(){
 
 const newName =
 document.getElementById("renameInput").value.trim();
 
+const chinese =
+document.getElementById("renameChineseInput").value.trim();
 
-if(!newName || newName === album){
 
+if(!newName){
+
+showSnackbar("Enter English album name");
+return;
+
+}
+
+
+if(!chinese){
+
+showSnackbar("Enter Chinese album name");
 return;
 
 }
@@ -760,7 +801,9 @@ body:JSON.stringify({
 
 oldName:album,
 
-newName:newName
+newName:newName,
+
+chinese:chinese
 
 })
 
@@ -772,6 +815,7 @@ document.getElementById("renameBox").style.display="none";
 
 showSnackbar("Album renamed");
 
+
 setTimeout(()=>{
 
 location.href =
@@ -780,11 +824,11 @@ encodeURIComponent(newName);
 
 },1000);
 
+
 });
 
 
 }
-
 
 function cancelRename(){
 
