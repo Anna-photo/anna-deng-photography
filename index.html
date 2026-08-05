@@ -10,8 +10,11 @@
 
 <img class="anna-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
 
-<h2>Albums</h2>
+<h2 id="pageTitle">Albums</h2>
 
+<button onclick="toggleLanguage()" id="languageButton">
+中文
+</button>
 
 <div class="albums" id="albums">
 
@@ -23,7 +26,26 @@
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev/";
 
+let language = "en";
 
+
+function toggleLanguage(){
+
+    language =
+    language === "en" ? "zh" : "en";
+
+
+    document.getElementById("languageButton").innerHTML =
+    language === "en" ? "中文" : "English";
+
+
+    document.getElementById("pageTitle").innerHTML =
+    language === "en" ? "Albums" : "相册";
+
+
+    loadAlbums();
+
+}
 
 
 async function loadAlbums(){
@@ -84,8 +106,9 @@ for (const album of publicAlbums) {
 
     <img src="${image}">
 
-<h3>${album.name}</h3>
-
+<h3>
+${language === "zh" && album.chinese ? album.chinese : album.name}
+</h3>
 <p class="album-count">${photoCount} photos</p>
 
 </a>
