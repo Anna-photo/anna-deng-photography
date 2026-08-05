@@ -3101,3 +3101,44 @@ right:25px;
 #lightbox #lightboxCaption {
     margin-top:30px !important;
 }
+/* Move like button outside photo, bottom right */
+
+.viewer-photo-area {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.like-area {
+
+    position:static !important;
+
+    margin-top:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+}
+
+
+#likeButton img {
+
+    width:38px;
+
+    height:38px;
+
+}
+
+
+#likeCount {
+
+    color:white;
+
+    font-size:18px;
+
+}
