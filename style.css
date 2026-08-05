@@ -3209,3 +3209,14 @@ right:25px;
     object-fit: contain;
     opacity: 0.7;
 }
+.logout-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logout-button img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
