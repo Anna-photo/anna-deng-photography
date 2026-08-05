@@ -2000,14 +2000,3 @@ position: relative;
     transform:translateY(-2px);
 
 }
-/* Prevent easy image saving */
-.gallery img,
-.lightbox img {
-
-    user-select: none;
-
-    -webkit-user-drag: none;
-
-    -webkit-touch-callout: none;
-
-}
