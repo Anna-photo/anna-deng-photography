@@ -1565,6 +1565,12 @@ height:28px;
 transform:translateY(-3px);
 
 }
+.notifications-button:hover,
+.logout-button:hover {
+
+transform:translateY(-3px);
+
+}
 .empty-album-message {
 
 grid-column:1/-1;
@@ -2778,9 +2784,3 @@ text-align:left;
 }
 
 
-.notifications-button:hover,
-.logout-button:hover {
-
-opacity:.7;
-
-}
