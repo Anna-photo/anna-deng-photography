@@ -330,7 +330,7 @@ new URLSearchParams(window.location.search);
 const album =
 params.get("album");
 const language =
-localStorage.getItem("annaLanguage") || "en";    document.getElementById("albumTitle").textContent =
+localStorage.getItem("language") || "en";    document.getElementById("albumTitle").textContent =
 language === "zh"
     ? "加载中..."
 : "Loading...";
