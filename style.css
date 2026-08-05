@@ -3148,3 +3148,12 @@ right:25px;
     object-fit:contain;
     flex-shrink:0;
 }
+.notification {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.notification:last-child {
+    border-bottom: none;
+}
