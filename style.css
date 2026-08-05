@@ -3064,3 +3064,12 @@ right:25px;
     z-index:20000 !important;
 
 }
+/* ============================
+   VIEWER LIGHTBOX CAPTION GAP FIX
+============================ */
+
+#lightboxCaption {
+
+    margin-top: 30px !important;
+
+}
