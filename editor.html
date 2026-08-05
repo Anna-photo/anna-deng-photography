@@ -953,6 +953,30 @@ icon.src =
 }
 
 }
+  function formatNotificationDate(time){
+
+const d = new Date(time);
+
+
+return (
+
+d.getDate()
++
+" "
++
+d.toLocaleString("en-US",{month:"long"})
++
+" "
++
+d.getFullYear()
++
+" "
++
+d.toLocaleTimeString("en-US")
+
+);
+
+}
   async function openNotifications(){
 
 document.getElementById(
@@ -1032,58 +1056,71 @@ if(n.type==="like"){
 
 div.innerHTML = `
 
-<p>
-❤️ New like
-</p>
+<div class="notification-main">
+
+<img class="notification-icon"
+src="icons/red-heart.png">
+
+
+<span class="notification-text">
+New like in ${n.album}
+</span>
+
 
 <img class="notification-thumb"
 src="${getNotificationImage(n.photo)}">
 
-
-<p>
-Album: ${n.album}
-</p>
+</div>
 
 
-<p>
-${new Date(n.time).toLocaleString()}
-</p>
+<div class="notification-date">
+
+${formatNotificationDate(n.time)}
+
+</div>
 
 `;
 
 }
-
-
-
 if(n.type==="comment"){
 
 
 div.innerHTML = `
 
 
-<p>
-💬 New comment
-</p>
+<div class="notification-main">
 
 
-<p>
-<b>${n.name}</b>
-</p>
+<img class="notification-icon"
+src="icons/comment.png">
 
 
-<p>
+<span class="notification-text">
+New comment in ${n.album}
+</span>
+
+
+<img class="notification-thumb"
+src="${getNotificationImage(n.photo)}">
+
+
+</div>
+
+
+
+<div class="notification-date">
+
+${formatNotificationDate(n.time)}
+
+</div>
+
+
+
+<div class="notification-comment">
+
 ${n.comment}
-</p>
 
-
-<p>
-Album: ${n.album}
-</p>
-
-
-<p>
-${new Date(n.time).toLocaleString()}
-</p>
+</div>
 
 
 <button onclick="deleteNotificationComment('${n.id}')">
@@ -1096,7 +1133,6 @@ ${new Date(n.time).toLocaleString()}
 `;
 
 }
-
 
 
 box.appendChild(div);
