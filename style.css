@@ -3166,3 +3166,26 @@ right:25px;
     color: #aaa;
     margin-top: 4px;
 }
+.notification {
+    position: relative;
+}
+
+.notification-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.notification-delete img {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+.notification-delete:hover img {
+    opacity: 1;
+}
