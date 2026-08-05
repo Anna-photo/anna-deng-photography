@@ -31,19 +31,7 @@ h1 {
 
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-}
 
-.gallery img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-}
 
 .main-photo {
     max-width: 90%;
@@ -1781,16 +1769,13 @@ margin-bottom:20px;
     text-align: left !important;
     margin-top: 4px !important;
 }
-/* Photography masonry gallery */
+    /* Photography gallery */
 
 .gallery {
 
     display:flex;
-
     flex-wrap:wrap;
-
     gap:20px;
-
     padding:20px;
 
     align-items:flex-start;
@@ -1800,13 +1785,11 @@ margin-bottom:20px;
 
 .gallery img {
 
-    height:260px;
-
-    width:auto;
-
+    height:auto;
+    width:300px;
     max-width:100%;
 
-    object-fit:cover;
+    object-fit:contain;
 
     border-radius:12px;
 
