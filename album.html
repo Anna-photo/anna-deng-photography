@@ -267,15 +267,23 @@ body {
     -webkit-touch-callout: none;
 
 }
+    #lightbox {
+    position: fixed !important;
+    inset: 0 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
 #lightboxCaption {
 
-    position: absolute !important;
+    position: absolute;
 
-    left: 50% !important;
+    left: 50%;
 
-    bottom: 25px !important;
+    bottom: 35px;
 
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%);
 
     width: min(80%, 900px);
 
@@ -297,33 +305,6 @@ body {
 
     z-index: 3000;
 
-}
-    #lightbox {
-    position: fixed !important;
-    inset: 0 !important;
-    display: none;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-#lightboxCaption {
-    position: absolute !important;
-    bottom: 120px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-
-    width: 80% !important;
-    max-width: 900px !important;
-
-    color: white !important;
-    background: rgba(0,0,0,.6) !important;
-
-    padding: 10px !important;
-    margin: 0 !important;
-
-    z-index: 99999 !important;
-
-    font-size:18px !important;
 }
 </style>
 </head>
