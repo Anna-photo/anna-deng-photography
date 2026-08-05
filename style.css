@@ -2561,3 +2561,39 @@ line-height:1.3 !important;
     }
 
 }
+/* ============================
+   LIGHTBOX CAPTION BELOW PHOTO
+============================ */
+
+#lightboxCaption {
+
+    position: static !important;
+
+    width: min(90vw, 900px);
+
+    margin-top: 12px;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    padding: 8px 15px;
+
+    background: rgba(0,0,0,.45);
+
+    border-radius: 10px;
+
+    text-shadow: 0 2px 8px black;
+
+}
+/* Arrange lightbox photo + caption vertically */
+
+#lightbox {
+
+    flex-direction: column !important;
+
+}
