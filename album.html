@@ -1214,24 +1214,21 @@ document.getElementById("commentName")
 .value
 .trim();
 
-
 const comment =
 document.getElementById("commentText")
 .value
 .trim();
 
 
-
 if(!name || !comment){
 
 alert("Please enter your name and comment");
-
 return;
 
 }
 
 
-
+const response =
 await fetch(
 workerURL + "/add-comment",
 {
@@ -1246,6 +1243,8 @@ body:JSON.stringify({
 
 album:album,
 
+photo:"",
+
 name:name,
 
 comment:comment
@@ -1254,6 +1253,29 @@ comment:comment
 
 });
 
+
+const result =
+await response.json();
+
+
+console.log("Comment save result:", result);
+
+
+if(result.success){
+
+document.getElementById("commentText").value="";
+
+loadComments();
+
+}
+else{
+
+alert("Comment failed: " + JSON.stringify(result));
+
+}
+
+
+}
 
 document.getElementById("commentText")
 .value="";
@@ -1279,7 +1301,7 @@ encodeURIComponent(album)
 
 const comments =
 await response.json();
-
+console.log("Comments loaded:", comments);
 
 
 const box =
