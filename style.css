@@ -1769,31 +1769,33 @@ margin-bottom:20px;
     text-align: left !important;
     margin-top: 4px !important;
 }
-    /* Photography gallery */
+/* Viewer photography gallery */
 
 .gallery {
 
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
+    columns: 4 280px;
+    column-gap:20px;
     padding:20px;
-
-    align-items:flex-start;
 
 }
 
 
 .gallery img {
 
+    width:100%;
     height:auto;
-    width:300px;
-    max-width:100%;
 
-    object-fit:contain;
+    margin-bottom:20px;
 
     border-radius:12px;
 
     cursor:pointer;
+
+    display:block;
+
+    break-inside:avoid;
+
+    object-fit:contain;
 
 }
 #languageButton {
