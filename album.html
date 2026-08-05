@@ -492,24 +492,29 @@ Post Comment
 </button>
 
 
-<div class="photo-wrapper">
+<div class="viewer-lightbox-content">
 
-<img id="largeImage" draggable="false">
+    <div class="viewer-photo-area">
 
-<div class="like-area">
+        <img id="largeImage" draggable="false">
 
-<button id="likeButton" onclick="likeCurrentPhoto()">
-<img id="likeIcon" src="icons/white-heart.png">
-</button>
+        <div class="like-area">
 
-<span id="likeCount">0</span>
+            <button id="likeButton" onclick="likeCurrentPhoto()">
+                <img id="likeIcon" src="icons/white-heart.png">
+            </button>
+
+            <span id="likeCount">0</span>
+
+        </div>
+
+    </div>
+
+
+    <div id="lightboxCaption"></div>
 
 </div>
-
-<div id="lightboxCaption"></div>
-
-</div>
-<button class="next-button" onclick="changePhoto(1)">
+    <button class="next-button" onclick="changePhoto(1)">
 ›
 </button>
 
