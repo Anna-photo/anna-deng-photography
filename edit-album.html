@@ -1392,72 +1392,47 @@ public:value
 );
 
 }
-async function downloadPhoto(){
+function downloadPhoto(){
 
-if(!currentPhoto){
+    if(!currentPhoto){
 
-showSnackbar("No photo selected");
+        showSnackbar("No photo selected");
 
-return;
+        return;
 
-}
-
-
-const url =
-"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
-currentPhoto.split("/")
-.map(encodeURIComponent)
-.join("/");
+    }
 
 
-try {
-
-const response = await fetch(url);
-
-const blob = await response.blob();
-
-
-const blobURL =
-URL.createObjectURL(blob);
+    const url =
+    "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
+    currentPhoto
+    .split("/")
+    .map(encodeURIComponent)
+    .join("/");
 
 
-const link =
-document.createElement("a");
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download =
+    currentPhoto.split("/").pop();
 
 
-link.href = blobURL;
+    link.target = "_blank";
 
 
-link.download =
-currentPhoto.split("/").pop();
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
 
 
-document.body.appendChild(link);
-
-
-link.click();
-
-
-document.body.removeChild(link);
-
-
-URL.revokeObjectURL(blobURL);
-
-
-showSnackbar("Downloading photo");
-
+    showSnackbar("Opening download");
 
 }
-
-catch(error){
-
-console.error(error);
-
-showSnackbar("Download failed");
-
-}
-
-}
+  }
 </script>
 
 
