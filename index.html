@@ -115,8 +115,9 @@ for (const album of publicAlbums) {
 <h3>
 ${language === "zh" ? album.chinese : album.name}
 </h3>
-<p class="album-count">${photoCount} photos</p>
-
+<p class="album-count">
+${photoCount} ${language === "zh" ? "张照片" : "photos"}
+</p>
 </a>
 
 `;
