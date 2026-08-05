@@ -1079,8 +1079,14 @@ ${formatNotificationDate(n.time)}
 
 </div>
 
-`;
+<button class="notification-delete"
+onclick="deleteNotificationComment('${n.id}')">
 
+<img src="icons/trash.png">
+
+</button>
+
+`;
 }
 if(n.type==="comment"){
 
@@ -1121,12 +1127,12 @@ ${formatNotificationDate(n.time)}
 </div>
 
 
-<button onclick="deleteNotificationComment('${n.id}')">
+<button class="notification-delete"
+onclick="deleteNotificationComment('${n.id}')">
 
 <img src="icons/trash.png">
 
 </button>
-
 
 `;
 
