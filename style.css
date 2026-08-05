@@ -2359,3 +2359,35 @@ position: relative;
     margin-top: 8px !important;
 
 }
+.viewer-logo {
+
+    width:260px;
+
+    height:auto;
+
+    display:block;
+
+    margin:10px auto 20px;
+
+}
+
+
+#languageButton {
+
+    position:absolute;
+
+    top:20px;
+
+    right:25px;
+
+    background:transparent;
+
+    border:none;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
