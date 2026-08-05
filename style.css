@@ -2344,3 +2344,8 @@ position: relative;
     max-height: 82vh !important;
 
 }
+.confirm-dialog input + input {
+
+    margin-top: 8px !important;
+
+}
