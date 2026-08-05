@@ -3080,3 +3080,13 @@ right:25px;
     z-index:20000 !important;
 
 }
+/* All viewer/editor notifications above lightbox */
+
+#snackbar,
+.snackbar,
+.upload-status,
+.notification-dialog {
+
+    z-index:20000 !important;
+
+}
