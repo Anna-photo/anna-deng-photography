@@ -2695,3 +2695,27 @@ height: 32px;
 object-fit: contain;
 
 }
+.notification-thumb {
+
+    width: 120px;
+
+    height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    display: block;
+
+    margin: 10px auto;
+
+}
+.notification-dialog {
+
+    max-width: 500px;
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
+}
