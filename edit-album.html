@@ -126,6 +126,31 @@ onclick="nextPhoto()">
 <img
 id="lightbox-image">
 
+<div id="captionEditor">
+
+<textarea
+id="captionEnglish"
+maxlength="200"
+placeholder="English caption"
+oninput="updateCaptionCount()">
+</textarea>
+<p id="englishCount">0 / 200</p>
+
+
+<textarea
+id="captionChinese"
+maxlength="100"
+placeholder="中文说明"
+oninput="updateCaptionCount()">
+</textarea>
+<p id="chineseCount">0 / 100</p>
+
+
+<button onclick="saveCaption()">
+Save Caption
+</button>
+
+</div>
 
 <div class="lightbox-actions">
 
@@ -330,7 +355,14 @@ let lightboxPhotos = [];
 let selectingCover = false;
 let albumIsPublic = false;
 let currentIndex = 0;
-async function loadAlbumInfo(){
+
+const ENGLISH_CAPTION_LIMIT = 200;
+const CHINESE_CAPTION_LIMIT = 100;
+
+let currentCaption = {
+english:"",
+chinese:""
+};async function loadAlbumInfo(){
 
 const response =
 await fetch(workerURL + "?albums=true");
@@ -1142,9 +1174,44 @@ photo.split("/")
 document.getElementById("lightbox-image").src =
 image;
 
+loadCaption(photo);
 
 }
+async function loadCaption(photo){
 
+const response =
+await fetch(
+workerURL +
+"/get-caption?key=" +
+encodeURIComponent(photo)
+);
+
+
+let data = {
+english:"",
+chinese:""
+};
+
+if(response.ok){
+
+data =
+await response.json();
+
+}
+currentCaption = data;
+
+
+document.getElementById("captionEnglish").value =
+data.english || "";
+
+
+document.getElementById("captionChinese").value =
+data.chinese || "";
+
+
+updateCaptionCount();
+
+}
 
 
 function nextPhoto(){
@@ -1392,6 +1459,60 @@ public:value
 );
 
 }
+  async function saveCaption(){
+
+const english =
+document.getElementById("captionEnglish")
+.value.trim();
+
+
+const chinese =
+document.getElementById("captionChinese")
+.value.trim();
+if(
+(english && !chinese) ||
+(!english && chinese)
+){
+
+showSnackbar(
+"Please enter both English and Chinese captions, or leave both empty."
+);
+
+return;
+
+}
+
+const password =
+localStorage.getItem("annaEditorPassword");
+
+
+await fetch(
+workerURL + "/save-caption",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"X-Upload-Password":password
+},
+
+body:JSON.stringify({
+
+key:currentPhoto,
+
+english:english,
+
+chinese:chinese
+
+})
+
+}
+);
+
+
+showSnackbar("Caption saved");
+
+}
 function downloadPhoto(){
 
     if(!currentPhoto){
@@ -1421,6 +1542,26 @@ function downloadPhoto(){
 
 
     showSnackbar("Downloading photo");
+
+}function updateCaptionCount(){
+
+const english =
+document.getElementById("captionEnglish");
+
+const chinese =
+document.getElementById("captionChinese");
+
+
+document.getElementById("englishCount").innerHTML =
+english.value.length +
+" / " +
+ENGLISH_CAPTION_LIMIT;
+
+
+document.getElementById("chineseCount").innerHTML =
+chinese.value.length +
+" / " +
+CHINESE_CAPTION_LIMIT;
 
 }
 </script>
