@@ -2072,3 +2072,100 @@ position: relative;
     margin:0 0 10px;
 
 }
+#captionEditor {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 10px 0;
+
+}
+
+
+.caption-row {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.caption-row textarea {
+
+    flex:1;
+
+    height:45px;
+
+    resize:none;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    border:1px solid #ccc;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    background:white;
+
+    box-sizing:border-box;
+
+}
+
+
+.caption-row textarea:focus {
+
+    outline:none;
+
+    border-color:#888;
+
+}
+
+
+.caption-row button {
+
+    height:45px;
+
+    padding:0 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#222;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+
+.caption-row button:hover {
+
+    background:#444;
+
+}
+
+
+.caption-counts {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:4px 120px 0 0;
+
+    font-size:12px;
+
+    color:#888;
+
+}
