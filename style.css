@@ -3090,3 +3090,14 @@ right:25px;
     z-index:20000 !important;
 
 }
+/* FINAL FIX: move viewer caption lower */
+
+#lightbox .viewer-lightbox-content {
+    justify-content:flex-start !important;
+    padding-top:40px !important;
+}
+
+
+#lightbox #lightboxCaption {
+    margin-top:30px !important;
+}
