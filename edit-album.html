@@ -1404,23 +1404,14 @@ function downloadPhoto(){
 
 
     const url =
-    "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
-    currentPhoto
-    .split("/")
-    .map(encodeURIComponent)
-    .join("/");
+    workerURL +
+    "/download?key=" +
+    encodeURIComponent(currentPhoto);
 
 
     const link = document.createElement("a");
 
     link.href = url;
-
-    link.download =
-    currentPhoto.split("/").pop();
-
-
-    link.target = "_blank";
-
 
     document.body.appendChild(link);
 
@@ -1429,10 +1420,9 @@ function downloadPhoto(){
     document.body.removeChild(link);
 
 
-    showSnackbar("Opening download");
+    showSnackbar("Downloading photo");
 
 }
-  
 </script>
 
 
