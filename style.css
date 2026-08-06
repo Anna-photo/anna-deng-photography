@@ -3675,3 +3675,47 @@ height:22px;
     font-size:18px !important;
 
 }
+/* FINAL: viewer lightbox map button next to X close button */
+
+#lightbox #mapButton {
+
+    position:absolute !important;
+
+    top:20px !important;
+
+    left:75px !important;
+
+    right:auto !important;
+
+    bottom:auto !important;
+
+    z-index:2100 !important;
+
+    background:transparent !important;
+
+    border:none !important;
+
+    color:white !important;
+
+    padding:0 !important;
+
+    font-size:16px !important;
+
+    cursor:pointer;
+
+    height:36px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+#lightbox #mapButton:hover {
+
+    transform:translateY(-3px);
+
+}
