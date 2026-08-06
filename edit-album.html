@@ -440,10 +440,25 @@ container.innerHTML = `
 
 <div class="empty-album-message">
 
-<h2>This album is empty.</h2>
+`
+<div class="empty-album-message">
 
-<p>Add photos to get started.</p>
+<h2>
+${t(
+"This album is empty.",
+"此相册为空。"
+)}
+</h2>
 
+<p>
+${t(
+"Add photos to get started.",
+"添加照片开始使用。"
+)}
+</p>
+
+</div>
+`
 </div>
 
 `;
@@ -512,8 +527,12 @@ key:key
 );
 
 
-showSnackbar("Photo deleted");
-
+showSnackbar(
+t(
+"Photo deleted",
+"照片已删除"
+)
+);
 
 setTimeout(()=>{
 
@@ -546,9 +565,11 @@ key:key
 }
 );
 
-
 showSnackbar(
-"Cover updated"
+t(
+"Cover updated",
+"封面已更新"
+)
 );
 
 }
@@ -556,8 +577,12 @@ showSnackbar(
 
 if(!currentPhoto){
 
-showSnackbar("No photo selected");
-
+showSnackbar(
+t(
+"No photo selected",
+"未选择照片"
+)
+);
 return;
 
 }
@@ -569,8 +594,12 @@ setCover(currentPhoto);
 document.getElementById("photoMenu").style.display="none";
 
 
-showSnackbar("Album cover changed");
-
+showSnackbar(
+t(
+"Album cover changed",
+"相册封面已更改"
+)
+);
 }
 async function uploadPhotos(){
 
@@ -614,9 +643,16 @@ status.style.display="block";
 
 title.innerHTML =
 total === 1
-? "Uploading image"
-: "Uploading images";
-
+?
+t(
+"Uploading image",
+"正在上传照片"
+)
+:
+t(
+"Uploading images",
+"正在上传照片"
+);
 
 progress.innerHTML =
 "0 of " + total;
@@ -689,13 +725,21 @@ total;
 
 if(uploadCancelled){
 
-showSnackbar("Upload cancelled");
-
+showSnackbar(
+t(
+"Upload cancelled",
+"上传已取消"
+)
+);
 }
 else{
 
-showSnackbar("Upload complete");
-
+showSnackbar(
+t(
+"Upload complete",
+"上传完成"
+)
+);
 setTimeout(()=>{
 
 location.reload();
@@ -786,16 +830,26 @@ document.getElementById("renameChineseInput").value.trim();
 
 if(!newName){
 
-showSnackbar("Enter English album name");
-return;
+showSnackbar(
+t(
+"Enter English album name",
+"请输入英文相册名称"
+)
+);
+  return;
 
 }
 
 
 if(!chinese){
 
-showSnackbar("Enter Chinese album name");
-return;
+showSnackbar(
+t(
+"Enter Chinese album name",
+"请输入中文相册名称"
+)
+);
+  return;
 
 }
 
@@ -830,8 +884,12 @@ chinese:chinese
 
 document.getElementById("renameBox").style.display="none";
 
-showSnackbar("Album renamed");
-
+showSnackbar(
+t(
+"Album renamed",
+"相册已重命名"
+)
+);
 
 setTimeout(()=>{
 
@@ -855,8 +913,11 @@ document.getElementById("renameBox").style.display="none";
   function deleteAlbum(){
 
 showConfirm(
+t(
 "Delete this album and all photos?",
-async function(){
+"确定删除此相册以及所有照片吗？"
+),
+  async function(){
 
 const password =
 localStorage.getItem("annaEditorPassword");
@@ -882,8 +943,12 @@ album:album
 );
 
 
-showSnackbar("Album deleted");
-
+showSnackbar(
+t(
+"Album deleted",
+"相册已删除"
+)
+);
 
 setTimeout(()=>{
 
@@ -1027,13 +1092,24 @@ closeAlbumPicker();
 
 
 showSnackbar(
-"Photo added to " + destination
-);
+t(
+"Photo added to " + destination,
+"照片已添加到 " + destination
+));
 
 }
   function closeAlbumPicker(){
 
 document.getElementById("albumPicker").style.display="none";
+
+}
+  function t(en, zh){
+
+return language === "zh"
+?
+zh
+:
+en;
 
 }
  function showSnackbar(message){
@@ -1251,16 +1327,23 @@ console.log("Current photo:", currentPhoto);
 
 if(!currentPhoto){
 
-showSnackbar("No photo selected");
-
+showSnackbar(
+t(
+"No photo selected",
+"未选择照片"
+)
+);
 return;
 
 }
 
 
 showConfirm(
+t(
 "Delete this photo?",
-function(){
+"确定删除这张照片吗？"
+),
+  function(){
 
 performDeletePhoto(currentPhoto);
 
@@ -1563,8 +1646,10 @@ if(
 ){
 
 showSnackbar(
-"Please enter both English and Chinese captions, or leave both empty."
-);
+t(
+"Please enter both English and Chinese captions, or leave both empty.",
+"请输入英文和中文说明，或者两者都留空。"
+));
 
 return;
 
@@ -1598,15 +1683,23 @@ chinese:chinese
 );
 
 
-showSnackbar("Caption saved");
-
+showSnackbar(
+t(
+"Caption saved",
+"说明已保存"
+)
+);
 }
 function downloadPhoto(){
 
     if(!currentPhoto){
 
-        showSnackbar("No photo selected");
-
+showSnackbar(
+t(
+"No photo selected",
+"未选择照片"
+)
+);
         return;
 
     }
@@ -1629,8 +1722,12 @@ function downloadPhoto(){
     document.body.removeChild(link);
 
 
-    showSnackbar("Downloading photo");
-
+showSnackbar(
+t(
+"Downloading photo",
+"正在下载照片"
+)
+);
 }function updateCaptionCount(){
 
 const english =
