@@ -1353,18 +1353,19 @@ id:id
 function confirmDeleteNotificationComment(id){
 
 showConfirm(
-t(
-"Are you sure you want to delete this comment?<br><br>This cannot be undone.",
+language === "zh"
+?
 "确定要删除此评论吗？<br><br>此操作无法撤销。"
-),
+:
+"Are you sure you want to delete this comment?<br><br>This cannot be undone.",
 function(){
 
 deleteNotificationCommentOnly(id);
 
 }
 );
-}
 
+}
 
 async function deleteNotificationCommentOnly(id){
 
@@ -1389,8 +1390,13 @@ id:id
 });
 
 
-showSnackbar("Comment deleted");
-
+showSnackbar(
+language === "zh"
+?
+"评论已删除"
+:
+"Comment deleted"
+);
 
 /* refresh notification panel immediately */
 loadNotifications();
