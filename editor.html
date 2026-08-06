@@ -606,27 +606,6 @@ existingAlbums =
 await response.json();
 
 }
-function getChineseAlbumName(name){
-
-const album =
-existingAlbums.find(
-a => a.name === name
-);
-
-if(
-language === "zh" &&
-album &&
-album.chinese
-){
-
-return album.chinese;
-
-}
-
-return name;
-
-}
-
 function checkCreateName(){
 
 const input =
@@ -1145,13 +1124,13 @@ document.getElementById(
 "notificationOverlay"
 ).style.display="flex";
 
+await getExistingAlbums();
 
 loadNotifications();
-    updateNotificationIcon();
+
+updateNotificationIcon();
 
 }
-
-
 
 function closeNotifications(){
 
@@ -1161,7 +1140,24 @@ document.getElementById(
 
 }
 
+function getChineseAlbumName(name){
 
+const album =
+existingAlbums.find(
+a => a.name === name
+);
+
+if(
+language === "zh" &&
+album &&
+album.chinese
+){
+return album.chinese;
+}
+
+return name;
+
+}
 
 async function loadNotifications(){
 
@@ -1360,13 +1356,13 @@ showConfirm(
 t(
 "Are you sure you want to delete this comment?<br><br>This cannot be undone.",
 "确定要删除此评论吗？<br><br>此操作无法撤销。"
-)function(){
+),
+function(){
 
 deleteNotificationCommentOnly(id);
 
 }
 );
-
 }
 
 
