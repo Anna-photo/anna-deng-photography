@@ -3532,3 +3532,11 @@ width:22px;
 height:22px;
 
 }
+#mapButton,
+#languageButton {
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
