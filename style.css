@@ -3410,10 +3410,7 @@ color:white;
 }
 /* Force caption lower */
 
-#lightboxCaption {
-
-    position: relative !important;
-
-    top: 5px !important;
-
+/* FINAL caption position adjustment */
+#lightbox #lightboxCaption {
+    margin-top: 10px !important;
 }
