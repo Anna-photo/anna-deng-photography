@@ -1069,7 +1069,7 @@ async function showPhoto(){
     const big =
     document.getElementById("largeImage");
 
-
+big.classList.remove("zoomed");
     big.style.opacity = 0;
 
 
@@ -1099,6 +1099,8 @@ loadLikes(
     },150);
 
 }
+    document
+
     function closeLightbox(){
 
     document.getElementById("lightbox")
@@ -1106,7 +1108,17 @@ loadLikes(
 
 }
 
+document
+.getElementById("largeImage")
+.addEventListener(
+"click",
+function(e){
 
+    e.stopPropagation();
+
+    this.classList.toggle("zoomed");
+
+});
 
 function changePhoto(direction){
 
