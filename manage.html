@@ -23,11 +23,17 @@
 Editor Login
 </h2>
 
+<label id="usernameLabel">
+Username:
+<input type="text" id="username">
+</label>
+
+<br><br>
+
 <label id="passwordLabel">
 Password:
 <input type="password" id="password">
 </label>
-
 
 <br><br>
 
@@ -79,7 +85,12 @@ language === "zh"
 :
 "Editor Login";
 
-
+document.getElementById("usernameLabel").childNodes[0].textContent =
+language === "zh"
+?
+"用户名："
+:
+"Username:";
 document.getElementById("passwordLabel").childNodes[0].textContent =
 language === "zh"
 ?
@@ -102,6 +113,10 @@ applyManageLanguage();
 async function login(){
 
 
+const username =
+document.getElementById("username").value;
+
+
 const password =
 document.getElementById("password").value;
 
@@ -110,11 +125,11 @@ document.getElementById("password").value;
 const response =
 await fetch(
 workerURL +
-"/login?password=" +
+"/login?username=" +
+encodeURIComponent(username) +
+"&password=" +
 encodeURIComponent(password)
 );
-
-
 
 const result =
 await response.json();
@@ -125,10 +140,15 @@ if(result.success){
 
 
 localStorage.setItem(
+"annaEditorUsername",
+username
+);
+
+
+localStorage.setItem(
 "annaEditorPassword",
 password
 );
-
 
 
 window.location.href =
@@ -142,8 +162,8 @@ else {
 document.getElementById("message").innerHTML =
 language === "zh"
 ?
-"密码错误"
-:
+"用户名或密码错误"
+    :
 "Wrong password";
 }
 
