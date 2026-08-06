@@ -3416,8 +3416,8 @@ color:white;
 
 #lightbox .like-area {
     position: absolute !important;
-    top: 20px !important;
-    right: 95px !important;
+    top: 10px !important;
+    right: 45px !important;
     bottom: auto !important;
 
     display: flex;
