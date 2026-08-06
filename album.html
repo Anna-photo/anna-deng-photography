@@ -660,6 +660,48 @@ color:white;
     margin-left: 0 !important;
     padding-left: 0 !important;
 }
+    #snackbar{
+
+visibility:hidden;
+
+min-width:250px;
+
+background:#333;
+
+color:white;
+
+text-align:center;
+
+border-radius:10px;
+
+padding:14px;
+
+position:fixed;
+
+bottom:30px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:2000;
+
+font-size:16px;
+
+opacity:0;
+
+transition:.3s;
+
+}
+
+
+#snackbar.show{
+
+visibility:visible;
+
+opacity:1;
+
+}
 </style>
 </head>
 
@@ -687,6 +729,7 @@ This album is empty. Add photos to get started.
 <div class="gallery" id="gallery">
 
 </div>
+    <div id="snackbar"></div>
 <div id="commentsSection">
 
 <h2 id="commentsTitle">Comments</h2>
@@ -1379,12 +1422,20 @@ document.getElementById("commentText")
 
 if(!name || !comment){
 
-alert("Please enter your name and comment");
+if(language === "zh"){
+
+showSnackbar("请输入您的名字和评论");
+
+}
+else{
+
+showSnackbar("Please enter your name and comment");
+
+}
 
 return;
 
 }
-
 
 const response =
 await fetch(
@@ -1542,6 +1593,23 @@ text.placeholder = "Write a comment";
 button.textContent = "Post Comment";
 
 }
+
+}
+    function showSnackbar(message){
+
+const bar =
+document.getElementById("snackbar");
+
+bar.textContent = message;
+
+bar.classList.add("show");
+
+
+setTimeout(()=>{
+
+bar.classList.remove("show");
+
+},3000);
 
 }
 loadPhotos();
