@@ -88,7 +88,7 @@ id="renameAlbumText">
 Rename Album
 
 </button>
-<<button
+<button
 onclick="deleteAlbum()"
 id="deleteAlbumText">
 
@@ -140,8 +140,7 @@ id="lightbox-image">
 id="captionEnglish"
 maxlength="200"
 placeholder="English caption"
-id="englishCaptionInput"
-  </textarea>
+id="englishCaptionInput"></textarea>
 
 
 <textarea
@@ -440,9 +439,6 @@ container.innerHTML = `
 
 <div class="empty-album-message">
 
-`
-<div class="empty-album-message">
-
 <h2>
 ${t(
 "This album is empty.",
@@ -458,11 +454,8 @@ ${t(
 </p>
 
 </div>
-`
-</div>
 
 `;
-
 return;
 
 }
