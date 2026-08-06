@@ -1264,7 +1264,8 @@ lightboxPhotos[currentIndex];
 
 
 currentPhoto = photo;
-
+document.getElementById("lightbox-image")
+.classList.remove("zoomed");
 
 const image =
 "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
@@ -1876,6 +1877,15 @@ chinese.value.length +
 CHINESE_CAPTION_LIMIT;
 
 }
+  document
+.getElementById("lightbox-image")
+.addEventListener(
+"click",
+function(){
+
+this.classList.toggle("zoomed");
+
+});
   document
 .getElementById("captionEnglish")
 .addEventListener(
