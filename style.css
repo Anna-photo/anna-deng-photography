@@ -3394,3 +3394,10 @@ color:white;
 #dropOverlay .arrow {
     color: #b4b4b4 !important;
 }
+/* Move viewer like button + count lower */
+#lightbox .like-area {
+    position: absolute !important;
+    right: 15px !important;
+    bottom: -35px !important;
+    transform: none !important;
+}
