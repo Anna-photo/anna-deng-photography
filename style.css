@@ -3491,33 +3491,44 @@ color:white;
     transform:translateY(-3px);
 
 }
-#backButton {
+.viewer-back {
 
-    position:absolute;
+position:absolute;
 
-    top:20px;
+top:20px;
 
-    right:170px;
+left:20px;
 
-    background:none;
+display:flex;
 
-    border:none;
+align-items:center;
 
-    padding:8px 12px;
+gap:8px;
 
-    font-size:16px;
+cursor:pointer;
 
-    cursor:pointer;
+color:inherit;
 
-    color:inherit;
+text-decoration:none;
 
-    transition:transform .2s ease;
+transition:transform .2s ease;
+
+font-size:16px;
 
 }
 
 
-#backButton:hover {
+.viewer-back:hover {
 
-    transform:translateY(-3px);
+transform:translateY(-3px);
+
+}
+
+
+.viewer-back img {
+
+width:22px;
+
+height:22px;
 
 }
