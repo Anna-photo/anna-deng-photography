@@ -3849,3 +3849,18 @@ height:22px;
     font-size:18px !important;
 
 }
+/* Viewer lightbox zoom */
+
+#largeImage {
+    cursor: zoom-in;
+    transition: transform .3s ease;
+}
+
+
+#largeImage.zoomed {
+
+    transform: scale(2);
+
+    cursor: zoom-out;
+
+}
