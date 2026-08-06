@@ -3408,3 +3408,12 @@ color:white;
     margin-top: 28px !important;
 
 }
+/* Force caption lower */
+
+#lightboxCaption {
+
+    position: relative !important;
+
+    top: 12px !important;
+
+}
