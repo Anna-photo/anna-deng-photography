@@ -3413,3 +3413,7 @@ color:white;
 #lightbox #lightboxCaption {
     margin-top: 42px !important;
 }
+#lightboxCaption {
+    padding-right: 90px !important;
+    box-sizing: border-box;
+}
