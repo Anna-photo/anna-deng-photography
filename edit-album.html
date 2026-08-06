@@ -255,14 +255,13 @@ Cancel Upload
 
 <div class="confirm-buttons">
 
-<button onclick="confirmYes()">
+<button onclick="confirmYes()" id="deleteConfirmText">
 Delete
 </button>
 
-<button onclick="confirmNo()">
+<button onclick="confirmNo()" id="deleteCancelText">
 Cancel
 </button>
-
 </div>
 
 </div>
@@ -284,7 +283,7 @@ onclick="confirmPublicYes()">
 Yes
 </button>
 
-<button onclick="closePublicBox()">
+<button onclick="closePublicBox()" id="publicNoText">
 No
 </button>
 
@@ -311,14 +310,13 @@ type="text"
 placeholder="中文名称">
 
 <div class="confirm-buttons">
-<button onclick="confirmRename()">
+<button onclick="confirmRename()" id="renameConfirmText">
 Rename
 </button>
 
-<button onclick="cancelRename()">
+<button onclick="cancelRename()" id="renameCancelText">
 Cancel
 </button>
-
 </div>
 
 </div>
@@ -644,6 +642,10 @@ t(
 );
 
 progress.innerHTML =
+language === "zh"
+?
+"0 / " + total
+:
 "0 of " + total;
 
 
@@ -703,10 +705,11 @@ completed++;
 
 
 progress.innerHTML =
-completed +
-" of " +
-total;
-
+language === "zh"
+?
+completed + " / " + total
+:
+completed + " of " + total;
 
 }
 
@@ -1559,13 +1562,46 @@ function publicAlbumMenu(e){
 
 e.preventDefault();
 e.stopPropagation();
+  document.getElementById("deleteConfirmText").textContent =
+language === "zh"
+?
+"删除"
+:
+"Delete";
+
+
+document.getElementById("deleteCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
+  document.getElementById("renameConfirmText").textContent =
+language === "zh"
+?
+"重命名"
+:
+"Rename";
+
+
+document.getElementById("renameCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
 document.getElementById("renameTitleText").textContent =
 language === "zh"
 ?
 "重命名相册"
 :
 "Rename Album";
-
+document.getElementById("publicNoText").textContent =
+language === "zh"
+?
+"否"
+:
+"No";
 document.getElementById("publicText").innerHTML =
 albumIsPublic
 ?
