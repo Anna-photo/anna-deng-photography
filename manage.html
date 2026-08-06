@@ -14,10 +14,15 @@
 
 
 <img class="anna-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
-<h2>Editor Login</h2>
+    <button id="languageButton" onclick="toggleLanguage()">
+中文
+</button>
 
+<h2 id="loginTitle">
+Editor Login
+</h2>
 
-<label>
+<label id="passwordLabel">
 Password:
 <input type="password" id="password">
 </label>
@@ -26,10 +31,9 @@ Password:
 <br><br>
 
 
-<button onclick="login()">
+<button onclick="login()" id="loginButton">
 Login
 </button>
-
 
 <p id="message"></p>
 
@@ -41,7 +45,58 @@ Login
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
 
+const language =
+localStorage.getItem("language") || "en";
 
+
+function toggleLanguage(){
+
+localStorage.setItem(
+"language",
+language === "en" ? "zh" : "en"
+);
+
+location.reload();
+
+}
+
+
+function applyManageLanguage(){
+
+document.getElementById("languageButton").textContent =
+language === "zh"
+?
+"English"
+:
+"中文";
+
+
+document.getElementById("loginTitle").textContent =
+language === "zh"
+?
+"编辑器登录"
+:
+"Editor Login";
+
+
+document.getElementById("passwordLabel").childNodes[0].textContent =
+language === "zh"
+?
+"密码："
+:
+"Password:";
+
+
+document.getElementById("loginButton").textContent =
+language === "zh"
+?
+"登录"
+:
+"Login";
+
+}
+
+applyManageLanguage();
 
 async function login(){
 
@@ -84,8 +139,11 @@ window.location.href =
 else {
 
 document.getElementById("message").innerHTML =
+language === "zh"
+?
+"密码错误"
+:
 "Wrong password";
-
 }
 
 
