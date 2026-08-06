@@ -17,11 +17,13 @@
 
 <img class="anna-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
 
-<button id="languageButton" onclick="toggleLanguage()">
-中文
+<button id="mapButton" onclick="openMap()">
+Map
 </button>
 
-<h2 id="welcomeText">
+<button id="languageButton" onclick="toggleLanguage()">
+中文
+</button><h2 id="welcomeText">
 Welcome back, Anna!
 </h2>
 <div class="editor-layout">
@@ -1412,9 +1414,23 @@ window.open(
 "_blank"
 );
 
-}    function applyEditorLanguage(){
+} 
+    function openMap(){
 
+window.open(
+"map.html",
+"_blank"
+);
 
+}
+    function applyEditorLanguage(){
+
+document.getElementById("mapButton").textContent =
+language === "zh"
+?
+"地图"
+:
+"Map";
 document.getElementById("languageButton").textContent =
 language === "zh"
 ?
