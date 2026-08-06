@@ -370,8 +370,6 @@ const album =
 params.get("album");
 
 
-document.getElementById("title").innerHTML =
-album;
 
  let currentPhoto = null;
 let lightboxPhotos = [];
@@ -403,8 +401,23 @@ if(current){
 
 albumIsPublic = current.public;
 
+
+document.getElementById("title").innerHTML =
+language === "zh"
+?
+(current.chinese || current.name)
+:
+current.name;
+
+}
+else{
+
+document.getElementById("title").innerHTML =
+album;
+
 }
 
+}
 }
 async function loadPhotos(){
 
