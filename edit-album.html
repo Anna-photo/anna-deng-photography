@@ -298,20 +298,21 @@ No
 
 <div class="confirm-dialog">
 
-<h3>Rename Album</h3>
-
+<h3 id="renameTitleText">
+Rename Album
+</h3>
 <input 
 id="renameInput" 
 type="text"
-placeholder="English album name"
->
+id="renameEnglishPlaceholder"
+placeholder="English album name">
 
 
 <input 
 id="renameChineseInput"
 type="text"
-placeholder="中文名称"
->
+id="renameChinesePlaceholder"
+placeholder="中文名称">
 
 
 <div class="confirm-buttons">
@@ -773,8 +774,12 @@ function startCoverSelection(){
 
 document.getElementById("albumMenu").style.display="none";
 
-showSnackbar("Click a photo to set it as the album cover");
-
+showSnackbar(
+t(
+"Click a photo to set it as the album cover",
+"点击照片设置为相册封面"
+)
+);
 selectingCover = true;
 
 document.body.classList.add("cover-mode");
@@ -1440,7 +1445,20 @@ uploadFiles(files);
 );  
   function applyEditorLanguage(){
 
+document.getElementById("renameEnglishPlaceholder").placeholder =
+language === "zh"
+?
+"英文相册名称"
+:
+"English album name";
 
+
+document.getElementById("renameChinesePlaceholder").placeholder =
+language === "zh"
+?
+"中文名称"
+:
+"中文名称";
 document.getElementById("languageButton").textContent =
 language === "zh"
 ?
@@ -1546,24 +1564,38 @@ function publicAlbumMenu(e){
 
 e.preventDefault();
 e.stopPropagation();
-
+document.getElementById("renameTitleText").textContent =
+language === "zh"
+?
+"重命名相册"
+:
+"Rename Album";
 
 document.getElementById("publicText").innerHTML =
 albumIsPublic
 ?
-"This album is public"
+t(
+"This album is public",
+"此相册已公开"
+)
 :
-"Do you want to set this album as public?";
-
-
+t(
+"Do you want to set this album as public?",
+"您要公开此相册吗？"
+);
 document.querySelector(".public-yes").innerHTML =
 albumIsPublic
 ?
-"Set as private"
+t(
+"Set as private",
+"设为私密"
+)
 :
-"Yes";
-
-
+t(
+"Yes",
+"是"
+);
+  
 document.getElementById("publicBox").style.display="flex";
 
 }
