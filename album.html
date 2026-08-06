@@ -625,6 +625,41 @@ line-height:1.5;
 color:white;
 
 }
+    /* Force comment alignment */
+
+.comment-card {
+    text-align: left !important;
+}
+
+
+.comment-header {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+
+.comment-user {
+    text-align: left !important;
+}
+
+
+.comment-name {
+    text-align: left !important;
+}
+
+
+.comment-time {
+    text-align: left !important;
+}
+
+
+.comment-text {
+    text-align: left !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
 </style>
 </head>
 
@@ -810,7 +845,6 @@ async function loadAlbumTitle(){
 applyViewerLanguage();
 loadAlbumTitle();
 applyLanguageButton();
-    applyCommentLanguage();
 let photos = [];let currentPhoto = 0;
 
 
@@ -1512,7 +1546,7 @@ button.textContent = "Post Comment";
 }
 loadPhotos();
 loadComments();
-
+applyCommentLanguage();
 
 </script>
 <footer class="site-footer">
