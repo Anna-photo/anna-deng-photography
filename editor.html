@@ -292,9 +292,11 @@ percent + "%";
 
 
 document.getElementById("storageText").innerHTML =
-usedGB.toFixed(2) +
-" GB of 10 GB used";
-
+language === "zh"
+?
+usedGB.toFixed(2) + " GB / 10 GB 已使用"
+:
+usedGB.toFixed(2) + " GB of 10 GB used";
 }
 
 
@@ -368,8 +370,26 @@ language === "zh"
 album.name
 }</h3>
 <p class="album-info">
-${photoCount} photos &#8226; ${album.public ? "Public" : "Private"}</p>
-</a>
+${
+photoCount
+}
+${
+language === "zh"
+?
+"张照片"
+:
+"photos"
+}
+&#8226;
+${
+album.public
+?
+(language === "zh" ? "公开" : "Public")
+:
+(language === "zh" ? "私密" : "Private")
+}
+
+</p></a>
 
 
 
@@ -782,8 +802,13 @@ await response.json();
 
 if(result.success){
 
-showSnackbar("Album renamed");
-
+showSnackbar(
+language === "zh"
+?
+"相册已重命名"
+:
+"Album renamed"
+);
 
 setTimeout(()=>{
 
@@ -807,9 +832,12 @@ showSnackbar(result.error);
 function deleteAlbum(name){
 
 showConfirm(
+language === "zh"
+?
+"确定要删除 " + name + " 吗？<br><br>此操作无法撤销。"
+:
 "Are you sure you want to delete " + name + "?<br><br>This cannot be undone.",
 function(){
-
 performDeleteAlbum(name);
 
 }
@@ -850,8 +878,13 @@ await response.json();
 
 if(result.success){
 
-showSnackbar("Album deleted");
-
+showSnackbar(
+language === "zh"
+?
+"相册已删除"
+:
+"Album deleted"
+);
 
 setTimeout(()=>{
 
