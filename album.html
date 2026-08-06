@@ -654,8 +654,7 @@ This album is empty. Add photos to get started.
 </div>
 <div id="commentsSection">
 
-<h2>Comments</h2>
-
+<h2 id="commentsTitle">Comments</h2>
 <div id="commentList"></div>
 
 
@@ -665,10 +664,9 @@ This album is empty. Add photos to get started.
 
 <textarea id="commentText" placeholder="Write a comment"></textarea>
 
-<button onclick="submitComment()">
+<button id="postCommentButton" onclick="submitComment()">
 Post Comment
 </button>
-
 </div>
 
 </div>
@@ -812,6 +810,7 @@ async function loadAlbumTitle(){
 applyViewerLanguage();
 loadAlbumTitle();
 applyLanguageButton();
+    applyCommentLanguage();
 let photos = [];let currentPhoto = 0;
 
 
@@ -1470,6 +1469,45 @@ box.appendChild(div);
 
 });
 
+
+}
+    function applyCommentLanguage(){
+
+const title =
+document.getElementById("commentsTitle");
+
+const name =
+document.getElementById("commentName");
+
+const text =
+document.getElementById("commentText");
+
+const button =
+document.getElementById("postCommentButton");
+
+
+if(language === "zh"){
+
+title.textContent = "评论";
+
+name.placeholder = "您的名字";
+
+text.placeholder = "写下评论";
+
+button.textContent = "发表评论";
+
+}
+else{
+
+title.textContent = "Comments";
+
+name.placeholder = "Your name";
+
+text.placeholder = "Write a comment";
+
+button.textContent = "Post Comment";
+
+}
 
 }
 loadPhotos();
