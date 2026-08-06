@@ -831,6 +831,19 @@ const album =
 params.get("album");
 const language =
 localStorage.getItem("language") || "en";   
+    function applyMapLanguage(){
+
+    const button =
+    document.getElementById("mapButton");
+
+    if(!button) return;
+
+    button.textContent =
+    language === "zh"
+    ? "地图"
+    : "Map";
+
+}
     function openMap(){
 
     window.location.href = "map.html";
