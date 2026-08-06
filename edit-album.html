@@ -139,8 +139,7 @@ id="lightbox-image">
 <textarea
 id="captionEnglish"
 maxlength="200"
-placeholder="English caption"
-id="englishCaptionInput"></textarea>
+placeholder="English caption"></textarea>
 
 
 <textarea
@@ -304,16 +303,12 @@ Rename Album
 <input 
 id="renameInput" 
 type="text"
-id="renameEnglishPlaceholder"
 placeholder="English album name">
-
 
 <input 
 id="renameChineseInput"
 type="text"
-id="renameChinesePlaceholder"
 placeholder="中文名称">
-
 
 <div class="confirm-buttons">
 <button onclick="confirmRename()">
@@ -1445,7 +1440,7 @@ uploadFiles(files);
 );  
   function applyEditorLanguage(){
 
-document.getElementById("renameEnglishPlaceholder").placeholder =
+document.getElementById("renameInput").placeholder =
 language === "zh"
 ?
 "英文相册名称"
@@ -1453,13 +1448,13 @@ language === "zh"
 "English album name";
 
 
-document.getElementById("renameChinesePlaceholder").placeholder =
+document.getElementById("renameChineseInput").placeholder =
 language === "zh"
 ?
 "中文名称"
 :
 "中文名称";
-document.getElementById("languageButton").textContent =
+    document.getElementById("languageButton").textContent =
 language === "zh"
 ?
 "English"
