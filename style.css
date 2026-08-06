@@ -3675,47 +3675,59 @@ height:22px;
     font-size:18px !important;
 
 }
-/* FINAL: viewer lightbox map button next to X close button */
+/* Viewer lightbox like button beside X close button */
 
-#lightbox #mapButton {
+#lightbox .like-area {
 
     position:absolute !important;
 
     top:20px !important;
 
-    left:75px !important;
+    left:80px !important;
 
     right:auto !important;
 
     bottom:auto !important;
 
-    z-index:2100 !important;
+    transform:none !important;
 
-    background:transparent !important;
+    display:flex !important;
 
-    border:none !important;
+    flex-direction:row !important;
 
-    color:white !important;
+    align-items:center !important;
 
-    padding:0 !important;
+    gap:8px !important;
 
-    font-size:16px !important;
-
-    cursor:pointer;
-
-    height:36px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    z-index:2200 !important;
 
 }
 
 
-#lightbox #mapButton:hover {
+#lightbox #likeButton {
 
-    transform:translateY(-3px);
+    width:36px !important;
+
+    height:36px !important;
+
+    padding:0 !important;
+
+}
+
+
+#lightbox #likeButton img {
+
+    width:30px !important;
+
+    height:30px !important;
+
+}
+
+
+#lightbox #likeCount {
+
+    color:white !important;
+
+    font-size:18px !important;
 
 }
