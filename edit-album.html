@@ -804,7 +804,12 @@ async function renameAlbum(){
 document.getElementById("albumMenu").style.display="none";
 
 document.getElementById("renameInput").value = album;
-
+document.getElementById("renameTitleText").textContent =
+language === "zh"
+?
+"重命名相册"
+:
+"Rename Album";
 
 const response =
 await fetch(workerURL + "?albums=true");
