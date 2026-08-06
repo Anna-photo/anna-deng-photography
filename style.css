@@ -3410,7 +3410,6 @@ color:white;
 }
 /* Force caption lower */
 
-/* FINAL caption position adjustment */
 #lightbox #lightboxCaption {
-    margin-top: 10px !important;
+    margin-top: 25px !important;
 }
