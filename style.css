@@ -3414,3 +3414,13 @@ color:white;
     margin-top: 42px !important;
 }
 
+#lightbox .like-area {
+    position: absolute !important;
+    top: 20px !important;
+    right: 95px !important;
+    bottom: auto !important;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
