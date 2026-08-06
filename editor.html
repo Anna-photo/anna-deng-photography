@@ -14,8 +14,14 @@
 
 
 <img class="anna-logo" src="icons/anna-logo.png" alt="Anna Deng Photography">
-<h2>Welcome back, Anna!</h2>
 
+<button id="languageButton" onclick="toggleLanguage()">
+中文
+</button>
+
+<h2 id="welcomeText">
+Welcome back, Anna!
+</h2>
 <div class="editor-layout">
 
 <div class="editor-sidebar">
@@ -28,8 +34,9 @@
 
 <img src="icons/create-album.png">
 
-<span>Create Album</span>
-
+<span id="createAlbumText">
+Create Album
+</span>
 </button>
 
 </div>
@@ -37,15 +44,17 @@
 
 <img id="notificationIcon" src="icons/notification.png">
 
-<span>Notifications</span>
-
+<span id="notificationsText">
+Notifications
+</span>
 </button>
   <button class="viewer-button" onclick="openViewer()">
 
 <img src="icons/view-site.png">
 
-<span>Open Public View</span>
-
+<span id="viewerText">
+Open Public View
+</span>
 </button>
 <div class="storage-card">
 
@@ -53,8 +62,9 @@
 
 <img src="icons/cloud">
 
-<span>Storage</span>
-
+<span id="storageTitleText">
+Storage
+</span>
 </div>
 
 
@@ -75,8 +85,9 @@
 
 <img src="icons/logout.png">
 
-<span>Logout</span>
-
+<span id="logoutText">
+Logout
+</span>
 </button>
 
 
@@ -209,6 +220,20 @@ window.location.href =
 
 const workerURL =
 "https://anna-photo-gallery.anna-deng.workers.dev";
+    const language =
+localStorage.getItem("language") || "en";
+
+
+function toggleLanguage(){
+
+localStorage.setItem(
+"language",
+language === "en" ? "zh" : "en"
+);
+
+location.reload();
+
+}
   const r2URL =
 "https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/";
   async function loadStorage(){
@@ -1239,6 +1264,68 @@ window.open(
 );
 
 }
+    function applyEditorLanguage(){
+
+
+document.getElementById("languageButton").textContent =
+language === "zh"
+?
+"English"
+:
+"中文";
+
+
+document.getElementById("welcomeText").textContent =
+language === "zh"
+?
+"欢迎回来，Anna！"
+:
+"Welcome back, Anna!";
+
+
+document.getElementById("createAlbumText").textContent =
+language === "zh"
+?
+"创建相册"
+:
+"Create Album";
+
+
+document.getElementById("notificationsText").textContent =
+language === "zh"
+?
+"通知"
+:
+"Notifications";
+
+
+document.getElementById("viewerText").textContent =
+language === "zh"
+?
+"打开公开浏览"
+:
+"Open Public View";
+
+
+document.getElementById("storageTitleText").textContent =
+language === "zh"
+?
+"存储空间"
+:
+"Storage";
+
+
+document.getElementById("logoutText").textContent =
+language === "zh"
+?
+"登出"
+:
+"Logout";
+
+
+}
+    applyEditorLanguage();
+
     loadAlbums();
 loadStorage();
 getExistingAlbums();
