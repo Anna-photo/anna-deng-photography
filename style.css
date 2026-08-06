@@ -3540,3 +3540,50 @@ height:22px;
     justify-content:center;
 
 }
+/* Align map and language buttons perfectly */
+
+#mapButton,
+#languageButton {
+
+    position:absolute;
+
+    top:20px;
+
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:transparent !important;
+    border:none !important;
+
+    color:white;
+
+    padding:0 12px;
+
+    font-size:16px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+}
+
+
+#languageButton {
+    right:20px;
+}
+
+
+#mapButton {
+    right:95px;
+}
+
+
+#mapButton:hover,
+#languageButton:hover {
+
+    transform:translateY(-3px);
+
+}
