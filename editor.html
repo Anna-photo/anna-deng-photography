@@ -831,20 +831,39 @@ showSnackbar(result.error);
 
 function deleteAlbum(name){
 
+let displayName = name;
+
+if(language === "zh"){
+
+const albumInfo =
+existingAlbums.find(
+a => a.name === name
+);
+
+if(albumInfo && albumInfo.chinese){
+
+displayName = albumInfo.chinese;
+
+}
+
+}
+
+
 showConfirm(
 language === "zh"
 ?
-"确定要删除 " + name + " 吗？<br><br>此操作无法撤销。"
+"确定要删除 " + displayName + " 吗？<br><br>此操作无法撤销。"
 :
 "Are you sure you want to delete " + name + "?<br><br>This cannot be undone.",
 function(){
+
 performDeleteAlbum(name);
 
 }
 );
 
 }
-async function performDeleteAlbum(name){
+    async function performDeleteAlbum(name){
 
 
 const password =
