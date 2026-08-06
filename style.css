@@ -3388,3 +3388,9 @@ color:white;
     color: white;
 
 }
+/* Drop upload text color override */
+#dropOverlay .drop-message,
+#dropOverlay .drop-message p,
+#dropOverlay .arrow {
+    color: #b4b4b4 !important;
+}
