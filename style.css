@@ -3401,3 +3401,10 @@ color:white;
     bottom: -35px !important;
     transform: none !important;
 }
+/* Lower caption slightly to line up with like button */
+
+#lightboxCaption {
+
+    margin-top: 28px !important;
+
+}
