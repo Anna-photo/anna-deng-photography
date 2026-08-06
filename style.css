@@ -3619,3 +3619,59 @@ height:22px;
     transform:translateY(-3px);
 
 }
+/* Viewer lightbox like button beside X close button */
+
+#lightbox .like-area {
+
+    position:absolute !important;
+
+    top:20px !important;
+
+    left:80px !important;
+
+    right:auto !important;
+
+    bottom:auto !important;
+
+    transform:none !important;
+
+    display:flex !important;
+
+    flex-direction:row !important;
+
+    align-items:center !important;
+
+    gap:8px !important;
+
+    z-index:2200 !important;
+
+}
+
+
+#lightbox #likeButton {
+
+    width:36px !important;
+
+    height:36px !important;
+
+    padding:0 !important;
+
+}
+
+
+#lightbox #likeButton img {
+
+    width:30px !important;
+
+    height:30px !important;
+
+}
+
+
+#lightbox #likeCount {
+
+    color:white !important;
+
+    font-size:18px !important;
+
+}
