@@ -1093,10 +1093,9 @@ icon.src =
 }
 
 }
-  function formatNotificationDate(time){
+function formatNotificationDate(time){
 
 const d = new Date(time);
-
 
 return (
 
@@ -1104,7 +1103,10 @@ d.getDate()
 +
 " "
 +
-d.toLocaleString("en-US",{month:"long"})
+d.toLocaleString(
+language === "zh" ? "zh-CN" : "en-US",
+{month:"long"}
+)
 +
 " "
 +
@@ -1112,12 +1114,13 @@ d.getFullYear()
 +
 " "
 +
-d.toLocaleTimeString("en-US")
+d.toLocaleTimeString(
+language === "zh" ? "zh-CN" : "en-US"
+)
 
 );
 
-}
-  async function openNotifications(){
+}  async function openNotifications(){
 
 document.getElementById(
 "notificationOverlay"
@@ -1165,8 +1168,11 @@ await response.json();
 if(notifications.length===0){
 
 box.innerHTML =
+language === "zh"
+?
+"暂无通知。"
+:
 "No notifications.";
-
 return;
 
 }
@@ -1201,9 +1207,14 @@ div.innerHTML = `
 src="icons/red-heart.png">
 
 <span class="notification-text">
-New like in ${n.album}
+${
+language === "zh"
+?
+"有人点赞了 " + getChineseAlbumName(n.album)
+:
+"New like in " + n.album
+}
 </span>
-
 <img class="notification-thumb"
 src="${getNotificationImage(n.photo)}">
 
@@ -1230,9 +1241,14 @@ div.innerHTML = `
 src="icons/comment.png">
 
 <span class="notification-text">
-<b>${n.name}</b> left a comment in ${n.album}
+${
+language === "zh"
+?
+"<b>" + n.name + "</b> 在 " + getChineseAlbumName(n.album) + " 留下了评论"
+:
+"<b>" + n.name + "</b> left a comment in " + n.album
+}
 </span>
-
 </div>
 
 <img class="notification-thumb notification-album-cover"
@@ -1246,8 +1262,13 @@ ${formatNotificationDate(n.time)}
 
 <div class="notification-comment">
 
-<b>Comment:</b> ${n.comment}
-
+${
+language === "zh"
+?
+"<b>评论：</b> " + n.comment
+:
+"<b>Comment:</b> " + n.comment
+}
 </div>
 
 <button class="notification-delete"
