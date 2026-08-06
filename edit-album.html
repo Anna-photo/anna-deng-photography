@@ -1034,8 +1034,11 @@ document.createElement("button");
 
 
 button.innerHTML =
+language === "zh"
+?
+(item.chinese || item.name)
+:
 item.name;
-
 
 button.onclick = function(){
 
@@ -1564,18 +1567,7 @@ language === "zh"
 "取消上传"
 :
 "Cancel Upload";
-
-
-}
-  applyEditorLanguage();
-
-  loadAlbumInfo();
-loadPhotos();
-function publicAlbumMenu(e){
-
-e.preventDefault();
-e.stopPropagation();
-  document.getElementById("deleteConfirmText").textContent =
+document.getElementById("deleteConfirmText").textContent =
 language === "zh"
 ?
 "删除"
@@ -1589,7 +1581,9 @@ language === "zh"
 "取消"
 :
 "Cancel";
-  document.getElementById("renameConfirmText").textContent =
+
+
+document.getElementById("renameConfirmText").textContent =
 language === "zh"
 ?
 "重命名"
@@ -1603,12 +1597,36 @@ language === "zh"
 "取消"
 :
 "Cancel";
+
+}
+  applyEditorLanguage();
+
+  loadAlbumInfo();
+loadPhotos();
+function publicAlbumMenu(e){
+
+e.preventDefault();
+e.stopPropagation();
+  document.getElementById("renameConfirmText").textContent =
+language === "zh"
+?
+"重命名"
+:
+"Rename";
 document.getElementById("renameTitleText").textContent =
 language === "zh"
 ?
 "重命名相册"
 :
 "Rename Album";
+
+
+document.getElementById("renameCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
 document.getElementById("publicNoText").textContent =
 language === "zh"
 ?
