@@ -104,8 +104,9 @@ Logout
 
 <div class="confirm-dialog">
 
-<h3>Create New Album</h3>
-
+<h3 id="createTitleText">
+Create New Album
+</h3>
 <input 
 id="newAlbumName"
 placeholder="English album name"
@@ -121,11 +122,21 @@ autocomplete="off"
 <p id="createNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
-<button class="success-button" onclick="createAlbum()">
+<button 
+class="success-button"
+onclick="createAlbum()"
+id="createConfirmText">
+
 Create
+
 </button>
-<button onclick="closeCreateAlbum()">
+
+<button 
+onclick="closeCreateAlbum()"
+id="createCancelText">
+
 Cancel
+
 </button>
 
 </div>
@@ -137,8 +148,9 @@ Cancel
 
 <div class="confirm-dialog">
 
-<h3>Rename Album</h3>
-
+<h3 id="renameTitleText">
+Rename Album
+</h3>
 <input 
 id="renameAlbumName" 
 placeholder="English album name"
@@ -153,11 +165,22 @@ autocomplete="off"
 > <p id="renameNameError" class="name-error"></p>
 <div class="confirm-buttons">
 
-<button class="success-button" onclick="confirmRename()">
+<button 
+class="success-button"
+onclick="confirmRename()"
+id="renameConfirmText">
+
 Rename
+
 </button>
-<button onclick="closeRename()">
+
+
+<button
+onclick="closeRename()"
+id="renameCancelText">
+
 Cancel
+
 </button>
 
 </div>
@@ -173,14 +196,23 @@ Cancel
 
 <div class="confirm-buttons">
 
-<button class="danger-button" onclick="confirmYes()">
+<button 
+class="danger-button"
+onclick="confirmYes()"
+id="deleteConfirmText">
+
 Delete
+
 </button>
 
-<button onclick="confirmNo()">
+
+<button
+onclick="confirmNo()"
+id="deleteCancelText">
+
 Cancel
-</button>
 
+</button>
 </div>
 
 </div>
@@ -195,8 +227,9 @@ Cancel
 ×
 </button>
 
-<h3>Notifications</h3>
-
+<h3 id="notificationsTitleText">
+Notifications
+</h3>
 <div id="notificationList">
 
 <div class="loading-spinner"></div>
@@ -327,8 +360,13 @@ href="edit-album.html?album=${encodeURIComponent(album.name)}">
 
 <img src="${image}">
 
-<h3 class="album-title">${album.name}</h3>
-
+<h3 class="album-title">${
+language === "zh"
+?
+(album.chinese || album.name)
+:
+album.name
+}</h3>
 <p class="album-info">
 ${photoCount} photos &#8226; ${album.public ? "Public" : "Private"}</p>
 </a>
@@ -842,15 +880,28 @@ document.getElementById("albumMenu");
 menu.innerHTML = `
 
 <button onclick="closeAlbumMenu(); deleteAlbum('${name}')">
-Delete Album
+${
+language === "zh"
+?
+"删除相册"
+:
+"Delete Album"
+}
 </button>
 
+
 <button onclick="closeAlbumMenu(); renameAlbum('${name}')">
-Rename Album
+${
+language === "zh"
+?
+"重命名相册"
+:
+"Rename Album"
+}
 </button>
 
 `;
-menu.style.display="block";
+    menu.style.display="block";
 menu.style.position="fixed";
 menu.style.top =
 (e.clientY + 10) + "px";
@@ -1321,7 +1372,76 @@ language === "zh"
 "登出"
 :
 "Logout";
+document.getElementById("createTitleText").textContent =
+language === "zh"
+?
+"创建新相册"
+:
+"Create New Album";
 
+
+document.getElementById("createConfirmText").textContent =
+language === "zh"
+?
+"创建"
+:
+"Create";
+
+
+document.getElementById("createCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
+
+
+document.getElementById("renameTitleText").textContent =
+language === "zh"
+?
+"重命名相册"
+:
+"Rename Album";
+
+
+document.getElementById("renameConfirmText").textContent =
+language === "zh"
+?
+"重命名"
+:
+"Rename";
+
+
+document.getElementById("renameCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
+
+
+document.getElementById("deleteConfirmText").textContent =
+language === "zh"
+?
+"删除"
+:
+"Delete";
+
+
+document.getElementById("deleteCancelText").textContent =
+language === "zh"
+?
+"取消"
+:
+"Cancel";
+
+
+document.getElementById("notificationsTitleText").textContent =
+language === "zh"
+?
+"通知"
+:
+"Notifications";
 
 }
     applyEditorLanguage();
