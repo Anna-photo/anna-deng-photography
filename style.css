@@ -3414,24 +3414,56 @@ color:white;
     margin-top: 42px !important;
 }
 
-#lightbox .like-area {
+/* Like button below photo, aligned right */
 
-    position:absolute !important;
+.viewer-photo-area {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
 
-    top:20px !important;
 
-    right:90px !important;
+.like-area {
 
-    bottom:auto !important;
+    position:static !important;
 
-    display:flex !important;
+    display:flex;
 
     align-items:center;
 
-    gap:12px;
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:10px;
 
 }
-#mapButton {
+
+
+#likeButton {
+
+    background:none;
+    border:none;
+    padding:0;
+
+}
+
+
+#likeButton img {
+
+    width:38px;
+    height:38px;
+
+}
+
+
+#likeCount {
+
+    color:white;
+
+    font-size:18px;
+
+}#mapButton {
 
     position:absolute;
 
