@@ -3379,3 +3379,12 @@ transform:translateY(-3px);
 color:white;
 
 }
+.viewer-button:hover {
+
+    transform: translateY(-3px);
+
+    background: transparent !important;
+
+    color: white;
+
+}
