@@ -3859,7 +3859,7 @@ height:22px;
 
 #largeImage.zoomed {
 
-    transform: scale(2);
+    transform: scale(3);
 
     cursor: zoom-out;
 
