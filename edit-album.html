@@ -328,8 +328,9 @@ Cancel
 
 <div class="arrow">↑</div>
 
-<p>Drop photo anywhere to upload.</p>
-
+<p id="dropUploadText">
+Drop photo anywhere to upload.
+</p>
 </div>
 
 </div>
@@ -1463,7 +1464,12 @@ uploadFiles(files);
 }
 );  
   function applyEditorLanguage(){
-
+document.getElementById("dropUploadText").textContent =
+language === "zh"
+?
+"将照片拖放到任意位置以上传"
+:
+"Drop photo anywhere to upload.";
 document.getElementById("renameInput").placeholder =
 language === "zh"
 ?
