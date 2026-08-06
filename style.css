@@ -3459,3 +3459,35 @@ color:white;
     transform:translateY(-3px);
 
 }
+/* Map page language button - match main header */
+
+#mapLanguageButton {
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    background:none !important;
+
+    border:none !important;
+
+    padding:8px 12px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    color:inherit;
+
+    transition:transform .2s ease;
+
+}
+
+
+#mapLanguageButton:hover {
+
+    transform:translateY(-3px);
+
+}
