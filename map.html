@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Anna Deng Photography Map</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="icon" type="image/png" href="favicon-black.png">
+
+</head>
+
+
+<body>
+
+<img class="anna-logo" src="icons/anna-logo.png">
+
+
+<button id="mapLanguageButton" onclick="toggleLanguage()">
+中文
+</button>
+
+
+<h1 class="album-title" id="mapTitle">
+Photography Map
+</h1>
+
+
+<div style="text-align:center;">
+
+<img 
+src="map.png"
+alt="Anna Deng Photography Map"
+style="
+max-width:95%;
+height:auto;
+border-radius:15px;
+">
+
+</div>
+
+
+<footer class="site-footer">
+© <span id="year"></span> Anna Deng Photography
+</footer>
+
+
+<script>
+
+const language =
+localStorage.getItem("language") || "en";
+
+
+function toggleLanguage(){
+
+localStorage.setItem(
+"language",
+language === "en" ? "zh" : "en"
+);
+
+location.reload();
+
+}
+
+
+if(language==="zh"){
+
+document.getElementById("mapTitle").textContent =
+"摄影地图";
+
+document.getElementById("mapLanguageButton").textContent =
+"English";
+
+}
+else{
+
+document.getElementById("mapTitle").textContent =
+"Photography Map";
+
+document.getElementById("mapLanguageButton").textContent =
+"中文";
+
+}
+
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+
+</script>
+
+
+</body>
+
+</html>
