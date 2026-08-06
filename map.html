@@ -65,7 +65,14 @@ window.open(
 );
 
 }
+function openAlbums(){
 
+window.open(
+"https://www.annadengphoto.com",
+"_self"
+);
+
+}
 function toggleLanguage(){
 
 localStorage.setItem(
@@ -78,9 +85,8 @@ location.reload();
 }
 
 
-if(language==="zh"){
-document.getElementById("backText").textContent =
-"返回";
+document.getElementById("albumsText").textContent =
+"相册";
 document.getElementById("mapTitle").textContent =
 "摄影地图";
 
@@ -89,8 +95,9 @@ document.getElementById("mapLanguageButton").textContent =
 
 }
 else{
-document.getElementById("backText").textContent =
-"Back";
+document.getElementById("albumsText").textContent =
+"Albums";
+
 document.getElementById("mapTitle").textContent =
 "Photography Map";
 
