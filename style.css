@@ -3435,7 +3435,7 @@ color:white;
 
     position:absolute;
 
-    top:20px;
+    top:23px;
 
     right:90px;
 
@@ -3449,13 +3449,11 @@ color:white;
 
     cursor:pointer;
 
-    color:inherit;
+    color:#b4b4b4;
 
     transition:transform .2s ease;
 
 }
-
-
 #mapButton:hover {
 
     transform:translateY(-3px);
