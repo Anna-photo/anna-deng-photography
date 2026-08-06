@@ -3864,3 +3864,14 @@ height:22px;
     cursor: zoom-out;
 
 }
+/* Edit album lightbox zoom */
+
+#lightbox-image {
+    cursor: zoom-in;
+    transition: transform .3s ease;
+}
+
+#lightbox-image.zoomed {
+    transform: scale(3);
+    cursor: zoom-out;
+}
