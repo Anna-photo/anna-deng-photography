@@ -18,6 +18,9 @@
 
 <img class="anna-logo" src="icons/anna-logo.png">
 
+<button id="backButton" onclick="openPublicView()">
+← <span id="backText">Back</span>
+</button>
 
 <button id="mapLanguageButton" onclick="toggleLanguage()">
 中文
@@ -52,7 +55,14 @@ border-radius:15px;
 
 const language =
 localStorage.getItem("language") || "en";
+function openPublicView(){
 
+window.open(
+"https://www.annadengphoto.com",
+"_blank"
+);
+
+}
 
 function toggleLanguage(){
 
@@ -67,7 +77,8 @@ location.reload();
 
 
 if(language==="zh"){
-
+document.getElementById("backText").textContent =
+"返回";
 document.getElementById("mapTitle").textContent =
 "摄影地图";
 
@@ -76,7 +87,8 @@ document.getElementById("mapLanguageButton").textContent =
 
 }
 else{
-
+document.getElementById("backText").textContent =
+"Back";
 document.getElementById("mapTitle").textContent =
 "Photography Map";
 
