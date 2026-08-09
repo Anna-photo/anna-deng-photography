@@ -243,6 +243,36 @@ Notifications
 </div>
 
 </div>
+<!-- NEW NOTIFICATION POPUP -->
+
+<div id="newNotificationPopup" class="confirm-overlay">
+
+    <div class="confirm-dialog new-notification-dialog">
+
+        <h3 id="newNotificationTitle">
+            You have new notifications.
+        </h3>
+
+        <div class="confirm-buttons">
+
+            <button
+                onclick="closeNewNotificationPopup()"
+                id="newNotificationOk">
+                OK
+            </button>
+
+            <button
+                class="success-button"
+                onclick="viewNewNotifications()"
+                id="newNotificationView">
+                View
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
   <script>
   const password =
 localStorage.getItem("annaEditorPassword");
@@ -1095,6 +1125,60 @@ icon.src =
 }
 
 }
+    async function checkNewNotifications(){
+
+    try{
+
+        const response =
+        await fetch(
+            workerURL + "/get-notifications"
+        );
+
+        const notifications =
+        await response.json();
+
+        const hasNew =
+        notifications.some(
+            n => !n.seen
+        );
+
+        if(hasNew){
+
+            document.getElementById(
+                "newNotificationPopup"
+            ).style.display = "flex";
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Unable to check notifications:",
+            error
+        );
+
+    }
+
+}
+
+
+function closeNewNotificationPopup(){
+
+    document.getElementById(
+        "newNotificationPopup"
+    ).style.display = "none";
+
+}
+
+
+async function viewNewNotifications(){
+
+    closeNewNotificationPopup();
+
+    await openNotifications();
+
+}
 function formatNotificationDate(time){
 
 const d = new Date(time);
@@ -1555,7 +1639,28 @@ language === "zh"
 "通知"
 :
 "Notifications";
+document.getElementById("newNotificationTitle").textContent =
+language === "zh"
+?
+"您有新的通知。"
+:
+"You have new notifications.";
 
+
+document.getElementById("newNotificationOk").textContent =
+language === "zh"
+?
+"好的"
+:
+"OK";
+
+
+document.getElementById("newNotificationView").textContent =
+language === "zh"
+?
+"查看"
+:
+"View";
 }
     applyEditorLanguage();
 
@@ -1563,6 +1668,7 @@ language === "zh"
 loadStorage();
 getExistingAlbums();
   updateNotificationIcon();
+    checkNewNotifications();
 </script>
 
 
