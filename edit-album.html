@@ -502,10 +502,9 @@ div.className =
 "editor-photo";
 
 const image =
-"https://pub-01c7ea2201024931a9deb0945513816e.r2.dev/" +
-photo.split("/")
-.map(encodeURIComponent)
-.join("/");
+workerURL +
+"/thumbnail?key=" +
+encodeURIComponent(photo);
 
 
 
