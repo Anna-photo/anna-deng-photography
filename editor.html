@@ -1250,14 +1250,11 @@ return name;
 async function loadNotifications(){
 
     const box =
-    document.getElementById(
-        "notificationList"
-    );
+    document.getElementById("notificationList");
 
     const response =
     await fetch(
-        workerURL +
-        "/get-notifications"
+        workerURL + "/get-notifications"
     );
 
     const notifications =
@@ -1281,25 +1278,38 @@ async function loadNotifications(){
     box.innerHTML = "";
 
 
+    /* Check whether we have both types */
+    const hasUnseen =
+        notifications.some(n => !n.seen);
+
+    const hasSeen =
+        notifications.some(n => n.seen);
+
+
     let separatorAdded = false;
 
 
     notifications.forEach(n => {
 
+
         /*
-         * Put the separator immediately before
-         * the first seen notification.
+         * Show the separator ONLY when:
+         * 1. There are unseen notifications
+         * 2. There are seen notifications
+         * 3. We are about to display the first seen one
          */
         if(
+            hasUnseen &&
+            hasSeen &&
             n.seen &&
             !separatorAdded
         ){
 
             const separator =
-            document.createElement("div");
+                document.createElement("div");
 
             separator.className =
-            "notification-separator";
+                "notification-separator";
 
             separator.innerHTML = `
 
@@ -1307,9 +1317,9 @@ async function loadNotifications(){
                     ${
                         language === "zh"
                         ?
-                        "未读 · Unseen"
+                        "未读"
                         :
-                        "Unseen · 未读"
+                        "Unseen"
                     }
                 </div>
 
@@ -1321,9 +1331,9 @@ async function loadNotifications(){
                     ${
                         language === "zh"
                         ?
-                        "已读 · Seen"
+                        "已读"
                         :
-                        "Seen · 已读"
+                        "Seen"
                     }
                 </div>
 
@@ -1337,16 +1347,18 @@ async function loadNotifications(){
 
 
         const div =
-        document.createElement("div");
+            document.createElement("div");
 
 
         div.className =
-        n.seen
-        ?
-        "notification seen"
-        :
-        "notification new";
+            n.seen
+            ?
+            "notification seen"
+            :
+            "notification new";
 
+
+        /* LIKE NOTIFICATION */
 
         if(n.type === "like"){
 
@@ -1390,6 +1402,8 @@ async function loadNotifications(){
 
         }
 
+
+        /* COMMENT NOTIFICATION */
 
         if(n.type === "comment"){
 
@@ -1462,8 +1476,7 @@ async function loadNotifications(){
 
 
         /*
-         * Opening the notification panel marks
-         * unseen notifications as seen.
+         * Mark unseen notification as seen
          */
         if(!n.seen){
 
@@ -1473,8 +1486,7 @@ async function loadNotifications(){
 
     });
 
-}
-    function getNotificationImage(photo){
+}    function getNotificationImage(photo){
 
 return r2URL +
 photo
