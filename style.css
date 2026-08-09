@@ -3932,3 +3932,30 @@ height:22px;
     color: #999;
 
 }
+.new-notification-dialog {
+    max-width: 420px;
+    text-align: center;
+}
+
+.notification-separator {
+    text-align: center;
+    margin: 18px 0;
+    padding: 4px 0;
+}
+
+.notification-separator-label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.notification-squiggle {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #999;
+    line-height: 10px;
+}
+
+.notification-separator .seen-label {
+    margin-top: 3px;
+}
