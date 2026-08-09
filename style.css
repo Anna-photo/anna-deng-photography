@@ -3896,3 +3896,39 @@ height:22px;
     gap: 12px;
 
 }
+.notification-divider {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 18px 0 14px;
+
+    color: #999;
+
+    font-size: 11px;
+    line-height: 1.3;
+
+}
+
+.notification-divider-wave {
+
+    font-size: 18px;
+    letter-spacing: 3px;
+    line-height: 12px;
+
+    color: #888;
+
+    white-space: nowrap;
+
+}
+
+.notification-divider-label {
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    color: #999;
+
+}
