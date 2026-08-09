@@ -967,12 +967,12 @@ return;
             document.createElement("img");
 
 
-            img.loading = "lazy";
+          img.loading = "lazy";
 
-
-            img.src =
-            getImageURL(photo);
-
+img.src =
+workerURL +
+"/thumbnail?key=" +
+encodeURIComponent(photo);
 
             img.onload = function(){
 
