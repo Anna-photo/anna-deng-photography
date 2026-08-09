@@ -1249,159 +1249,232 @@ return name;
 
 async function loadNotifications(){
 
+    const box =
+    document.getElementById(
+        "notificationList"
+    );
 
-const box =
-document.getElementById(
-"notificationList"
-);
+    const response =
+    await fetch(
+        workerURL +
+        "/get-notifications"
+    );
 
-
-const response =
-await fetch(
-workerURL +
-"/get-notifications"
-);
-
-
-const notifications =
-await response.json();
+    const notifications =
+    await response.json();
 
 
+    if(notifications.length === 0){
 
-if(notifications.length===0){
+        box.innerHTML =
+        language === "zh"
+        ?
+        "暂无通知。"
+        :
+        "No notifications.";
 
-box.innerHTML =
-language === "zh"
-?
-"暂无通知。"
-:
-"No notifications.";
-return;
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    let separatorAdded = false;
+
+
+    notifications.forEach(n => {
+
+        /*
+         * Put the separator immediately before
+         * the first seen notification.
+         */
+        if(
+            n.seen &&
+            !separatorAdded
+        ){
+
+            const separator =
+            document.createElement("div");
+
+            separator.className =
+            "notification-separator";
+
+            separator.innerHTML = `
+
+                <div class="notification-separator-label">
+                    ${
+                        language === "zh"
+                        ?
+                        "未读 · Unseen"
+                        :
+                        "Unseen · 未读"
+                    }
+                </div>
+
+                <div class="notification-squiggle">
+                    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                </div>
+
+                <div class="notification-separator-label seen-label">
+                    ${
+                        language === "zh"
+                        ?
+                        "已读 · Seen"
+                        :
+                        "Seen · 已读"
+                    }
+                </div>
+
+            `;
+
+            box.appendChild(separator);
+
+            separatorAdded = true;
+
+        }
+
+
+        const div =
+        document.createElement("div");
+
+
+        div.className =
+        n.seen
+        ?
+        "notification seen"
+        :
+        "notification new";
+
+
+        if(n.type === "like"){
+
+            div.innerHTML = `
+
+                <div class="notification-main">
+
+                    <img
+                        class="notification-icon"
+                        src="icons/red-heart.png"
+                    >
+
+                    <span class="notification-text">
+
+                        ${
+                            language === "zh"
+                            ?
+                            "有人点赞了 " +
+                            getChineseAlbumName(n.album)
+                            :
+                            "New like in " +
+                            n.album
+                        }
+
+                    </span>
+
+                    <img
+                        class="notification-thumb"
+                        src="${getNotificationImage(n.photo)}"
+                    >
+
+                </div>
+
+                <div class="notification-date">
+
+                    ${formatNotificationDate(n.time)}
+
+                </div>
+
+            `;
+
+        }
+
+
+        if(n.type === "comment"){
+
+            div.innerHTML = `
+
+                <div class="notification-main">
+
+                    <img
+                        class="notification-icon"
+                        src="icons/comment.png"
+                    >
+
+                    <span class="notification-text">
+
+                        ${
+                            language === "zh"
+                            ?
+                            "<b>" + n.name +
+                            "</b> 在 " +
+                            getChineseAlbumName(n.album) +
+                            " 留下了评论"
+                            :
+                            "<b>" + n.name +
+                            "</b> left a comment in " +
+                            n.album
+                        }
+
+                    </span>
+
+                </div>
+
+                <img
+                    class="notification-thumb notification-album-cover"
+                    src="${getNotificationImage(n.photo)}"
+                >
+
+                <div class="notification-date">
+
+                    ${formatNotificationDate(n.time)}
+
+                </div>
+
+                <div class="notification-comment">
+
+                    ${
+                        language === "zh"
+                        ?
+                        "<b>评论：</b> " + n.comment
+                        :
+                        "<b>Comment:</b> " + n.comment
+                    }
+
+                </div>
+
+                <button
+                    class="notification-delete"
+                    onclick="confirmDeleteNotificationComment('${n.id}')"
+                >
+
+                    <img src="icons/trash.png">
+
+                </button>
+
+            `;
+
+        }
+
+
+        box.appendChild(div);
+
+
+        /*
+         * Opening the notification panel marks
+         * unseen notifications as seen.
+         */
+        if(!n.seen){
+
+            markNotification(n.id);
+
+        }
+
+    });
 
 }
-
-
-box.innerHTML="";
-
-
-
-notifications.forEach(n=>{
-
-const div =
-document.createElement("div");
-
-
-div.className =
-n.seen
-?
-"notification seen"
-:
-"notification new";
-
-
-
-if(n.type==="like"){
-
-div.innerHTML = `
-
-<div class="notification-main">
-
-<img class="notification-icon"
-src="icons/red-heart.png">
-
-<span class="notification-text">
-${
-language === "zh"
-?
-"有人点赞了 " + getChineseAlbumName(n.album)
-:
-"New like in " + n.album
-}
-</span>
-<img class="notification-thumb"
-src="${getNotificationImage(n.photo)}">
-
-</div>
-
-<div class="notification-date">
-
-${formatNotificationDate(n.time)}
-
-</div>
-
-`;
-
-}
-
-
-if(n.type==="comment"){
-
-div.innerHTML = `
-
-<div class="notification-main">
-
-<img class="notification-icon"
-src="icons/comment.png">
-
-<span class="notification-text">
-${
-language === "zh"
-?
-"<b>" + n.name + "</b> 在 " + getChineseAlbumName(n.album) + " 留下了评论"
-:
-"<b>" + n.name + "</b> left a comment in " + n.album
-}
-</span>
-</div>
-
-<img class="notification-thumb notification-album-cover"
-src="${getNotificationImage(n.photo)}">
-
-<div class="notification-date">
-
-${formatNotificationDate(n.time)}
-
-</div>
-
-<div class="notification-comment">
-
-${
-language === "zh"
-?
-"<b>评论：</b> " + n.comment
-:
-"<b>Comment:</b> " + n.comment
-}
-</div>
-
-<button class="notification-delete"
-onclick="confirmDeleteNotificationComment('${n.id}')">
-
-<img src="icons/trash.png">
-
-</button>
-`;
-
-}
-box.appendChild(div);
-
-
-if(!n.seen){
-
-markNotification(n.id);
-
-}
-
-
-});
-
-
-}
-
-
-
-
-function getNotificationImage(photo){
+    function getNotificationImage(photo){
 
 return r2URL +
 photo
